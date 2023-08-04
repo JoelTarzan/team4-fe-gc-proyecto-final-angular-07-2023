@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./about-main.component.css']
 })
 export class AboutMainComponent {
-
+  
 }

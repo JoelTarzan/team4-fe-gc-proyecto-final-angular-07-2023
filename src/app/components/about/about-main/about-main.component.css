@@ -1,0 +1,6 @@
+.max-height-100 {
+    width: 300px;
+    height: 300px;
+    max-height: 20vw;
+    max-width: 20vw;
+}

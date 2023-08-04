@@ -21,6 +21,8 @@ import { CandidateListComponent } from './components/candidate/candidate-list/ca
 import { CandidateDetailsComponent } from './components/candidate/candidate-details/candidate-details.component';
 import { CandidateApplicationComponent } from './components/candidate/candidate-application/candidate-application.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { PaginationComponent } from './components/utils/pagination/pagination.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,11 +44,13 @@ import { UserManagementComponent } from './components/user-management/user-manag
     CandidateListComponent,
     CandidateDetailsComponent,
     CandidateApplicationComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

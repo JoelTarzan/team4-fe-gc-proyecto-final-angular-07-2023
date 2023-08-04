@@ -33,13 +33,4 @@ export class AboutMainComponent {
       linkedinurl:"https://www.linkedin.com/in/gerard-fern%C3%A1ndez-tejada-b82076278/"
     }
   ]
-
-
-  ratonEncima(){
-    console.log('raton entra');
-
-  }
-  ratonSale(){
-    console.log('raton sale');
-  }
 }

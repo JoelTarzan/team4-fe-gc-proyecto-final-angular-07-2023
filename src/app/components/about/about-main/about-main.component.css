@@ -4,3 +4,11 @@
     max-height: 20vw;
     max-width: 20vw;
 }
+
+@media (max-width: 768px) {
+    .minor-resolution-position, .minor-resolution-position .button-resolution-position{
+        text-align: center !important;
+        justify-content: center !important;
+        border: none !important;
+    }
+}

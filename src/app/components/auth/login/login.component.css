@@ -1,0 +1,78 @@
+.login-container {
+    background-image: url('../../../../assets/background-login.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    padding: 35px;
+    border-radius: 3px;
+    max-width: 400px;
+    min-width: 350px;
+    /* Opcional: Limita el ancho del formulario */
+}
+
+.login-form form {
+    margin-bottom: 0;
+    /* Opcional: Elimina el margen inferior del formulario */
+}
+
+/* Estilos adicionales para el formulario, como centrar el botón y ajustar los campos de entrada */
+.login-form .form-group {
+    margin-bottom: 15px;
+}
+
+.login-form .form-control {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    /* Línea inferior */
+    border-radius: 0;
+    box-shadow: none;
+    text-align: left; /* Alinea el texto del placeholder a la izquierda */
+    padding: 5px 0; /* Ajusta el padding vertical del campo de entrada */
+    font-size: 15px;
+}
+
+.login-form .form-control:focus {
+    border-color: #2d83df;
+    /* Color de la línea inferior cuando el campo está enfocado */
+    outline: 0;
+    box-shadow: none;
+}
+
+.login-form .btn-primary {
+    display: block;
+    max-width: 200px;
+    /* Ajusta el ancho máximo del botón según tus necesidades */
+    margin: 0 auto;
+    /* Centra horizontalmente el botón */
+    border-radius: 2px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    /* Ajusta el padding para el tamaño del botón */
+    margin-top: 30px;
+}
+
+/* login.component.css */
+/* Estilos para el contenedor de la imagen */
+.login-form .logo-container {
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+/* Estilos para la imagen */
+.login-form .logo-container img {
+    max-width: 100px;
+    /* Ajusta el ancho máximo de la imagen según tus necesidades */
+}
+
+.login-form label {
+    font-size: 18px; /* Ajusta el tamaño del texto del label */
+  }

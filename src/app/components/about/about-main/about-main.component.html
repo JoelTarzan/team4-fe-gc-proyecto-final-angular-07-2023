@@ -16,50 +16,26 @@
             seguimiento del proceso del candidato.
         </div>
     </div>
-    
+    <!-- about developers, show developer information-->
     <div class="d-flex flex-column justify-content-center align-items-center col-12 mt-5 fs-5">
         <h4 class="display-5 mb-3">Sobre los Desarrolladores</h4>
-        <!-- Card Joel -->
-        <div class="card mb-4 col-md-10 h-50" >
+
+        <!-- Card item -->
+        <div class="card mb-4 col-md-10 h-50"  *ngFor="let item of tarjetas">
             <div class="row g-0">
+                <!-- image -->
                 <div class="col-md-4 p-2 d-flex justify-content-center align-items-center">
-                    <img src="../../../../assets/joel_about.jpg" class=" rounded-circle max-height-100" alt="Image_Joel"><!-- ../../../../assets/joel_about.jpg --><!-- img-fluid --> 
+                    <img src="¨{{item.imgurl}}" class=" rounded-circle max-height-100" alt="Image_Joel">
                 </div>
+                <!-- Content -->
                 <div class="col-md-8 d-flex align-items-center">
                     <div class="card-body d-flex flex-column align-items-center text-start overflow-hidden border-start border-2 border-primary-subtle">
-                        <h5 class="card-title w-100">Joel</h5>
-                        <p class="card-text w-100">Uno de los dessarrolladores de esta aplicación web</p>
-                        <p class="card-text w-100"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Card Marco -->
-        <div class="card mb-4 col-md-10" >
-            <div class="row g-0">
-                <div class="col-md-4 p-2 d-flex justify-content-center align-items-center">
-                    <img src="../../../../assets/image_perfil_default.webp" class=" rounded-circle max-height-100" alt="Image_Marco"><!-- ../../../../assets/image_perfil_default.webp --><!-- img-fluid -->
-                </div>
-                <div class="col-md-8 d-flex justify-content-center align-items-center">
-                    <div class="card-body d-flex flex-column align-items-center text-start overflow-hidden border-start border-2 border-primary-subtle">
-                        <h5 class="card-title  w-100">Marco</h5>
-                        <p class="card-text  w-100">Uno de los dessarrolladores de esta aplicación web</p>
-                        <p class="card-text  w-100"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Card Gerard -->
-        <div class="card mb-4 col-md-10" >
-            <div class="row g-0">
-                <div class="col-md-4 p-2 d-flex justify-content-center align-items-center">
-                    <img src="../../../../assets/gerard_about.jpg" class=" rounded-circle max-height-100" alt="Image_Gerard"><!-- ../../../../assets/gerard_about.jpg --><!-- img-fluid -->
-                </div>
-                <div class="col-md-8 d-flex justify-content-center align-items-center">
-                    <div class="card-body d-flex flex-column align-items-center text-start align-items-center overflow-hidden border-start border-2 border-primary-subtle">
-                        <h5 class="card-title  w-100">Gerard</h5>
-                        <p class="card-text  w-100">Uno de los desarrolladores que ha contribuido en la construccion del programa Aurum RH</p>
-                        <p class="card-text  w-100"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title w-100">{{item.nombre}}</h5>
+                        <p class="card-text w-100">{{item.descripcion}}</p>
+                        <p class="card-text w-100"><small class="text-body-secondary">{{item.tiempo}}</small></p>
+                        <div class="d-flex justify-content-start w-100">
+                            <a href="{{item.linkedinurl}}" type="button" class="btn btn-primary" target="_blank">Linkedin</a>
+                        </div>
                     </div>
                 </div>
             </div>

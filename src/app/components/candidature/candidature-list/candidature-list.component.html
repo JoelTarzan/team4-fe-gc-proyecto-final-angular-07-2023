@@ -2,8 +2,12 @@
 
 <div class="container py-4">
 
-    <div class="row justify-content-end">
-        <div class="mb-4 col-7 col-md-2">
+    <div class="row d-flex flex-column flex-sm-row" [class]="rol == 'rrhh' ? 'justify-content-between' : 'justify-content-end'">
+        <div class="mb-4 col-md-3 col-xl-2 col-12" *ngIf="rol == 'rrhh'">
+            <button type="button" class="btn btn-primary w-100">Crear Candidatura</button>
+        </div>
+        
+        <div class="mb-4 col-md-4 col-lg-3 col-xl-2 col-12">
             <select class="form-select" aria-label="Alfabético ASC">
                 <option selected>Alfabético ASC</option>
                 <option value="1">Alfabético DESC</option>

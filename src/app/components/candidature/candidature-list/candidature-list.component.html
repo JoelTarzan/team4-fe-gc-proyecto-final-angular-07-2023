@@ -4,7 +4,7 @@
 
     <div class="row d-flex flex-column flex-sm-row" [class]="rol == 'rrhh' || rol == 'admin' ? 'justify-content-between' : 'justify-content-end'">
         <div class="mb-4 col-md-3 col-xl-2 col-12" *ngIf="rol == 'rrhh' || rol == 'admin'">
-            <button type="button" class="btn btn-primary w-100">Crear Candidatura</button>
+            <a type="button" class="btn btn-primary w-100">Crear Candidatura</a>
         </div>
         
         <div class="mb-4 col-md-4 col-lg-3 col-xl-2 col-12">
@@ -28,7 +28,7 @@
                             {{ candidature.state ? 'Abierta' : 'Cerrada' }}
                         </span>
                     </h5>
-                    <button type="button" class="btn btn-primary">Ver Candidatura</button>
+                    <a type="button" class="btn btn-primary" [routerLink]="['/candidature-details', candidature.id]">Ver Candidatura</a>
                 </div>
             </div>
         </div>

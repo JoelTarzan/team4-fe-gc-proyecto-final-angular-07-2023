@@ -8,7 +8,7 @@ import { CandidaturesService } from 'src/app/services/candidatures.service';
 })
 export class CandidatureListComponent implements OnInit {
 
-  rol: string = 'candidate';
+  rol: string = 'rrhh';
 
   allCandidatures: any;
   displayedCandidatures: any[] = [];

@@ -21,7 +21,9 @@ import { CandidateListComponent } from './components/candidate/candidate-list/ca
 import { CandidateDetailsComponent } from './components/candidate/candidate-details/candidate-details.component';
 import { CandidateApplicationComponent } from './components/candidate/candidate-application/candidate-application.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { PaginationComponent } from './components/utils/pagination/pagination.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -43,12 +45,14 @@ import { HttpClientModule } from '@angular/common/http';
     CandidateListComponent,
     CandidateDetailsComponent,
     CandidateApplicationComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

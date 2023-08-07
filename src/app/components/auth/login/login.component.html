@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="login-container">
+    <div>
+        <div class="login-form">
+            <div class="logo-container">
+                <img src="../../../../assets/aurum-nombre.png" alt="Logo">
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="username">Inicia sesión</label>
+                    <br><br>
+                    <input type="text" class="form-control" id="username" placeholder="Correo">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Acceder</button>
+            </form>
+            <div>
+            </div>
+        </div>
+        <div class="links-container text-center">
+            <a routerLink="/register" class="custom-link">Regístrate</a>
+            <!-- <a routerLink="/password-change" class="custom-link">Cambiar contraseña</a> -->
+        </div>
+    </div>

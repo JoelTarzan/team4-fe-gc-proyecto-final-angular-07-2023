@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { OpenProcess } from '../models/open-process';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class OpenProcessesService {
 
   // Devuelve los procesos abiertos
   getOpenProcesses() {
-    return this.http.get(this.endpoint + 'open-processes');
+    
+    return this.http.get<OpenProcess[]>(this.endpoint + 'open-processes');
   }
 }

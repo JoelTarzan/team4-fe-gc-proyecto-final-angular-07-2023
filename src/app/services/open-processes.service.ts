@@ -15,6 +15,7 @@ export class OpenProcessesService {
 
   // Devuelve los procesos abiertos
   getOpenProcesses() {
+    
     return this.http.get<OpenProcess[]>(this.endpoint + 'open-processes');
   }
 }

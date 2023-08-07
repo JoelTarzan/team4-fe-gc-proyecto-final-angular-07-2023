@@ -53,7 +53,7 @@ const routes: Routes = [
     component: CandidatureListComponent,
   },
   {
-    path: 'candidature-details',
+    path: 'candidature-details/:id',
     component: CandidatureDetailsComponent,
   },
   {

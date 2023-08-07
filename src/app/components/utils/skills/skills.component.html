@@ -1,31 +1,57 @@
+<!-- General div for skills -->
 <div class="w-100 h-100" >
-    <div class="d-flex justify-content-between">
+    <!-- container for head of skills (tittle and edit button) -->
+    <div class="d-flex justify-content-between h-25">
         <!-- change the title according to the url  -->
-        <h3 class="mx-2">{{ actualRoute == '/candidate-details' ? tittle2 : tittle }}</h3>
+        <h3 class="mx-2">{{ actualRoute == '/candidature-detail' ? tittle2 : tittle }}</h3>
 
-        <!-- Conditional have option for edit in (user, /profile) and (rrhh, /candidate-details) -->
-        <button class="col-1 btn btn-primary square-btn" (click)="editFunction()"
+        <!-- Conditional have option for edit in (user, /profile) and (rrhh, /candidature-detail) -->
+        <button class="col-1 h-100 mx-1 btn btn-primary square-btn d-flex justify-content-center align-items-center icon-container" (click)="editFunction()"
             *ngIf="
-            (rol == 'rrhh' && actualRoute == '/candidate-details') 
-            || 
-            (rol == 'user' && actualRoute == '/profile')" >
+            (rol == 'user' && actualRoute == '/profile') 
+            ||
+            (rol == 'rrhh' && actualRoute == '/candidature-detail')
+        "> 
+            <!-- Icon from google -->
+            <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                edit_square
+            </span>
         </button>
     </div>
 
-
-    <div class="overflow-y-auto">
-        <ul class="list-group list-group-flush">
+    <!-- this div contains all the skills it receives from the database -->
+    <div class="overflow-y-auto h-75 max_size-scroll ">
+        <ul class="list-group list-group-flush h-100 ">
+            <!-- this li contains option for add more skills to the database -->
+            <li class="list-group-item" *ngIf="editActivate"> 
+                <div class="d-flex justify-content-between">
+                    <!-- input that collects the text to add it as a skill  -->
+                    <input class="form-control" type="text" id="miInput" placeholder="inserte skill" [(ngModel)]="skillinsert">
+                    <!-- button for add -->
+                    <button class=" btn btn-light square-btn mx-1 h-100 material-symbols-outlined icon-container"  (click)="addSkills()">
+                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                            add_box
+                        </span>
+                    </button>
+                </div>
+            </li>
+            <!-- this li contain one item to iterate for each element in the database -->
             <li class="list-group-item" *ngFor="let item of skills.skills">
                 <div class="d-flex justify-content-between">
+                    <!-- Show skill name -->
                     {{item.skill}}
                     <!-- Only see in /candidate-application path -->
-                    <div *ngIf="actualRoute == '/'"><!-- candidate-application -->
-                        <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox" [checked]="item.confirmation" (click)="isCheked(item.skill, item.confirmation)">
+                    <div *ngIf="actualRoute == '/candidate-application'">
+                        <input class="form-check-input me-1" type="checkbox" [checked]="item.confirmation" (click)="isCheked(item.skill, item.confirmation)">
                     </div>
                     <!-- Only see if button edit is enabled -->
                     <div *ngIf="editActivate">
-                        <button class="col-1 btn btn-warning square-btn mx-1"  (click)="removeSkills(item)"></button>
-                        <button class="col-1 btn btn-danger square-btn mx-1"  (click)="removeSkills(item)"></button>
+                        <!-- button for deleted skill -->
+                        <button class="btn btn-light square-btn mx-1 material-symbols-outlined h-100 icon-container"  (click)="removeSkills(item.skill)">    
+                            <span class="  material-symbols-outlined line-height-base text-start autowidth">   
+                                disabled_by_default
+                            </span> 
+                        </button>
                     </div>
                 </div>
             </li>

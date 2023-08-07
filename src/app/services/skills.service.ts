@@ -22,24 +22,24 @@ export class SkillsService {
   }
 
   //add skills in Candidacy
-  addSkillsCandidacy (id:any, data:any) {
-    return this.http.post(`${baseUrlCandidacy}/${id}`,data);
+  addSkillsCandidacy (data:any) {
+    return this.http.put(`${baseUrlCandidacy}/${data.id}`,data);
   }
-  addSkillsUser (id:any, data:any) {
-    return this.http.post(`${baseUrlUser}/${id}`, data);
+  addSkillsUser (data:any) {
+    return this.http.put(`${baseUrlUser}/${data.id}`, data);
   }
 
   //delete skills in Candidacy
-  removeSkillsCandidacy(id:any, skill:any) {
-    return this.http.delete(`${baseUrlCandidacy}/${id}/skills/${skill}`);
+  removeSkillsCandidacy(data:any) {
+    return this.http.put(`${baseUrlCandidacy}/${data.id}`, data);
   }
-  removeSkillsUser (id:any, skill:any) {
-    return this.http.delete(`${baseUrlUser}/${id}`);
+  removeSkillsUser (data:any) {
+    return this.http.put(`${baseUrlUser}/${data.id}`, data);
   }
 
-  confirmedSkill(id:any, skill:any, confirmation:any){
-    console.log(`id:${id} skill:${skill} y confirmacion:${confirmation}`);
-    return this.http.put(`${baseUrlCandidacy}/${id}/skills/${skill}/confirmation`, confirmation);
+  confirmedSkill(skills:any){
+    console.log(`id:${skills.id} skill:${skills.skills} y confirmacion:${skills.confirmation}`);
+    return this.http.put(`${baseUrlCandidacy}/${skills.id}`, skills);
 
   }
 

@@ -1,0 +1,153 @@
+.main-container {
+    background-color: #eeeeee;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+/* container de la hoja de perfil */
+.container-profile { 
+    background-color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+/* tamaño de los inputs */
+.quadrant.quadrant-2 .form-control {
+    width: 350px;
+}
+
+/* control de tamños en pantallas pequeñas y collapse de grid */
+@media (max-width: 800px) {
+    .container-profile {
+        width: 380px;
+        height: auto;
+    }
+
+    .container-profile .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+    }
+
+    .container-profile textarea {
+        width: 300px;
+        height: 150px;
+        max-height: 150px;
+        min-height: 150px;
+    }
+    .quadrant.quadrant-2 .form-control {
+        width: 230px;
+    }
+}
+
+@media (max-width: 700px) {
+    .container-profile {
+        width: 340px;
+        height: auto;
+    }
+
+    .container-profile .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+    }
+
+    .container-profile textarea {
+        width: 300px;
+        height: 150px;
+        max-height: 150px;
+        min-height: 150px;
+    }
+
+    .quadrant.quadrant-2 .form-control {
+        width: 230px;
+    }
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 0.7fr);
+    gap: px;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+/* compartido por cada cuadrante del grid */
+.quadrant {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* container de foto y nombre */
+.content1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* foto y nombre */
+.image-section, .text-section {
+    padding: 10px;
+    text-align: center;
+}
+
+.image-container {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #4284ff;
+    box-shadow: 1px 2px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* container boton change (editor azul) */
+.change-image-container {
+    width: 30px;
+    height: 30px;  
+}
+
+/* tamaño fijo del area de texto */
+textarea {
+    width: 400px;
+    height: 200px;
+    max-height: 150px;
+    min-height: 150px;
+}
+
+.perfil textarea {
+    width: 250px;
+    height: 40px;
+    max-height: 40px;
+    min-height: 40px;
+}
+
+.image-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}  
+
+/* estilos letra nombre */
+.texto-grande {
+    font-size: 20px; 
+    margin-bottom: -5px;
+}
+
+.texto-titulo {
+    color: rgb(129, 129, 129); 
+}
+

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Skill } from '../models/skill';
 
 
 const baseUrlCandidacy = 'http://localhost:3000/candidatura';
@@ -10,6 +11,8 @@ const baseUrlUser = 'http://localhost:3000/usuario';
 })
 
 export class SkillsService {
+
+  skillsEndpoint: string = 'http://localhost:3000/skills';
   
   constructor( private http:HttpClient ) {}
   
@@ -41,6 +44,11 @@ export class SkillsService {
     console.log(`id:${skills.id} skill:${skills.skills} y confirmacion:${skills.confirmation}`);
     return this.http.put(`${baseUrlCandidacy}/${skills.id}`, skills);
 
+  }
+
+  // Devuelve todas las skills
+  getAllSkills() {
+    return this.http.get<Skill[]>(this.skillsEndpoint);
   }
 
 }

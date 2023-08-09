@@ -4,4 +4,5 @@ export interface User {
     name: string;
     lastname: string;
     rrhh: boolean;
+    rating: number;
 }

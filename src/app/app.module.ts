@@ -23,6 +23,7 @@ import { CandidateApplicationComponent } from './components/candidate/candidate-
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { PaginationComponent } from './components/utils/pagination/pagination.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListPostulatedComponent } from './components/candidature/candidature-details/list-postulated/list-postulated.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     CandidateDetailsComponent,
     CandidateApplicationComponent,
     UserManagementComponent,
-    PaginationComponent
+    PaginationComponent,
+    ListPostulatedComponent
   ],
   imports: [
     BrowserModule,

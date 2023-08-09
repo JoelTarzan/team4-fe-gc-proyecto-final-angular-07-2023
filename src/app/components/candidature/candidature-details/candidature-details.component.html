@@ -1,1 +1,148 @@
-<p>candidature-details works!</p>
+<app-navbar></app-navbar>
+<div class="container py-4">
+    <div class="row g-0">
+        <div class="col-lg-7 col-sm-12  text-start">
+            <!-- ENUNCIADO -->
+            <div class="">
+
+                <!-- TITULO/NOMBRE CANDIDATURA -->
+                <div class="d-flex justify-content-between">
+                    <h3 *ngIf="!modeEditTitle">{{data.nombre}}</h3>
+                    <div class="w-75" *ngIf="modeEditTitle">
+                        <input type="text" class="form-control" placeholder="Nombre Candidatura" value="{{data.nombre}}" aria-label="Candidatura" aria-describedby="Candidatura">
+                        <button class="btn btn-light mt-1">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">
+                                check_box
+                            </span>
+                        </button>
+                    </div>
+                    <div class="" *ngIf="typeUser=='rrhh'">
+                        <button class="btn btn-primary" (click)="controlModes('tittle')">
+                            <!-- Icon from google -->
+                            <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                                edit_square
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIN---TITULO/NOMBRE CANDIDATURA--- -->
+
+                <!-- INFO CANDIDATURA -->
+                <div class="mt-3" *ngIf="typeUser=='rrhh'">
+                        <button class="btn btn-primary">
+                            <!-- Icon from google -->
+                            <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                                edit_square
+                            </span>
+                        </button>
+                </div>
+                <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-between">
+                    
+                    <div class="col p-0 text-center text-break"><span class="fw-bold">Localidad</span>
+                        <div class="w-100 h-100 p-2 border-top">
+                            <div>
+                                {{data.localizacion}}
+                            </div>
+                            <!-- <div>
+                                {{data.localizacion}}
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col p-0 text-center text-break">
+                        <span class="fw-bold">Jornada</span> 
+                        <div class="w-100 h-100 p-2 border-top">
+                            {{data.jornada}}
+                        </div>
+                    </div>
+                    <div class="col p-0 text-center text-break">
+                        <span class="fw-bold">solicitantes</span> 
+                        <div class="w-100 h-100 p-2 border-top">
+                            {{data.solicitantes}}
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN---INFO CANDIDATURA--- -->
+            </div>
+
+            <!-- DESCRIPCION -->
+            <div class="my-3 px-3">
+                <div class="d-flex justify-content-between">
+                    <h5>Descripcion</h5>
+                    <button *ngIf="typeUser=='rrhh'" class="btn btn-primary" (click)="controlModes('description')">
+                        <!-- Icon from google -->
+                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                            edit_square
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!modeEditDescription">
+                    {{data.descripcion}}
+                </div>
+                <div *ngIf="modeEditDescription">
+                    <textarea class="form-control" aria-label="With textarea">{{data.descripcion}}</textarea>
+                    <button class="btn btn-light">
+                        <span class="material-symbols-outlined line-height-base text-start autowidth">
+                            check_box
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- REQUERIMIENTOS -->
+            <div class="my-3 px-3">
+                <div class="d-flex justify-content-between">
+                    <h5>Requerimientos</h5>
+                    <button *ngIf="typeUser=='rrhh'" class="btn btn-primary" (click)="controlModes('requeriments')">
+                        <!-- Icon from google -->
+                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                            edit_square
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!modeEditRequeriments">
+                    {{data.requerimiento}}
+                </div>
+                <div *ngIf="modeEditRequeriments">
+                    <textarea class="form-control" aria-label="With textarea">{{data.requerimiento}}</textarea>
+                    <button class="btn btn-light">
+                        <span class="material-symbols-outlined line-height-base text-start autowidth">
+                            check_box
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- RESPONSABILIDADES -->
+            <div class="my-3 px-3">
+                <div class="d-flex justify-content-between">
+                    <h5>Responsabilidades</h5>
+                    <button *ngIf="typeUser=='rrhh'" class="btn btn-primary" (click)="controlModes('responsabilities')">
+                        <!-- Icon from google -->
+                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
+                            edit_square
+                        </span>
+                    </button>
+                </div>
+                <div *ngIf="!modeEditResponsibilities">
+                    {{data.responsabilidades}}
+                </div>
+                <div *ngIf="modeEditResponsibilities">
+                    <textarea class="form-control" aria-label="With textarea">{{data.responsabilidades}}</textarea>
+                    <button class="btn btn-light">
+                        <span class="material-symbols-outlined line-height-base text-start autowidth">
+                            check_box
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-sm-12">
+            <div><app-skills ></app-skills></div><!-- [applicant]="'candidatura'" -->
+            <div *ngIf="typeUser == 'user'"> aplicado </div>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
+        <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>
+    </div>
+</div>

@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class CandidateDetailsComponent {
 
+  name: string = "Laura";
+  lastname: string = "Tarzán";
+  email: string = "laura@gmail.com";
+  tel: string = "644288990";
+
+
+  constructor() {
+
+  }
 }

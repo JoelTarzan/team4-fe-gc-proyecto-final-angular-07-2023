@@ -24,6 +24,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { PaginationComponent } from './components/utils/pagination/pagination.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProgressBarComponent } from './components/utils/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CandidateApplicationComponent,
     UserManagementComponent,
     PaginationComponent,
-    
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,11 @@ export class OpenProcessesService {
 
   // Devuelve los procesos abiertos
   getOpenProcesses() {
-    
     return this.http.get<OpenProcess[]>(this.endpoint + 'open-processes');
+  }
+
+  // Devuelve los procesos abiertos de ejemplo para la barra de progreso - SOLO SON DE EJEMPLO TEMPORALMENTE
+  getExampleProgressBar() {
+    return this.http.get(this.endpoint + 'progress-bar');
   }
 }

@@ -19,4 +19,9 @@ export class UsersService {
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.endpoint + 'users');
   }
+
+  // Edita un usuario
+  update(id: number, user: User): Observable<any> {
+    return this.http.put(this.endpoint + 'users/' + id, user);
+  }
 }

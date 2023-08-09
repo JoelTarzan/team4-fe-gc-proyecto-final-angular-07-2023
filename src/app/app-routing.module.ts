@@ -41,7 +41,7 @@ const routes: Routes = [
     component: CandidateListComponent,
   },
   {
-    path: 'candidate-details',
+    path: 'candidate-details/:id',
     component: CandidateDetailsComponent,
   },
   {
@@ -53,7 +53,7 @@ const routes: Routes = [
     component: CandidatureListComponent,
   },
   {
-    path: 'candidature-details',
+    path: 'candidature-details/:id',
     component: CandidatureDetailsComponent,
   },
   {

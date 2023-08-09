@@ -1,0 +1,22 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { User } from '../models/user';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsersService {
+
+  endpoint: string = 'http://localhost:3000/';
+
+  constructor(
+    private http: HttpClient) { 
+      
+  }
+    
+  // Devuelve todos los usuarios
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>(this.endpoint + 'users');
+  }
+}

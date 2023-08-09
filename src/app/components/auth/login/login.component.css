@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-form {
@@ -64,4 +66,18 @@
 
 .login-form label {
     font-size: 18px; 
+}
+
+.links-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-link {
+    text-decoration: none; /* Quitamos la subrayado del enlace */
+    color: black; /* Color del texto del enlace */
+    display: inline-block; /* Asegura que los enlaces se muestren en una línea */
+    margin: 0 10px; /* Agrega un espacio entre los enlaces (opcional) */
+    font-size: 13px;
 }

@@ -17,5 +17,14 @@ export class UsersCandidacyService {
           return response
         })
       )
-    }
+  }
+
+  getIdUserSpecific(idUser:any, idCandidacy:any): Observable<any[]>{
+    return this.http.get<any[]>(`${baseUrl}?idCandidature=${idCandidacy}&idPostulatedUser=${idUser}`).pipe(
+        map((response) => {
+          return response
+        })
+      );
+  }
 }
+

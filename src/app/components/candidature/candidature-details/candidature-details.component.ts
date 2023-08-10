@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { CandidaturaService } from 'src/app/services/candidatura.service';
+import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
   selector: 'app-candidature-details',
@@ -8,9 +9,19 @@ import { CandidaturaService } from 'src/app/services/candidatura.service';
   styleUrls: ['./candidature-details.component.css']
 })
 export class CandidatureDetailsComponent implements OnInit {
+  //representacion de tipo de usuario 
   typeUser:string="rrhh";
+  
+  //representacion de cual es la ID del usuario que esta observando la candidatura 
+  idUser:any=1;
+  
+  //representacion de cual es la ID de la candidatura seleccionada 
   idCandidacy:any=1;
 
+  // Boleano de control, guarda si el usuario esta aplicando a la candidatura
+  userSubscribed:boolean=true;
+  
+  // Guarda los datos de la candidatura
   data:any;
 
   /* Booleanos para llevar control de los modos de edicion activados */
@@ -20,16 +31,27 @@ export class CandidatureDetailsComponent implements OnInit {
   modeEditRequeriments:boolean=false;
   modeEditResponsibilities:boolean=false;
 
-  constructor(private candidacyService:CandidaturaService){}
+  constructor(private candidacyService:CandidaturaService, private userCandidacy:UsersCandidacyService ,private router: Router){}
 
-  actualRoute:any;
   
-  ngOnInit(): void {
+  ngOnInit() {
+    /* Recoge los datos de la candidatura que se esta observando */
     this.candidacyService.getDataCandidacy(this.idCandidacy)
     .subscribe((result: any) => {
       // save data in array
       this.data = result;
     });
+    /* Comprovacion de si el usuario esta registrado en la candidatura */
+    if(this.typeUser=="user"){
+      this.userCandidacy.getIdUserSpecific(this.idUser, this.idCandidacy).subscribe((result: any) => {
+        // save data in array
+        if(result != null && result.length > 0){
+          this.userSubscribed=true;
+        }else{
+          this.userSubscribed=false;
+        }
+      });
+    }
   }
 
   /* Controla que modos de edicion estan aplicados y cuales no */
@@ -67,24 +89,23 @@ export class CandidatureDetailsComponent implements OnInit {
         }
         break;
 
+        case "infocandidacy":
+          if (this.modeEditInfoCandidacy) {
+            this.modeEditInfoCandidacy=false;
+          }else{
+            this.modeEditInfoCandidacy=true;
+          }
+          break;
+        
       default:
         break;
     }
   }
 
-  editTitle(){
-
-  }
-  editInfoCandidacy(){
-    
-  }
-  editDescription(){
-    
-  }
-  editRequeriments(){
-    
-  }
-  editResponsibilities(){
-    
-  }
+  /* Metodos preparados para aplicar ediciones */
+  editTitle(){ }
+  editInfoCandidacy(){ }
+  editDescription(){ }
+  editRequeriments(){ }
+  editResponsibilities(){ }
 }

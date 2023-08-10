@@ -6,18 +6,23 @@
             <div class="">
 
                 <!-- TITULO/NOMBRE CANDIDATURA -->
-                <div class="d-flex justify-content-between">
-                    <h3 *ngIf="!modeEditTitle">{{data.nombre}}</h3>
-                    <div class="w-75" *ngIf="modeEditTitle">
+                <div class="d-flex align-items-center ">
+                    <!-- Titulo de la candidatura, lleva un control por si el titulo fuera muy largo que no rompa la distribucion de la vista 
+                        (un exceso de caracteres se muestra con puntos suspensivos) -->
+                    <h3 class="text-truncate text-truncate-overflow" *ngIf="!modeEditTitle" title="{{data.nombre.length>28 ? data.nombre : ''}}">{{data.nombre}}</h3>
+                    <div class="d-flex w-75 align-items-center" *ngIf="modeEditTitle">
+                        <!-- Input text que añade como valor base el contenido que ya tiene -->
                         <input type="text" class="form-control" placeholder="Nombre Candidatura" value="{{data.nombre}}" aria-label="Candidatura" aria-describedby="Candidatura">
-                        <button class="btn btn-light mt-1">
+                        <!-- Boton de confirmacion del titulo -->
+                        <button class="btn btn-light mx-1">
                             <span class="material-symbols-outlined line-height-base text-start autowidth">
                                 check_box
                             </span>
                         </button>
                     </div>
+                    <!-- Boton de edicion para el titulo -->
                     <div class="" *ngIf="typeUser=='rrhh'">
-                        <button class="btn btn-primary" (click)="controlModes('tittle')">
+                        <button class="btn btn-primary mx-1" (click)="controlModes('tittle')">
                             <!-- Icon from google -->
                             <span class="  material-symbols-outlined line-height-base text-start autowidth">
                                 edit_square
@@ -29,7 +34,15 @@
 
                 <!-- INFO CANDIDATURA -->
                 <div class="mt-3" *ngIf="typeUser=='rrhh'">
-                        <button class="btn btn-primary">
+                        <!-- Boton de confirmacion que aplicaria los cambios -->
+                        <button *ngIf="modeEditInfoCandidacy" class="btn btn-light mx-1">
+                            <!-- Icon from google -->
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">
+                                check_box
+                            </span>
+                        </button>
+                        <!-- Boton edicion de los 3 dialogos debajo del titulo (solicitantes, jornada...) -->
+                        <button class="btn btn-primary" (click)="controlModes('infocandidacy')">
                             <!-- Icon from google -->
                             <span class="  material-symbols-outlined line-height-base text-start autowidth">
                                 edit_square
@@ -40,24 +53,40 @@
                     
                     <div class="col p-0 text-center text-break"><span class="fw-bold">Localidad</span>
                         <div class="w-100 h-100 p-2 border-top">
-                            <div>
+                            <!-- si no se activa la edicion tan solo muestra la info -->
+                            <div *ngIf="!modeEditInfoCandidacy">
                                 {{data.localizacion}}
                             </div>
-                            <!-- <div>
-                                {{data.localizacion}}
-                            </div> -->
+                            <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
+                            <div *ngIf="modeEditInfoCandidacy">
+                                <input type="text" class="form-control" placeholder="Localizacion" value="{{data.localizacion}}" aria-label="Localizacion" aria-describedby="Localizacion">
+                            </div>
                         </div>
                     </div>
                     <div class="col p-0 text-center text-break">
                         <span class="fw-bold">Jornada</span> 
                         <div class="w-100 h-100 p-2 border-top">
-                            {{data.jornada}}
+                            <!-- si no se activa la edicion tan solo muestra la info -->
+                            <div *ngIf="!modeEditInfoCandidacy">
+                                {{data.jornada}}
+                            </div>
+                            <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
+                            <div *ngIf="modeEditInfoCandidacy">
+                                <input type="text" class="form-control" placeholder="Jornada" value="{{data.jornada}}" aria-label="Jornada" aria-describedby="Jornada">
+                            </div>
                         </div>
                     </div>
                     <div class="col p-0 text-center text-break">
                         <span class="fw-bold">solicitantes</span> 
                         <div class="w-100 h-100 p-2 border-top">
-                            {{data.solicitantes}}
+                            <!-- si no se activa la edicion tan solo muestra la info -->
+                            <div *ngIf="!modeEditInfoCandidacy">
+                                {{data.solicitantes}}
+                            </div>
+                            <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
+                            <div *ngIf="modeEditInfoCandidacy">
+                                <input type="text" class="form-control" placeholder="Solicitantes" value="{{data.solicitantes}}" aria-label="Solicitantes" aria-describedby="Solicitantes">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,82 +94,99 @@
             </div>
 
             <!-- DESCRIPCION -->
-            <div class="my-3 px-3">
-                <div class="d-flex justify-content-between">
+            <div class="my-3 px-3 ">
+                <div class="d-flex align-items-center">
                     <h5>Descripcion</h5>
-                    <button *ngIf="typeUser=='rrhh'" class="btn btn-primary" (click)="controlModes('description')">
-                        <!-- Icon from google -->
-                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
-                            edit_square
-                        </span>
-                    </button>
+                    <div class="d-flex px-1">
+                        <!-- Boton de añadir se activa si edicion esta activada -->
+                        <button class="btn btn-light  mx-1" *ngIf="modeEditDescription">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        </button>
+                        <!-- Boton de edicion -->
+                        <button  class="btn btn-primary mx-1" *ngIf="typeUser=='rrhh'" (click)="controlModes('description')">
+                            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
+                        </button>
+                    </div>
                 </div>
+                <!-- si no se activa la edicion tan solo muestra la info -->
                 <div *ngIf="!modeEditDescription">
                     {{data.descripcion}}
                 </div>
-                <div *ngIf="modeEditDescription">
+                <!-- Si edicion esta activada muestra un textarea -->
+                <div class="my-1" *ngIf="modeEditDescription">
                     <textarea class="form-control" aria-label="With textarea">{{data.descripcion}}</textarea>
-                    <button class="btn btn-light">
-                        <span class="material-symbols-outlined line-height-base text-start autowidth">
-                            check_box
-                        </span>
-                    </button>
                 </div>
             </div>
 
             <!-- REQUERIMIENTOS -->
             <div class="my-3 px-3">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex align-items-center">
                     <h5>Requerimientos</h5>
-                    <button *ngIf="typeUser=='rrhh'" class="btn btn-primary" (click)="controlModes('requeriments')">
-                        <!-- Icon from google -->
-                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
-                            edit_square
-                        </span>
-                    </button>
+                    <div class="d-flex px-1">
+                        <!-- Boton de añadir se activa si edicion esta activada -->
+                        <button class="btn btn-light mx-1" *ngIf="modeEditRequeriments">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        </button>
+                        <!-- Boton de edicion -->
+                        <button  class="btn btn-primary mx-1" *ngIf="typeUser=='rrhh'" (click)="controlModes('requeriments')">
+                            <!-- Icon from google -->
+                            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
+                        </button>
+                    </div>
+                    
                 </div>
+                <!-- si no se activa la edicion tan solo mustra la info -->
                 <div *ngIf="!modeEditRequeriments">
                     {{data.requerimiento}}
                 </div>
-                <div *ngIf="modeEditRequeriments">
+                <!-- Si edicion esta activada muestra un textarea -->
+                <div class="my-1" *ngIf="modeEditRequeriments">
                     <textarea class="form-control" aria-label="With textarea">{{data.requerimiento}}</textarea>
-                    <button class="btn btn-light">
-                        <span class="material-symbols-outlined line-height-base text-start autowidth">
-                            check_box
-                        </span>
-                    </button>
                 </div>
             </div>
 
             <!-- RESPONSABILIDADES -->
             <div class="my-3 px-3">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex">
                     <h5>Responsabilidades</h5>
-                    <button *ngIf="typeUser=='rrhh'" class="btn btn-primary" (click)="controlModes('responsabilities')">
-                        <!-- Icon from google -->
-                        <span class="  material-symbols-outlined line-height-base text-start autowidth">
-                            edit_square
-                        </span>
-                    </button>
+                    <div class="d-flex px-1">
+                        <!-- Boton de añadir se activa si edicion esta activada -->
+                        <button class="btn btn-light mx-1" *ngIf="modeEditResponsibilities">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        </button>
+                        <!-- Boton de edicion -->
+                        <button class="btn btn-primary mx-1" *ngIf="typeUser=='rrhh'" (click)="controlModes('responsabilities')">
+                            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
+                        </button>
+                    </div>
                 </div>
+                <!-- si no se activa la edicion tan solo mustra la info -->
                 <div *ngIf="!modeEditResponsibilities">
                     {{data.responsabilidades}}
                 </div>
-                <div *ngIf="modeEditResponsibilities">
+                <!-- Si edicion esta activada muestra un textarea -->
+                <div class="my-1" *ngIf="modeEditResponsibilities">
                     <textarea class="form-control" aria-label="With textarea">{{data.responsabilidades}}</textarea>
-                    <button class="btn btn-light">
-                        <span class="material-symbols-outlined line-height-base text-start autowidth">
-                            check_box
-                        </span>
-                    </button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-5 col-sm-12">
+        <div class="col-lg-5 col-sm-12 h-50">
+            <!-- Muestra las skills de la candidatura -->
             <div><app-skills ></app-skills></div><!-- [applicant]="'candidatura'" -->
-            <div *ngIf="typeUser == 'user'"> aplicado </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3" *ngIf="typeUser == 'user'"> 
+                <div class="w-75 h-custom mt-3">
+                    <!-- Botones para usuario, le deja aplicar a la oferta ¿o dejar de aplicar? -->
+                    <button class="btn btn-success w-100 h-100 btn-lg " *ngIf="userSubscribed">Aplicado</button>
+                    <button class="btn btn-primary w-100 h-100 btn-lg " *ngIf="!userSubscribed">Aplicar</button>
+                </div>
+                <div class="w-50 mt-5" *ngIf="userSubscribed">
+                    <!-- Boton para informar a usuario sobre estado de la aplicacion que realizo -->
+                    <button class="btn btn-secondary w-100 h-100 btn-lg" *ngIf="userSubscribed">Pendiente</button>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- Informacion extra segun el usuario -->
     <div class="row g-0">
         <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
         <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>

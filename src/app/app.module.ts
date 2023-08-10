@@ -24,6 +24,10 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { PaginationComponent } from './components/utils/pagination/pagination.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListPostulatedComponent } from './components/candidature/candidature-details/list-postulated/list-postulated.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProgressBarComponent } from './components/utils/progress-bar/progress-bar.component';
+import { RatingComponent } from './components/candidate/rating/rating.component';
+
 
 @NgModule({
   declarations: [
@@ -47,12 +51,16 @@ import { ListPostulatedComponent } from './components/candidature/candidature-de
     CandidateApplicationComponent,
     UserManagementComponent,
     PaginationComponent,
-    ListPostulatedComponent
+    ListPostulatedComponent,
+    ProgressBarComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

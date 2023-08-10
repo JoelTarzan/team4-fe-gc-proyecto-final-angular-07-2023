@@ -1,0 +1,12 @@
+img {
+    width: 3.8rem;
+    border-radius: 50%;
+}
+
+.card {
+    border-radius: 3px;
+}
+
+p {
+    color: rgb(124, 124, 124);
+}

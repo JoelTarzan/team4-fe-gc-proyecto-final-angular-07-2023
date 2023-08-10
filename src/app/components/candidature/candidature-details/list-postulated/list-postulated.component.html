@@ -1,0 +1,15 @@
+<div>
+    <h3>Candidatura</h3>
+    <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 justify-content-between" >
+        <div class=" p-2" *ngFor="let item of userslist">
+            <div class="card h-100 p-2">
+                <div class="d-flex flex-wrap align-content-between justify-content-between align-items-center">
+                    <img src="{{item.avatar}}" class="rounded-circle max-height-100" alt="">
+                    {{item.nombre}} {{item.apellidos}}
+                    <button class="btn btn-primary">Detalles</button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,9 +23,11 @@ import { CandidateApplicationComponent } from './components/candidate/candidate-
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { PaginationComponent } from './components/utils/pagination/pagination.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListPostulatedComponent } from './components/candidature/candidature-details/list-postulated/list-postulated.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressBarComponent } from './components/utils/progress-bar/progress-bar.component';
 import { RatingComponent } from './components/candidate/rating/rating.component';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { RatingComponent } from './components/candidate/rating/rating.component'
     CandidateApplicationComponent,
     UserManagementComponent,
     PaginationComponent,
+    ListPostulatedComponent,
     ProgressBarComponent,
     RatingComponent
   ],

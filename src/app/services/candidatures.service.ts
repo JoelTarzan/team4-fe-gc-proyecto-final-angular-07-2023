@@ -18,4 +18,9 @@ export class CandidaturesService {
     return this.http.get(this.endpoint + 'candidatures');
   }
 
+  // Devuelve una candidatura
+  getOneById(id: number) {
+    return this.http.get(this.endpoint + 'candidatures/' + id);
+  }
+
 }

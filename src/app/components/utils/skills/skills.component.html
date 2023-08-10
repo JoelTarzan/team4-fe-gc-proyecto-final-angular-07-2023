@@ -41,7 +41,7 @@
                     <!-- Show skill name -->
                     {{item.skill}}
                     <!-- Only see in /candidate-application path -->
-                    <div *ngIf="actualRoute == '/candidate-application'">
+                    <div *ngIf="actualRoute == '/candidate-application/' + skillItemID">
                         <input class="form-check-input me-1" type="checkbox" [checked]="item.confirmation" (click)="isCheked(item.skill, item.confirmation)">
                     </div>
                     <!-- Only see if button edit is enabled -->

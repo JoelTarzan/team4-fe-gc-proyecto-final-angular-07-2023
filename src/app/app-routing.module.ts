@@ -45,7 +45,7 @@ const routes: Routes = [
     component: CandidateDetailsComponent,
   },
   {
-    path: 'candidate-application',
+    path: 'candidate-application/:id',
     component: CandidateApplicationComponent,
   },
   {

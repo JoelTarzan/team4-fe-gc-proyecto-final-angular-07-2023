@@ -4,7 +4,7 @@ import { Skill } from '../models/skill';
 
 
 const baseUrlCandidacy = 'http://localhost:3000/candidatura';
-const baseUrlUser = 'http://localhost:3000/usuario';
+const baseUrlUser = 'http://localhost:3000/users';
 
 @Injectable({
   providedIn: 'root'

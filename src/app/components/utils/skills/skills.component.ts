@@ -11,7 +11,7 @@ export class SkillsComponent implements OnInit {
 
   /* information to know what type of data you have to collect */
   @Input() applicant:any;
-
+  @Input() rol: any;
 
 
   /* title variants according to where the component is called  */
@@ -20,9 +20,6 @@ export class SkillsComponent implements OnInit {
 
   /* save object data */
   skills:any;
-
-  /* detect the user role */
-  rol: string = 'user';
 
   skillItemID = 1;
 

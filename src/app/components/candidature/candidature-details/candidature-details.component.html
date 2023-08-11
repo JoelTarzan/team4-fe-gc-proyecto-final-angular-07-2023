@@ -22,7 +22,7 @@
                     </div>
                     <!-- Boton de edicion para el titulo -->
                     <div class="" *ngIf="typeUser=='rrhh'">
-                        <button class="btn btn-primary mx-1" (click)="controlModes('tittle')">
+                        <button class="btn btn-primary mx-1" (click)="controlModes('title')">
                             <!-- Icon from google -->
                             <span class="  material-symbols-outlined line-height-base text-start autowidth">
                                 edit_square
@@ -173,7 +173,7 @@
         <div class="col-lg-5 col-sm-12 h-50">
             <!-- Muestra las skills de la candidatura -->
             <div><app-skills [applicant]="'candidatura'" [rol]="'rrhh'"></app-skills></div>
-            <div class="d-flex flex-column justify-content-center align-items-center mt-3" *ngIf="typeUser == 'user'"> 
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3" *ngIf="typeUser == 'candidate'"> 
                 <div class="w-75 h-custom mt-3">
                     <!-- Botones para usuario, le deja aplicar a la oferta ¿o dejar de aplicar? -->
                     <button class="btn btn-success w-100 h-100 btn-lg " *ngIf="userSubscribed">Aplicado</button>
@@ -184,6 +184,9 @@
                     <button class="btn btn-secondary w-100 h-100 btn-lg" *ngIf="userSubscribed">Pendiente</button>
                 </div>
             </div>
+        </div>
+        <div>
+            <app-progress-bar [processes]="processes" [processStatus]="processStatus"></app-progress-bar>
         </div>
     </div>
     <!-- Informacion extra segun el usuario -->

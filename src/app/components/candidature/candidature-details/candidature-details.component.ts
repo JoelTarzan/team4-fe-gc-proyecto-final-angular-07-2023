@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
+import { OpenProcessesService } from 'src/app/services/open-processes.service';
 import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UsersCandidacyService } from 'src/app/services/users-candidacy.service'
 })
 export class CandidatureDetailsComponent implements OnInit {
   //representacion de tipo de usuario 
-  typeUser:string="rrhh";
+  typeUser:string="candidate";
   
   //representacion de cual es la ID del usuario que esta observando la candidatura 
   idUser:any=1;
@@ -23,6 +24,9 @@ export class CandidatureDetailsComponent implements OnInit {
   // Guarda los datos de la candidatura
   data: any;
 
+  processes: any;
+  processStatus: string = "Entrevista";
+
   /* Booleanos para llevar control de los modos de edicion activados */
   modeEditTitle:boolean=false;
   modeEditInfoCandidacy:boolean=false;
@@ -32,7 +36,8 @@ export class CandidatureDetailsComponent implements OnInit {
 
   constructor(
     private candidaturesService: CandidaturesService, 
-    private userCandidacy:UsersCandidacyService) {
+    private userCandidacy:UsersCandidacyService,
+    private openProcessesService: OpenProcessesService) {
 
     }
 
@@ -55,6 +60,10 @@ export class CandidatureDetailsComponent implements OnInit {
         }
       });
     }
+
+    this.openProcessesService.getExampleProgressBar().subscribe(result => {
+      this.processes = result;
+    });
   }
 
   /* Controla que modos de edicion estan aplicados y cuales no */
@@ -84,7 +93,7 @@ export class CandidatureDetailsComponent implements OnInit {
         }
         break;
     
-      case "tittle":
+      case "title":
         if (this.modeEditTitle) {
           this.modeEditTitle=false;
         }else{

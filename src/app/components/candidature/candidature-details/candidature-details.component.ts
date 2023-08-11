@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { CandidaturaService } from 'src/app/services/candidatura.service';
+import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
@@ -16,13 +15,13 @@ export class CandidatureDetailsComponent implements OnInit {
   idUser:any=1;
   
   //representacion de cual es la ID de la candidatura seleccionada 
-  idCandidacy:any=1;
+  idCandidacy: number = 1;
 
   // Boleano de control, guarda si el usuario esta aplicando a la candidatura
   userSubscribed:boolean=true;
   
   // Guarda los datos de la candidatura
-  data:any;
+  data: any;
 
   /* Booleanos para llevar control de los modos de edicion activados */
   modeEditTitle:boolean=false;
@@ -31,12 +30,16 @@ export class CandidatureDetailsComponent implements OnInit {
   modeEditRequeriments:boolean=false;
   modeEditResponsibilities:boolean=false;
 
-  constructor(private candidacyService:CandidaturaService, private userCandidacy:UsersCandidacyService ,private router: Router){}
+  constructor(
+    private candidaturesService: CandidaturesService, 
+    private userCandidacy:UsersCandidacyService) {
+
+    }
 
   
   ngOnInit() {
     /* Recoge los datos de la candidatura que se esta observando */
-    this.candidacyService.getDataCandidacy(this.idCandidacy)
+    this.candidaturesService.getOneById(this.idCandidacy)
     .subscribe((result: any) => {
       // save data in array
       this.data = result;
@@ -103,9 +106,9 @@ export class CandidatureDetailsComponent implements OnInit {
   }
 
   /* Metodos preparados para aplicar ediciones */
-  editTitle(){ }
-  editInfoCandidacy(){ }
-  editDescription(){ }
-  editRequeriments(){ }
-  editResponsibilities(){ }
+  // editTitle(){ }
+  // editInfoCandidacy(){ }
+  // editDescription(){ }
+  // editRequeriments(){ }
+  // editResponsibilities(){ }
 }

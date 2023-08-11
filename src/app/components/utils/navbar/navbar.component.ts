@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  rol: string = 'rrhh';
+  rol: string = 'candidate';
 
 }

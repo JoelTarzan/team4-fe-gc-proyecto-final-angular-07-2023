@@ -36,25 +36,46 @@
                 </div>
             </li>
             <!-- this li contain one item to iterate for each element in the database -->
-            <li class="list-group-item" *ngFor="let item of skills.skills">
-                <div class="d-flex justify-content-between">
-                    <!-- Show skill name -->
-                    {{item.skill}}
-                    <!-- Only see in /candidate-application path -->
-                    <div *ngIf="actualRoute == '/candidate-application' || actualRoute == '/candidate-details/'+skillItemID">
-                        <input class="form-check-input me-1" type="checkbox" [checked]="item.confirmation" (click)="isCheked(item.skill, item.confirmation)">
+            <ng-container *ngIf="skills">
+                <li class="list-group-item" *ngFor="let item of skills.skills">
+                    <div class="d-flex justify-content-between">
+                        <!-- Show skill name -->
+                        {{item.skill}}
+                        <!-- Only see in /candidate-application path -->
+                        <div *ngIf="actualRoute == '/candidate-application' || actualRoute == '/candidate-details/'+skillItemID">
+                            <input class="form-check-input me-1" type="checkbox" [checked]="item.confirmation" (click)="isCheked(item.skill, item.confirmation)">
+                        </div>
+                        <!-- Only see if button edit is enabled -->
+                        <div *ngIf="editActivate">
+                            <!-- button for deleted skill -->
+                            <button class="btn btn-light square-btn mx-1 material-symbols-outlined h-100 icon-container"  (click)="removeSkills(item.skill)">    
+                                <span class="  material-symbols-outlined line-height-base text-start autowidth">   
+                                    disabled_by_default
+                                </span> 
+                            </button>
+                        </div>
                     </div>
-                    <!-- Only see if button edit is enabled -->
-                    <div *ngIf="editActivate">
-                        <!-- button for deleted skill -->
-                        <button class="btn btn-light square-btn mx-1 material-symbols-outlined h-100 icon-container"  (click)="removeSkills(item.skill)">    
-                            <span class="  material-symbols-outlined line-height-base text-start autowidth">   
-                                disabled_by_default
-                            </span> 
-                        </button>
+                </li>
+            </ng-container>
+            
+            <ng-container *ngIf="candidature">
+                <li class="list-group-item" *ngFor="let skill of candidature.skills">
+                    <div class="d-flex justify-content-between">
+                        <!-- Show skill name -->
+                        {{skill}}
+                        <!-- Only see if button edit is enabled -->
+                        <div *ngIf="editActivate">
+                            <!-- button for deleted skill -->
+                            <button class="btn btn-light square-btn mx-1 material-symbols-outlined h-100 icon-container"  (click)="removeSkills(skill.skill)">    
+                                <span class="  material-symbols-outlined line-height-base text-start autowidth">   
+                                    disabled_by_default
+                                </span> 
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            </ng-container>
+            
         </ul>
     </div>
 </div>

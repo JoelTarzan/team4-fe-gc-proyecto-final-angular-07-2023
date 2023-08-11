@@ -3,7 +3,7 @@
     <!-- container for head of skills (tittle and edit button) -->
     <div class="d-flex justify-content-between h-25">
         <!-- change the title according to the url  -->
-        <h3 class="mx-2">{{ actualRoute == '/candidature-detail' ? tittle2 : tittle }}</h3>
+        <h3 class="mx-2">{{ actualRoute == '/candidature-details/'+skillItemID ? tittle2  : (actualRoute == '/candidate-details/'+skillItemID ? '' : tittle) }}</h3>
 
         <!-- Conditional have option for edit in (user, /profile) and (rrhh, /candidature-detail) -->
         <button class="col-1 h-100 mx-1 btn btn-primary square-btn d-flex justify-content-center align-items-center icon-container" (click)="editFunction()"
@@ -41,7 +41,7 @@
                     <!-- Show skill name -->
                     {{item.skill}}
                     <!-- Only see in /candidate-application path -->
-                    <div *ngIf="actualRoute == '/candidate-application/' + skillItemID">
+                    <div *ngIf="actualRoute == '/candidate-application' || actualRoute == '/candidate-details/'+skillItemID">
                         <input class="form-check-input me-1" type="checkbox" [checked]="item.confirmation" (click)="isCheked(item.skill, item.confirmation)">
                     </div>
                     <!-- Only see if button edit is enabled -->

@@ -27,6 +27,11 @@ export class UsersService {
     return this.http.get<User[]>(this.endpoint + 'users');
   }
 
+  // Devuelve un solo usuario por id
+  getOneById(id: number) {
+    return this.http.get<User>(this.endpoint + 'users/' + id);
+  }
+
   // Edita un usuario
   update(id: number, user: User): Observable<any> {
     return this.http.put(this.endpoint + 'users/' + id, user);

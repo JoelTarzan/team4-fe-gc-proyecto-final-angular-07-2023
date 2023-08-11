@@ -1,0 +1,38 @@
+<div class="register-container">
+    <div class="register-form">
+        <div class="logo-container">
+            <img src="../../../../assets/aurum-nombre.png" alt="Logo">
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Formulario de registro</label>
+                <br><br>
+                <input type="text" class="form-control" id="username" placeholder="Nombre" name="username"
+                    formControlName="username">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" placeholder="Correo" name="email"
+                    formControlName="email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password"
+                    formControlName="password">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Repetir contraseña"
+                    name="confirmPassword" formControlName="confirmPassword">
+            </div>
+            <div class="button-container">
+                <div class="back-button">
+                    <button class="btn btn-primary" (click)="goToLogin()">
+                        <i class="fas fa-arrow-left"></i> ◁
+                    </button>
+                </div>
+                <div class="submit-button">
+                    <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

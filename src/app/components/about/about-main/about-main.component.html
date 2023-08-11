@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="container mt-3 text-break">
+    <!-- information about the aplication -->
+    <div class="d-flex flex-column justify-content-center align-items-center col-12 mt-5 fs-5">
+        <h4 class="display-5">Sobre la Aplicación</h4>
+        <div class="text-break text-justify px-2">
+            
+            Presentamos Aurum RH un registro de solicitantes y entrevistas
+            técnicas, que se realizan durante el proceso de selección de un
+            candidato. Los aspirantes al puesto y los usuarios de recursos humanos
+            tendrán un registro de las ofertas de trabajo, de las entrevistas y de las
+            pruebas técnicas. También se podrá mostrar el resultado, y la fecha de
+            realización, de las habilidades que se han evaluado en las entrevistas
+            técnicas. La aplicación también constará de una barra de progreso que
+            muestre el punto del proceso donde se encuentra el candidato y un
+            seguimiento del proceso del candidato.
+        </div>
+    </div>
+    <!-- about developers, show developer information-->
+    <div class="d-flex flex-column justify-content-center align-items-center col-12 mt-5 fs-5">
+        <h4 class="display-5 mb-3">Sobre los Desarrolladores</h4>
+
+        <!-- Card item -->
+        <div class="card mb-4 col-md-10 h-50"  *ngFor="let item of tarjetas">
+            <div class="row g-0">
+                <!-- image -->
+                <div class="col-md-4 p-2 d-flex justify-content-center align-items-center">
+                    <img src="¨{{item.imgurl}}" class=" rounded-circle max-height-100" alt="Image_Joel">
+                </div>
+                <!-- Content -->
+                <div class="col-md-8 d-flex align-items-center border-resolution-position">
+                    <div class="card-body d-flex flex-column align-items-center text-start overflow-hidden border-start border-2 border-primary-subtle minor-resolution-position">
+                        <h5 class="card-title w-100">{{item.nombre}}</h5>
+                        <p class="card-text w-100">{{item.descripcion}}</p>
+                        <p class="card-text w-100"><small class="text-body-secondary">{{item.tiempo}}</small></p>
+                        <div class="d-flex justify-content-start w-100 button-resolution-position">
+                            <a href="{{item.linkedinurl}}" type="button" class="btn btn-primary" target="_blank">Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="background-container">
+    <div class="main-container">
+        <app-navbar></app-navbar>
+        <!-- Contenedor principal -->
+        <div class="container container-candidate d-column shadow p-3 rounded justify-content-center align-items-center">
+            <!-- Sección de información del candidato -->
+            <div class="d-flex justify-content-evenly flex-wrap my-5 gap-5 items-align-center">
+                <div>
+                    <!-- Imagen del candidato -->
+                    <img src="../../../../assets/userph.jpg" alt="Imagen de usuario default">
+                    <div class="text-center mt-4">
+                        <p>{{ lastname + ', ' + name }}</p>
+                        <p class="title-text">{{ title }}</p>
+                    </div>
+                    <!-- Selector de valoración -->
+                    <div class="d-flex justify-content-center">
+                        <div class="mx-auto" style="max-width: 150px;"> 
+                            <select class="form-select" aria-label="Default select example" style="margin-top: 5px;">
+                                <option selected>Valoración</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Detalles del candidato -->
+                <div class="d-column col-md-6">
+                <div class="mb-3 row">
+                    <label for="titleInput" class="col-sm-2 col-form-label">Teléfono</label>
+                    <div class="col-sm-10">
+                        <input id="titleInput" class="form-control" type="text" [value]="tel" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="titleInput" class="col-sm-2 col-form-label">Correo</label>
+                    <div class="col-sm-10">
+                        <input id="titleInput" class="form-control" type="text" [value]="email" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="titleInput" class="col-sm-2 col-form-label">LinkedIn</label>
+                    <div class="col-sm-10">
+                        <input id="titleInput" class="form-control" type="text" [value]="linkedin" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="titleInput" class="col-sm-2 col-form-label">Web</label>
+                    <div class="col-sm-10">
+                        <input id="titleInput" class="form-control" type="text" [value]="web" aria-label="Disabled input example" disabled readonly>
+                    </div>
+                </div>
+                </div>                          
+            </div>
+            <!-- Pestañas y card grande de notas -->
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="activeTab === 1" (click)="changeTab(1)">Notas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="activeTab === 2" (click)="changeTab(2)">Habilidades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="activeTab === 3" (click)="changeTab(3)">Descripción
+                                Candidato</a>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ activeTab === 1 ? notes : '' }}
+                    </p>
+                    <p class="card-text" *ngIf="activeTab === 2">
+                        <app-skills [applicant]="'usuario'" [rol]="'rrhh'"></app-skills>
+                    </p>
+                    <p class="card-text">
+                        {{ activeTab === 3 ? description : '' }}
+                    </p>
+                </div>
+            </div>
+            <!-- Sección de postulaciones -->
+            <div class="container" style="padding: 20px;">
+                <div class="row">
+                    <div class="col">
+                        <br>
+                        <h4>Postulaciones</h4>
+                        <hr>
+                    </div>                   
+                </div>
+                <div class="row post-cards d-flex justify-content-between">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Postulación 1</h5>
+                                <p class="card-text">Descripción de la postulación 1 escrita por usuario de RH.</p>
+                                <a [routerLink]="['/candidate-application', 1]" class="btn btn-primary">Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Postulación 2</h5>
+                                <p class="card-text">Descripción de la postulación 1 escrita por usuario de RH.</p>
+                                <a [routerLink]="['/candidate-application', 2]" class="btn btn-primary">Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

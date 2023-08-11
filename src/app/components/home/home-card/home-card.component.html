@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body p-0">
+
+        <h5 class="card-title p-3">{{ candidature.title }}</h5>
+
+        <p class="card-text p-3">{{ candidature.description }}</p>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ candidature.typeworkingday }}</li>
+            <li class="list-group-item">{{ candidature.location }}</li>
+            <li class="list-group-item" [ngClass]="{'list-group-item-success' : numSkillsMatch == numSkillsReq}">
+                Coincidencia Aptitudes - {{ numSkillsMatch }} de {{ numSkillsReq }}
+            </li>
+        </ul>
+
+        <div class="d-flex justify-content-center p-3 mt-4">
+            <a type="button" class="btn btn-primary" [routerLink]="['/candidature-details', candidature.id]">Ver candidatura</a>
+        </div>
+
+    </div>
+</div>

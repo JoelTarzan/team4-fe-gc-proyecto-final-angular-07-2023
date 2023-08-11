@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Skill } from '../models/skill';
 
 
-const baseUrlCandidacy = 'http://localhost:3000/candidatura';
+const baseUrlCandidacy = 'http://localhost:3000/candidatures';
 const baseUrlUser = 'http://localhost:3000/users';
 
 @Injectable({

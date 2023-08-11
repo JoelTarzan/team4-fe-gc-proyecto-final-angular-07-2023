@@ -74,8 +74,8 @@
                     <p class="card-text">
                         {{ activeTab === 1 ? notes : '' }}
                     </p>
-                    <p class="card-text">
-                        {{ activeTab === 2 ? skills : '' }}
+                    <p class="card-text" *ngIf="activeTab === 2">
+                        <app-skills [applicant]="'usuario'" [rol]="'rrhh'"></app-skills>
                     </p>
                     <p class="card-text">
                         {{ activeTab === 3 ? description : '' }}
@@ -97,7 +97,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Postulación 1</h5>
                                 <p class="card-text">Descripción de la postulación 1 escrita por usuario de RH.</p>
-                                <a href="#" class="btn btn-primary">Detalles</a>
+                                <a [routerLink]="['/candidate-application', 1]" class="btn btn-primary">Detalles</a>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Postulación 2</h5>
                                 <p class="card-text">Descripción de la postulación 1 escrita por usuario de RH.</p>
-                                <a href="#" class="btn btn-primary">Detalles</a>
+                                <a [routerLink]="['/candidate-application', 2]" class="btn btn-primary">Detalles</a>
                             </div>
                         </div>
                     </div>

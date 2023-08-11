@@ -20,6 +20,7 @@ export class SkillsComponent implements OnInit {
 
   /* save object data */
   skills:any;
+  candidature: any;
 
   skillItemID = 1;
 
@@ -43,7 +44,7 @@ export class SkillsComponent implements OnInit {
       this.skillService.getSkillsCandidacy(this.skillItemID)
         .subscribe((result: any) => {
         // save data in array
-        this.skills = result;
+        this.candidature = result;
       });
     } else if(this.applicant == "usuario"){
       this.skillService.getSkillsUser(this.skillItemID)

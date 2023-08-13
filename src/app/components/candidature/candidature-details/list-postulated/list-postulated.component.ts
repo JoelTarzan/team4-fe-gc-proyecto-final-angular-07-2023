@@ -26,7 +26,7 @@ export class ListPostulatedComponent implements OnInit{
 
 
         this.idusers.forEach((element: { idPostulatedUser: any; }) => {
-          this.userService.getUserInfo(element.idPostulatedUser).subscribe((result: any) => {
+          this.userService.getOneById(element.idPostulatedUser).subscribe((result: any) => {
             this.userslist.push(result);
             /* console.log(this.userslist.length); */
           });

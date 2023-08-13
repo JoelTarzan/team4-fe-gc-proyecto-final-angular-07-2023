@@ -19,9 +19,9 @@ export class UsersService {
     private http: HttpClient) { 
       
   }
-  getUserInfo (id:any):any{
+/*   getUserInfo (id:any):any{
     return this.http.get(`${baseUrl}/${id}`);  
-  }
+  } */
   // Devuelve todos los usuarios
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.endpoint + 'users');

@@ -75,7 +75,7 @@
                         {{ activeTab === 1 ? notes : '' }}
                     </p>
                     <p class="card-text" *ngIf="activeTab === 2">
-                        <app-skills [applicant]="'usuario'" [rol]="'rrhh'"></app-skills>
+                        <app-skills [tableData]="'user'" [rol]="'rrhh'"></app-skills>
                     </p>
                     <p class="card-text">
                         {{ activeTab === 3 ? description : '' }}

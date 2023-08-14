@@ -1,11 +1,15 @@
-.main-container {
-    background-color: #eeeeee;
+.background-container {
+    background-color: #e0e0e0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
+}
+
+.main-container {
+    margin-top: 100px;
 }
 
 /* container de la hoja de perfil */
@@ -143,22 +147,20 @@ textarea {
 
 /* estilos letra nombre */
 .texto-grande {
-    font-size: 20px; 
+    font-size: 22px; 
     margin-bottom: -5px;
+    cursor: pointer;
 }
 
 .texto-titulo {
     color: rgb(129, 129, 129); 
-}
-
-.password-change-button {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #2877d1;
-    color: white;
-    text-decoration: none;
-    border-radius: 3px;
-    border: none;
     cursor: pointer;
 }
 
+.texto-grande:hover {
+    font-weight:500;
+}
+
+.texto-titulo:hover {
+    font-weight:500;
+}

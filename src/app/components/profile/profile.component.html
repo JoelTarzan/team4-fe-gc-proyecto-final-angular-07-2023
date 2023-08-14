@@ -37,7 +37,7 @@
                                 <!-- Modo de edición -->
                                 <ng-template #editarBloque>
                                     <div class="d-flex flex-column ">
-                                        <textarea class="form-control" [(ngModel)]="tempText"></textarea>
+                                        <input type="text" class="form-control" [(ngModel)]="tempText"> 
                                         <!-- Botones de guardar y cancelar -->
                                         <div class="d-flex justify-content-center">
                                             <img src="../../../assets/check.png" alt="guardar" (click)="guardar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;">

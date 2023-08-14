@@ -45,9 +45,16 @@
 
             </ul>
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/profile" routerLinkActive="active">Perfil</a>
+            <ul class="navbar-nav" style="margin-right: 10px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="profileDropdown" routerLink="/profile" routerLinkActive="active">
+                        Perfil
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#" routerLink="/profile">Ver perfil</a>
+                        <li><hr class="dropdown-divider"></li>
+                        <a class="dropdown-item" href="#" routerLink="/password-change">Cambiar<br>contraseña</a>
+                    </div>
                 </li>
             </ul>
         </div>

@@ -9,6 +9,7 @@ import { CandidaturesService } from 'src/app/services/candidatures.service';
 export class HomeMainComponent implements OnInit {
 
   candidatures: any;
+  numberOfCandidatures: number = 0;
 
   constructor(
     private candidaturesService: CandidaturesService) {
@@ -18,6 +19,7 @@ export class HomeMainComponent implements OnInit {
   ngOnInit(): void {
     this.candidaturesService.getCandidatures().subscribe(result => {
       this.candidatures = result;
+      this.numberOfCandidatures = this.candidatures.length; 
     })
   }
 

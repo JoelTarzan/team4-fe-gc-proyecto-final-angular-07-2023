@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AboutMainComponent {
   /* Info developers */
-  tarjetas =[
+  tarjetas:any =[
     {
       nombre:"Joel",
       descripcion:"Uno de los dessarrolladores de esta aplicación web",

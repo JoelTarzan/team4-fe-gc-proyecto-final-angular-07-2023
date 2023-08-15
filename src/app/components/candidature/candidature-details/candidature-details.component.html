@@ -185,7 +185,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div *ngIf="typeUser == 'candidate'">
             <app-progress-bar [processes]="processes" [processStatus]="processStatus"></app-progress-bar>
         </div>
     </div>

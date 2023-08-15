@@ -1,12 +1,52 @@
+.main-container {
+    background-color: #e0e0e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.container-general {
+    margin-top: 70px;
+    max-width: 1000px;
+}
+
 img {
     width: 3.8rem;
     border-radius: 50%;
 }
 
 .card {
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
-p {
-    color: rgb(124, 124, 124);
+.container-list {
+    
+}
+
+.cards-head {
+    background-color: rgb(114, 114, 114);
+    color: rgb(255, 255, 255) !important;
+    font-size: 20px;
+    max-height: 70px;
+}
+
+.card-title {
+    font-size: 19px;
+}
+
+.eye-icon {
+    max-width: 40px;
+    height: auto; 
+    padding-left: 5px;
+    filter: saturate(90%);
+    cursor: pointer;
+}
+
+@media (max-width: 770px) {
+    .cards-head {
+        display: none;
+    }
 }

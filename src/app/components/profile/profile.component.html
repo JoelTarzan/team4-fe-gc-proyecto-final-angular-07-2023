@@ -4,10 +4,10 @@
         <div class="container-profile d-flex shadow p-3 rounded justify-content-center align-items-center">
             <div class="grid-container">
                 <!-- Cuadrante 1: Información personal y edición -->
-                <div class="quadrant quadrant-1">
-                    <div class="content1">
+                <div class="quadrant quadrant-1" >
+                    <div class="content1" >
                         <!-- Sección de imagen de perfil y cambio de imagen -->
-                        <div class="image-section">
+                        <div class="image-section" style="padding-left: 35px;">
                             <div class="image-container">
                                 <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">
                             </div>
@@ -26,17 +26,17 @@
                                     <!-- Mostrar el texto editable o el modo de edición -->
                                     <ng-container *ngIf="!editando.get(claveTexto); else editarBloque">
                                         <!-- Mostrar el texto normal o grande dependiendo del tipo -->
-                                        <p [ngClass]="{'texto-grande texto-titulo': claveTexto === 'nombre' || claveTexto === 'apellidos', 'texto-titulo': claveTexto === 'titulo'}">{{ textos.get(claveTexto) }}</p>
+                                        <p class="cursor-pointer" (click)="editar(claveTexto)" [ngClass] ="{'texto-grande texto-titulo': claveTexto === 'nombre' || claveTexto === 'apellidos', 'texto-titulo': claveTexto === 'titulo'}">{{ textos.get(claveTexto) }}</p>
                                         <!-- Botón de edición -->
-                                        <div class="align-items-center">
+                                        <!-- <div class="align-items-center">
                                             <img src="../../../assets/icon-edit.png" alt="Editar" (click)="editar(claveTexto)"
                                                 style="width: 20px; height: 20px; cursor: pointer; margin-left: 15px;">
-                                        </div>
+                                        </div> -->
                                     </ng-container>
                                 </div>
                                 <!-- Modo de edición -->
                                 <ng-template #editarBloque>
-                                    <div class="d-flex flex-column">
+                                    <div class="d-flex flex-column ">
                                         <textarea class="form-control" [(ngModel)]="tempText"></textarea>
                                         <!-- Botones de guardar y cancelar -->
                                         <div class="d-flex justify-content-center">
@@ -50,10 +50,7 @@
                     </div>
                 </div>
                 <!-- Cuadrante 2: Información de contacto -->
-                <div class="quadrant quadrant-2">
-                    <a [routerLink]="['/password-change']" class="password-change-button">Cambiar contraseña</a>
-                    <!-- Campos de información de contacto -->
-                    <br>
+                <div class="quadrant quadrant-2 ">
                     <div class="d-flex align-items-center">
                         <img src="../../../assets/telephone.png" alt="num" style="width: 30px; height: 30px; margin-right: 20px;">
                         <input type="text" class="form-control">
@@ -82,7 +79,7 @@
                     
                 </div>
                 <!-- Cuadrante 3: Descripción -->
-                <div class="quadrant quadrant-3">
+                <div class="quadrant quadrant-3 border-top mt-4 pt-4">
                     <div class="text-section">
                         <p class="text-start">Descripción</p>
                         <textarea class="form-control" rows="4" placeholder=""></textarea>

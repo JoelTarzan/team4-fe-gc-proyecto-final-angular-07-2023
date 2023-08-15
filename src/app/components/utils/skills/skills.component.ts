@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SkillsService } from 'src/app/services/skills.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CandidaturesService } from 'src/app/services/candidatures.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-skills',
@@ -9,85 +10,91 @@ import { SkillsService } from 'src/app/services/skills.service';
 })
 export class SkillsComponent implements OnInit {
 
-  /* information to know what type of data you have to collect */
-  @Input() applicant:any;
+  //En este input se le indica la tabla que requiere la url
+  //users (datos de usuario), candidatures (datos de candidatura)
+  @Input() tableData: any;
+  //candidate (rol de usuario "normal"), rrhh (rol de usuario de "recursos humanos")
   @Input() rol: any;
 
+  // TITULO // 
+  //que cambia segun la ruta (en la ruta detalle de candidato no sale titulo)
+  //Perfil - candidate, Aplicacion_candidato - rrhh
+  title: string = "Habilidades";
+  //Detalle_Candidatura - candidate/rrhh
+  title2: string = "Habilidades Requeridas";
 
-  /* title variants according to where the component is called  */
-  tittle:string="Skills";
-  tittle2:string="Skills Requeridas";
-
-  /* save object data */
-  skills:any;
+  // DATOS BBDD GUARDADOS //
+  user: any;
   candidature: any;
 
-  skillItemID = 1;
+  // OBTENER DATOS URL
+  actualRoute: any;
+  idRoute: any;
 
-  /* detect the item is editable with ture mark */
-  editActivate:boolean=false;
+  /* Controla el botón para editar las habilidades */
+  editActivate: boolean = false;
 
   /* save text from add input text */
-  skillinsert:any;
+  /* skillinsert: any; */
 
+  constructor(
+    private userService: UsersService, 
+    private candidatureService: CandidaturesService, 
+    private router: Router, 
+    private routeActive: ActivatedRoute) {
 
-  constructor(private skillService:SkillsService, private router: Router){}
+    }
 
-  actualRoute:any;
-  /* On init we will collect the corresponding data  */
+  
   ngOnInit(): void {
-    /* save the actual route for introducing one or other functions */
+    /* obtiene datos de url actualRoute='/RUTA' e idRoute='/ID'*/
     this.actualRoute = this.router.url; 
+    this.routeActive.params.subscribe(params => {
+      this.idRoute = params['id'] || null;
+    });
 
-    /* Receive application information  */
-    if(this.applicant == "candidatura"){
-      this.skillService.getSkillsCandidacy(this.skillItemID)
+    //Recibe datos de usuario
+    if(this.tableData == "user"){
+      this.userService.getOneById(this.idRoute)
         .subscribe((result: any) => {
-        // save data in array
-        this.candidature = result;
+        // Guarda Usuario
+        this.user = result;
       });
-    } else if(this.applicant == "usuario"){
-      this.skillService.getSkillsUser(this.skillItemID)
+    //Recibe datos de Candidatura
+    } else if(this.tableData == "candidature"){
+      this.candidatureService.getOneById(this.idRoute)
       .subscribe((result: any) => {
-        // save data in array
-        this.skills = result;
+        // Guarda Candidatura
+        this.candidature = result;
       });
     }  
   }
 
-  /* funtion for activate edit mode */
+  /* Función para activar o desactivar el modo editar */
   editFunction(){
-    if(this.editActivate){
-      this.editActivate = false;
-    }else if(!this.editActivate){
-      this.editActivate = true;
-    }
+    this.editActivate = !this.editActivate;
   }
 
   /* function for checkbox option  */
-  isCheked(itemSkill:any, confirmation:any){
+  isChecked(itemSkill: any, confirmation: any){
     /* Obtain number index item selected */
-    let indexArray : any = this.skills.skills.findIndex((item: { skill: any; }) => item.skill === itemSkill);
+    let indexArray: any = this.user.skills.findIndex((item: { skill: any; }) => item.skill === itemSkill);
 
     /* conditional to know if the checkbox of the item is true or false 
     and change it to the state that corresponds to it  */
-    if(confirmation){
-      this.skills.skills[indexArray].confirmation=false;
-    }else if(!confirmation){
-      this.skills.skills[indexArray].confirmation=true;
-    }
+    this.user.skills[indexArray].confirmation = !confirmation;
     
-    this.skillService.confirmedSkill(this.skills).subscribe(result => {
+    /* this.skillService.confirmedSkill(this.skills).subscribe(result => {
       // guarda los datos en el array de este componente
       this.skills = result;
-    });
+    }); */
   }
 
-  /* Function for add more skills to database */
+ /*  / Function for add more skills to database /
   addSkills(){
-    /* Conditional for control void data */
+    / Conditional for control void data /
     if (this.skillinsert!=null){
-      /* Push new skill in array */
+      / Push new skill in array /
       this.skills.skills.push(
         {
           "skill":this.skillinsert,
@@ -95,10 +102,10 @@ export class SkillsComponent implements OnInit {
         }
       );
 
-      /* Clean insert data */
+      / Clean insert data /
       this.skillinsert=null;
 
-      /* save new data in database in respective id item */
+      / save new data in database in respective id item /
       if(this.applicant == "candidatura"){
         this.skillService.addSkillsCandidacy(this.skills).subscribe(result => {
           // guarda los datos en el array de este componente
@@ -111,16 +118,17 @@ export class SkillsComponent implements OnInit {
         });
       }
     }
-  }
+  } 
+  */
 
-
-  /* remove skills from edit mode */
+/* 
+  / remove skills from edit mode /
   removeSkills(item:any){
-    /* Obtain number index item selected */
+    / Obtain number index item selected /
     let indexArray : any = this.skills.skills.findIndex((item: { skill: any; }) => item.skill === item);
-    /* remove skill from id */
+    / remove skill from id /
     this.skills.skills.splice(indexArray, 1);
-    /* Detect from data belongs */
+    / Detect from data belongs /
     if(this.applicant == "candidatura"){
       console.log(item.skill);
       this.skillService.removeSkillsCandidacy(this.skills).subscribe(result => {
@@ -134,5 +142,5 @@ export class SkillsComponent implements OnInit {
         this.skills = result;
       });
     }
-  }
+  } */
 }

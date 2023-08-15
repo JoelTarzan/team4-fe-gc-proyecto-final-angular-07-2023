@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 
   rol: string = 'rrhh';
-
+  userId: number = 1;
 }

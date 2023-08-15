@@ -44,10 +44,10 @@
                 </li>
 
             </ul>
-
+          
             <ul class="navbar-nav" style="margin-right: 10px;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" id="profileDropdown">
+                    <a class="nav-link" href="#" id="profileDropdown" [routerLink]="['/profile', userId]" routerLinkActive="active">
                         Perfil
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
@@ -57,6 +57,7 @@
                     </div>
                 </li>
             </ul>
+          
         </div>
 
     </div>

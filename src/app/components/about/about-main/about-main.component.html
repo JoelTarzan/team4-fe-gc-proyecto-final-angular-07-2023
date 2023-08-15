@@ -1,27 +1,29 @@
 <app-navbar></app-navbar>
 <div class="main-container mt-custom text-break"><!--  -->
-    <!-- information about the aplication -->
-    <div class="d-flex container flex-column justify-content-center align-items-center col-12 mt-5">
-        <h4 class="display-5">Sobre la Aplicación</h4>
-        <div class="text-break text-justify px-2">
-            
-            Presentamos Aurum RH un registro de solicitantes y entrevistas
-            técnicas, que se realizan durante el proceso de selección de un
-            candidato. Los aspirantes al puesto y los usuarios de recursos humanos
-            tendrán un registro de las ofertas de trabajo, de las entrevistas y de las
-            pruebas técnicas. También se podrá mostrar el resultado, y la fecha de
-            realización, de las habilidades que se han evaluado en las entrevistas
-            técnicas. La aplicación también constará de una barra de progreso que
-            muestre el punto del proceso donde se encuentra el candidato y un
-            seguimiento del proceso del candidato.
+    <div class="container d-flex flex-column justify-content-center">
+        <!-- information about the aplication -->
+        <div class="d-flex container flex-column justify-content-center align-items-center col-12 mt-5">
+            <p class="display-6 fw-medium title-effect">Sobre la Aplicación</p>
+            <div class="text-break text-justify px-2 text-effect">
+                
+                Presentamos Aurum RH un registro de solicitantes y entrevistas
+                técnicas, que se realizan durante el proceso de selección de un
+                candidato. Los aspirantes al puesto y los usuarios de recursos humanos
+                tendrán un registro de las ofertas de trabajo, de las entrevistas y de las
+                pruebas técnicas. También se podrá mostrar el resultado, y la fecha de
+                realización, de las habilidades que se han evaluado en las entrevistas
+                técnicas. La aplicación también constará de una barra de progreso que
+                muestre el punto del proceso donde se encuentra el candidato y un
+                seguimiento del proceso del candidato.
+            </div>
         </div>
-    </div>
-    <!-- about developers, show developer information-->
-    <div class="d-flex flex-column justify-content-center align-items-center col-11 mt-5 pt-5">
-        <h4 class="display-5 mb-3">Sobre los Desarrolladores</h4>
-            <!-- Card item -->
-        <div class="row row-cols-1 row-cols-lg-3"  >   
-            <app-about-card class="py-2 border-custom" [developer]="this.developer" *ngFor="let developer of tarjetas"></app-about-card>
+        <!-- about developers, show developer information-->
+        <div class="d-flex flex-column justify-content-center align-items-center col-12 mt-5 pt-5">
+            <p class="display-6 mb-3 fw-medium title-effect">Sobre los Desarrolladores</p>
+                <!-- Card item -->
+            <div class="row row-cols-1 row-cols-lg-3"  >   
+                <app-about-card class="py-2 border-custom" [developer]="this.developer" *ngFor="let developer of tarjetas"></app-about-card>
+            </div>
         </div>
     </div>
 </div><!-- mb-4 col-md-3 h-50 -->

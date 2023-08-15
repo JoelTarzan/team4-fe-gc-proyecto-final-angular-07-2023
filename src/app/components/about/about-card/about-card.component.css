@@ -1,19 +1,12 @@
-.max-height-100 {
+/* .max-height-100 {
     width: 300px;
     height: 300px;
     max-height: 20vw;
     max-width: 20vw;
-}
-.card_background{
-    background: linear-gradient(#fff 10%, #a8c6ea , #fff 50% );
-}
+} */
 
 .size-custom{
     height: 100%;
-}
-
-.border-custom{
-    border-radius: 3px;
 }
 
 @media (max-width: 768px) {
@@ -23,9 +16,45 @@
         border: none !important;
     }
     .max-height-100 {
-        width: 300px;
-        height: 300px;
-        max-height: 40vw;
-        max-width: 40vw;
+        width: 850px;
+        height: 850px;
+        max-height: 90vw;
+        max-width: 90vw;
+    }
+}
+
+
+
+/* Prueba efecto foto */
+.header img {
+    width: 250px;
+    height: 250px;
+    max-height: 20vw;
+    max-width: 20vw;
+    transition: .5s ease;
+  }
+  
+  .header img:hover{
+    width: 300px;
+    height: 300px;
+    max-height: 23vw;
+    max-width: 23vw;
+    transition: .5s ease;
+  }
+
+  /* efecto card */
+  img{
+    animation: fadeIn 1s ease;
+}
+
+@Keyframes fadeIn{
+    0%{
+        opacity:0;
+        filter: blur(10px);
+    }
+
+    10%{
+        opacity: 1;
+        filter: brightness(2) blur(5px);
     }
 }

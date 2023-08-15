@@ -1,6 +1,6 @@
 /* container fondo gris */
 .main-container {
-    background-color: #eeeeee;
+    background-color: #e0e0e0;
     position: fixed;
     top: 0;
     left: 0;
@@ -16,14 +16,14 @@
     margin-right: auto;
     width: 1000px;
     height: auto;
-    margin-top: 20px;
+    margin-top: 80px;
     margin-bottom: 10px;
     border-radius: 4px;
 }
 
-img {
+.user-img {
     border-radius: 50%;
-    border: 1px solid #4284ff;
+    border: 1px solid rgb(3, 63, 128);
     box-shadow: 1px 2px 4px 4px rgba(0, 0, 0, 0.1);
     width: 200px;
     height: 200px;
@@ -53,22 +53,43 @@ font-size: 18px;
     width: 430px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
     .container-candidate {
-        width: 380px;
+        width: 700px;
         height: auto;
     }
 
     /* cartas de postulaciones */
     .post-cards .card {
-        width: 280px;
+        width: 300px;
         margin-bottom: 15px;
     }
 
     /* carta grande de notas */
     .card {
-        width: 330px;
+        width: 650px;
+        margin-left: 0px;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .container-candidate {
+        width: 500px;
+        height: auto;
+    }
+
+    /* cartas de postulaciones */
+    .post-cards .card {
+        width: auto;
+        margin-bottom: 15px;
+    }
+
+    /* carta grande de notas */
+    .card {
+        width: 450px;
         margin-left: 0px;
     }
 
@@ -94,8 +115,56 @@ font-size: 18px;
     }
 }
 
+@media (max-width: 500px) {
+
+    .container-candidate {
+        width: 315px;
+        height: auto;
+    }
+
+    /* cartas de postulaciones */
+    .post-cards .card {
+        width: auto;
+        margin-bottom: 15px;
+    }
+
+    /* carta grande de notas */
+    .card {
+        width: auto;
+        margin-left: 0px;
+    }
+}
+
 .title-text {
     font-size: 14px;
     color:rgb(133, 133, 133);
+}
+
+.eye-icon {
+    max-width: 40px;
+    height: auto; 
+    filter: saturate(90%);
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.custom-card-header {
+    background-color: #dadada; /* Cambia el color de fondo  */
+    border-bottom: 1px solid #6e6e6e; /* Cambia el estilo del borde  */
+}
+
+.custom-nav-link {
+    color: #161616; /* Cambia el color del texto de las pestañas  */
+    /* font-weight: bold; Ajustar el peso de la fuente  */
+}
+
+.custom-nav-link.active {
+    background-color: #ffffff; /* Cambia el color de fondo de la pestaña activa  */
+    border-color: #b9b9b9; /* Cambia el color del borde de la pestaña activa  */
+}
+
+.card-text {
+    font-size: 16px;
 }
 

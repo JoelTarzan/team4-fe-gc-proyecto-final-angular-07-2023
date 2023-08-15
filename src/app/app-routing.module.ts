@@ -65,7 +65,7 @@ const routes: Routes = [
     component: OpenProcessesComponent,
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent,
   },
   {

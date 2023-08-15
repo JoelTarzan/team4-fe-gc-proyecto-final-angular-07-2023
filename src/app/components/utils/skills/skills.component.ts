@@ -11,40 +11,39 @@ import { UsersService } from 'src/app/services/users.service';
 export class SkillsComponent implements OnInit {
 
   //En este input se le indica la tabla que requiere la url
-  //user (datos de usuario), candidature (datos de candidatura)
-  @Input() tableData:any;
-  //user (rol de usuario "normal"), rrhh (rol de usuario de "recursos humanos")
+  //users (datos de usuario), candidatures (datos de candidatura)
+  @Input() tableData: any;
+  //candidate (rol de usuario "normal"), rrhh (rol de usuario de "recursos humanos")
   @Input() rol: any;
-
 
   // TITULO // 
   //que cambia segun la ruta (en la ruta detalle de candidato no sale titulo)
-  //Perfil - usuario, Aplicacion_candidato - rrhh
-  title:string="Habilidades";
-  //Detalle_Candidatura - Usuario/rrhh
-  title2:string="Habilidades Requeridas";
-
-
+  //Perfil - candidate, Aplicacion_candidato - rrhh
+  title: string = "Habilidades";
+  //Detalle_Candidatura - candidate/rrhh
+  title2: string = "Habilidades Requeridas";
 
   // DATOS BBDD GUARDADOS //
-  user:any;
+  user: any;
   candidature: any;
-  
-  
-  
-  //OBTENER DATOS URL
-  actualRoute:any;
-  idRoute:any;
 
+  // OBTENER DATOS URL
+  actualRoute: any;
+  idRoute: any;
 
-  /* detect the item is editable with ture mark */
-  editActivate:boolean=false;
+  /* Controla el botón para editar las habilidades */
+  editActivate: boolean = false;
 
   /* save text from add input text */
-  /* skillinsert:any; */
+  /* skillinsert: any; */
 
+  constructor(
+    private userService: UsersService, 
+    private candidatureService: CandidaturesService, 
+    private router: Router, 
+    private routeActive: ActivatedRoute) {
 
-  constructor(private userService:UsersService, private candidatureService:CandidaturesService, private router: Router, private routeActive:ActivatedRoute){}
+    }
 
   
   ngOnInit(): void {
@@ -53,16 +52,6 @@ export class SkillsComponent implements OnInit {
     this.routeActive.params.subscribe(params => {
       this.idRoute = params['id'] || null;
     });
-
-    //Condicional para controlar aquellas URL que no contienen :id como profile
-    //A la espera de si se guardan datos del usuario al iniciar sesion coger el 
-    //id a partir de ese metodo
-    if(this.idRoute==null || this.idRoute==undefined){
-      //de momento se pone 1 para que salga informacion
-      //si de alguna manera se guarda info del usuario registrado poner la id con ese metodo
-      this.idRoute==1;
-    }
-
 
     //Recibe datos de usuario
     if(this.tableData == "user"){
@@ -81,27 +70,19 @@ export class SkillsComponent implements OnInit {
     }  
   }
 
-  /* funtion for activate edit mode */
+  /* Función para activar o desactivar el modo editar */
   editFunction(){
-    if(this.editActivate){
-      this.editActivate = false;
-    }else if(!this.editActivate){
-      this.editActivate = true;
-    }
+    this.editActivate = !this.editActivate;
   }
 
   /* function for checkbox option  */
-  isCheked(itemSkill:any, confirmation:any){
+  isChecked(itemSkill: any, confirmation: any){
     /* Obtain number index item selected */
-    let indexArray : any = this.user.skills.findIndex((item: { skill: any; }) => item.skill === itemSkill);
+    let indexArray: any = this.user.skills.findIndex((item: { skill: any; }) => item.skill === itemSkill);
 
     /* conditional to know if the checkbox of the item is true or false 
     and change it to the state that corresponds to it  */
-    if(confirmation){
-      this.user.skills[indexArray].confirmation=false;
-    }else if(!confirmation){
-      this.user.skills[indexArray].confirmation=true;
-    }
+    this.user.skills[indexArray].confirmation = !confirmation;
     
     /* this.skillService.confirmedSkill(this.skills).subscribe(result => {
       // guarda los datos en el array de este componente

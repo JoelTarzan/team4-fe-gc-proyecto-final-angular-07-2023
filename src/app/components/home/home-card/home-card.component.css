@@ -21,3 +21,11 @@
     font-size: 15px;
     color: rgb(107, 107, 107);
 }
+
+.eye-icon {
+    max-width: 40px;
+    height: auto; 
+    padding-left: 5px;
+    filter: saturate(90%);
+    cursor: pointer;
+}

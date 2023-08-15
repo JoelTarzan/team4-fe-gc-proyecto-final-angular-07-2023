@@ -10,7 +10,7 @@ import { UsersCandidacyService } from 'src/app/services/users-candidacy.service'
 })
 export class CandidatureDetailsComponent implements OnInit {
   //representacion de tipo de usuario 
-  typeUser:string="candidate";
+  typeUser:string="rrhh";
   
   //representacion de cual es la ID del usuario que esta observando la candidatura 
   idUser:any=1;

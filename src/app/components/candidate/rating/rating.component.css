@@ -1,3 +1,9 @@
 img {
-    width: 1.8rem;
+    width: 22px;
+}
+
+@media (max-width: 770px) {
+    img {
+        width: 15px;
+    }
 }

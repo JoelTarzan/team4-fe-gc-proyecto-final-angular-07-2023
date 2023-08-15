@@ -1,73 +1,88 @@
-<app-navbar></app-navbar>
+<div class="main-container">
 
-<div class="container py-4">
+    <app-navbar></app-navbar>
 
-    <div class="row d-flex justify-content-between">
+    <div class="container py-4 container-general">
 
-        <div class="d-flex gap-3 mb-4 col-md-7 col-12">
-            <div>   
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nombre usuario" aria-label="Nombre usuario">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
-                </div>
-            </div>
+        <div class="row d-flex justify-content-between">
 
-            <div>
-                <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtrar Skills
-                    </button>
-                    <ul class="dropdown-menu p-1">
-                        <li *ngFor="let skill of skills">
-                            <input class="form-check-input mx-2" type="checkbox" [(ngModel)]="skill.value" (ngModelChange)="onFilterChange(skill)">
-                            <label class="form-check-label">{{ skill.title }}</label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        
-
-        <div class="mb-4 col-md-4 col-lg-3 col-xl-2 col-12">
-            <select class="form-select" aria-label="Nombre ASC">
-                <option selected>Nombre ASC</option>
-                <option value="1">Nombre DESC</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col">
-            <div class="card mb-5" *ngFor="let candidate of displayedCandidates">
-                <div class="card-body d-flex justify-content-between align-items-center flex-md-row flex-column gap-2">
-                    <h3 class="card-title d-flex align-items-center gap-3 col-md-3">
-                        <img src="http://localhost:3000/user.jpg" alt="Imagen de usuario default">
-                        {{ candidate.name + ' ' + candidate.lastname }}
-                    </h3>
-                    <div class="my-3 mt-md-0">
-                        <app-rating [rating]="candidate.rating"></app-rating>
+            <div class="d-flex gap-3 mb-2 col-md-7 col-12">
+                <div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nombre candidato"
+                            aria-label="Nombre usuario">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
                     </div>
-                    <button class="btn btn-primary" [routerLink]="['/candidate-details', candidate.id]">Detalles</button>
                 </div>
+
+                <div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Filtrar Aptitudes
+                        </button>
+                        <ul class="dropdown-menu p-1">
+                            <li *ngFor="let skill of skills">
+                                <input class="form-check-input mx-2" type="checkbox" [(ngModel)]="skill.value"
+                                    (ngModelChange)="onFilterChange(skill)">
+                                <label class="form-check-label">{{ skill.title }}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="mb-4 col-md-4 col-lg-3 col-xl-2 col-12">
+                <select class="form-select" aria-label="Nombre ASC">
+                    <option selected>Nombre asc.</option>
+                    <option value="1">Nombre desc.</option>
+                </select>
             </div>
         </div>
 
-    </div>
+        <div class="row mt-3 container-list">
 
-    <div class="row justify-content-center mt-2">
+            <div class="col">
+                <div class="card mt-1 cards-head" style ="margin-bottom: 10px;">
+                    <div class="card-body d-flex justify-content-between align-items-center flex-md-row flex-column">
+                        <p class="col-3">Candidato</p>
+                        <div>
+                        <p class="">Valoración</p>
+                        </div>
+                        <p>Ampliar</p>
+                    </div>
+                </div>
+                <div class="card mb-1 custom card" *ngFor="let candidate of displayedCandidates">
+                    <div
+                        class="card-body d-flex justify-content-between align-items-center flex-md-row flex-column gap-2">
+                        <p class="card-title d-flex align-items-center gap-3 col-md-3">
+                            <img src="http://localhost:3000/user.jpg" alt="Imagen de usuario default">
+                            {{ candidate.name + ' ' + candidate.lastname }}
+                        </p>
+                        <div class="mt-md-0">
+                            <app-rating [rating]="candidate.rating"></app-rating>
+                        </div>
+                        <div class="">
+                            <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidate-details', candidate.id]" alt="eye">
+                    </div>
+                </div>
+            </div>
 
-        <div class="col-auto">
+        </div>
 
-            <app-pagination
-                [currentPage]="currentPage"
-                [totalPages]="totalPages"
-                (pageChanged)="onPageChanged($event)"
-            ></app-pagination>
+        <div class="row justify-content-center mt-3">
+
+            <div class="col-auto">
+
+                <app-pagination [currentPage]="currentPage" [totalPages]="totalPages"
+                    (pageChanged)="onPageChanged($event)"></app-pagination>
+
+            </div>
 
         </div>
 
     </div>
-    
+
 </div>

@@ -13,7 +13,7 @@ export class OpenProcessesComponent implements OnInit {
 
   totalPages: number = 1;
   currentPage: number = 1;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 7;
 
   constructor(
     private openProcessesService: OpenProcessesService

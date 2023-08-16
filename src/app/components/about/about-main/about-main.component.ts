@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AboutMainComponent {
   /* Info developers */
-  tarjetas =[
+  tarjetas:any =[
     {
-      nombre:"Joel",
+      nombre:"Joel Tarzán",
       descripcion:"Uno de los dessarrolladores de esta aplicación web",
       tiempo:"Last updated 3 mins ago",
       imgurl:"../../../../assets/joel_about.jpg",
@@ -17,15 +17,15 @@ export class AboutMainComponent {
       linkedinurl:"https://www.linkedin.com/in/joeltarzan/"
     },
     {
-      nombre:"Marco",
+      nombre:"Marco Santoro",
       descripcion:"Uno de los dessarrolladores de esta aplicación web",
       tiempo:"Last updated 3 mins ago",
-      imgurl:"../../../../assets/image_perfil_default.webp",
+      imgurl:"../../../../assets/marco_about.jpg",
       altimg:"Image_Marco",
       linkedinurl:"https://www.linkedin.com/in/marco-santoro-serrano-a778a6184/"
     },
     {
-      nombre:"Gerard",
+      nombre:"Gerard Fernández",
       descripcion:"Uno de los desarrolladores que ha contribuido en la construccion del programa Aurum RH",
       tiempo:"Last updated 3 mins ago",
       imgurl:"../../../../assets/gerard_about.jpg",

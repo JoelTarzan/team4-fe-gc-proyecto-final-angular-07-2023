@@ -1,0 +1,60 @@
+/* .max-height-100 {
+    width: 300px;
+    height: 300px;
+    max-height: 20vw;
+    max-width: 20vw;
+} */
+
+.size-custom{
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .minor-resolution-position, .minor-resolution-position .button-resolution-position{
+        text-align: center !important;
+        justify-content: center !important;
+        border: none !important;
+    }
+    .max-height-100 {
+        width: 850px;
+        height: 850px;
+        max-height: 90vw;
+        max-width: 90vw;
+    }
+}
+
+
+
+/* Prueba efecto foto */
+.header img {
+    width: 250px;
+    height: 250px;
+    max-height: 20vw;
+    max-width: 20vw;
+    transition: .5s ease;
+  }
+  
+  .header img:hover{
+    width: 300px;
+    height: 300px;
+    max-height: 23vw;
+    max-width: 23vw;
+    transition: .5s ease;
+  }
+
+  /* efecto card */
+  img{
+    animation: fadeIn 1s ease;
+}
+
+@Keyframes fadeIn{
+    0%{
+        opacity:0;
+        filter: blur(10px);
+    }
+
+    10%{
+        opacity: 1;
+        filter: brightness(2) blur(5px);
+    }
+}

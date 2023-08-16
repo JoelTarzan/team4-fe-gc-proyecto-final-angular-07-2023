@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-about-card',
   templateUrl: './about-card.component.html',
@@ -7,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class AboutCardComponent {
   @Input() developer:any;
+  @Input() additionalClass:any;
 }

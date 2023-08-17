@@ -1,18 +1,27 @@
-.square-btn {
-    width: 5vw;
-    height: 5vw;
-    border-radius: 0; 
-  }
-.max_size-scroll{
-  max-height: 200px;
+
+.main-container {
+  max-width: 300px;
+}
+
+.skills-container {
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: auto;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid rgb(228, 228, 228);
+}
+
+.max_size-scroll {
+  max-height: 400px;
 }
 .icon-container {
-  width:50px;
-  height:60px;
+    width: 25px;
+    margin-left: 100px;
   }
-  .icon-container .autowidth {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-  }
-  
+
+  .cursor-pointer:hover {
+  cursor: pointer;
+  } 

@@ -1,20 +1,19 @@
 <!-- General div for skills -->
-<div class="w-100 h-100" >
-    <!-- container for head of skills (tittle and edit button) -->
-    <div class="d-flex justify-content-between h-25">
+<div class="main-container" >
+    <!-- conw-100 h-100tainer for head of skills (tittle and edit button) -->
+    <div class="d-flex justify-content-between">
         <!-- Cambia el titulo segun URL  -->
-        <h3 class="mx-2">{{ actualRoute == '/candidature-details/' + idRoute ? title2  : (actualRoute == '/candidate-details/' + idRoute ? '' : title) }}</h3>
+        <h5 class="mx-2">{{ actualRoute == '/candidature-details/' + idRoute ? title2  : (actualRoute == '/candidate-details/' + idRoute ? '' : title) }}</h5>
 
         <!-- Condicional para activar boton edicion (rol:candidate, url:/profile) y (rol:rrhh, url:/candidature-detail) -->
-        <button class="col-1 h-100 mx-1 btn btn-primary square-btn d-flex justify-content-center align-items-center icon-container" (click)="editFunction()"
-            *ngIf="(actualRoute == '/profile/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-details/' + idRoute)"> 
-            <!-- Icono editar -->
-            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
-        </button>
+        <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 h-100  d-flex justify-content-end icon-container"
+        (click)="editFunction()"
+        *ngIf="(actualRoute == '/profile/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-details/' + idRoute)">
+    
     </div>
 
     <!-- Este div contiene las hablilidades y tambien las opciones añadir más y tambien la opcion de confirmacion -->
-    <div class="overflow-y-auto h-75 max_size-scroll ">
+    <div class="overflow-y-auto h-75 max_size-scroll skills-container">
         <ul class="list-group list-group-flush h-100 ">
 
 
@@ -23,7 +22,7 @@
             <li class="list-group-item" *ngIf="editActivate"> 
                 <div class="d-flex justify-content-between">
                     <!-- input that collects the text to add it as a skill  -->
-                    <input class="form-control" type="text" id="miInput" placeholder="inserte skill" ><!-- [(ngModel)]="skillinsert" -->
+                    <input class="form-control" type="text" id="miInput" placeholder="Inserte aptitud" ><!-- [(ngModel)]="skillinsert" -->
                     <!-- boton añadir -->
                     <button class=" btn btn-light square-btn mx-1 h-100 material-symbols-outlined icon-container"  ><!-- (click)="addSkills()" -->
                         <!-- Icono añadir -->

@@ -19,9 +19,9 @@ export class SkillsComponent implements OnInit {
   // TITULO // 
   //que cambia segun la ruta (en la ruta detalle de candidato no sale titulo)
   //Perfil - candidate, Aplicacion_candidato - rrhh
-  title: string = "Habilidades";
+  title: string = "Aptitudes";
   //Detalle_Candidatura - candidate/rrhh
-  title2: string = "Habilidades Requeridas";
+  title2: string = "Aptitudes Requeridas";
 
   // DATOS BBDD GUARDADOS //
   user: any;

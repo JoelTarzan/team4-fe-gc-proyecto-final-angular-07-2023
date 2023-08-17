@@ -1,5 +1,6 @@
 .main-container {
     background-color: #e0e0e0;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

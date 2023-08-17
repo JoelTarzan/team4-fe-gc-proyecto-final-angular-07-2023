@@ -1,15 +1,16 @@
+<div class="background-container">
 <app-navbar></app-navbar>
-<div class="container py-4">
-    <div class="row g-0">
-        <div class="col-lg-7 col-sm-12  text-start">
+<div class="container main-container py-4 ">
+    <div class="row g-0 p-4 ju">
+        <div class="col-lg-8 col-sm-12 text-start ">
             <!-- ENUNCIADO -->
-            <div class="">
+            <div class="p-1">
 
                 <!-- TITULO/NOMBRE CANDIDATURA -->
                 <div class="d-flex align-items-center ">
                     <!-- Titulo de la candidatura, lleva un control por si el titulo fuera muy largo que no rompa la distribucion de la vista 
                         (un exceso de caracteres se muestra con puntos suspensivos) -->
-                    <h3 class="text-truncate text-truncate-overflow" *ngIf="!modeEditTitle" title="{{data.title.length>28 ? data.title : ''}}">{{data.title}}</h3>
+                    <h3 class="text-truncate text-truncate-overflow mb-4" *ngIf="!modeEditTitle" title="{{data.title.length>28 ? data.title : ''}}">{{data.title}}</h3>
                     <div class="d-flex w-75 align-items-center" *ngIf="modeEditTitle">
                         <!-- Input text que añade como valor base el contenido que ya tiene -->
                         <input type="text" class="form-control" placeholder="Nombre Candidatura" value="{{data.title}}" aria-label="Candidatura" aria-describedby="Candidatura">
@@ -22,12 +23,8 @@
                     </div>
                     <!-- Boton de edicion para el titulo -->
                     <div class="" *ngIf="typeUser=='rrhh'">
-                        <button class="btn btn-primary mx-1" (click)="controlModes('title')">
-                            <!-- Icon from google -->
-                            <span class="  material-symbols-outlined line-height-base text-start autowidth">
-                                edit_square
-                            </span>
-                        </button>
+                        <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                            (click)="controlModes('title')">
                     </div>
                 </div>
                 <!-- FIN---TITULO/NOMBRE CANDIDATURA--- -->
@@ -42,12 +39,10 @@
                             </span>
                         </button>
                         <!-- Boton edicion de los 3 dialogos debajo del titulo (solicitantes, jornada...) -->
-                        <button class="btn btn-primary" (click)="controlModes('infocandidacy')">
-                            <!-- Icon from google -->
-                            <span class="  material-symbols-outlined line-height-base text-start autowidth">
-                                edit_square
-                            </span>
-                        </button>
+                        <div class="" *ngIf="typeUser=='rrhh'">
+                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('infocandidacy')">
+                        </div>
                 </div>
                 <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-between">
                     
@@ -94,32 +89,33 @@
             </div>
 
             <!-- DESCRIPCION -->
-            <div class="my-3 px-3 ">
+            <div class="my-3 px-3 mb-4 p-3">
                 <div class="d-flex align-items-center">
                     <h5>Descripcion</h5>
-                    <div class="d-flex px-1">
+                    <div class="d-flex px-1 ">
                         <!-- Boton de añadir se activa si edicion esta activada -->
                         <button class="btn btn-light  mx-1" *ngIf="modeEditDescription">
                             <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
                         </button>
                         <!-- Boton de edicion -->
-                        <button  class="btn btn-primary mx-1" *ngIf="typeUser=='rrhh'" (click)="controlModes('description')">
-                            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
-                        </button>
+                        <div class="" *ngIf="typeUser=='rrhh'">
+                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('description')">
+                        </div>
                     </div>
                 </div>
                 <!-- si no se activa la edicion tan solo muestra la info -->
-                <div *ngIf="!modeEditDescription">
+                <div class="" *ngIf="!modeEditDescription">
                     {{data.description}}
                 </div>
                 <!-- Si edicion esta activada muestra un textarea -->
-                <div class="my-1" *ngIf="modeEditDescription">
-                    <textarea class="form-control" aria-label="With textarea">{{data.description}}</textarea>
+                <div class="my-1 " *ngIf="modeEditDescription">
+                    <textarea class=" form-control" aria-label="With textarea">{{data.description}}</textarea>
                 </div>
             </div>
 
             <!-- REQUERIMIENTOS -->
-            <div class="my-3 px-3">
+            <div class="my-3 px-3 mb-4">
                 <div class="d-flex align-items-center">
                     <h5>Requerimientos</h5>
                     <div class="d-flex px-1">
@@ -128,10 +124,10 @@
                             <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
                         </button>
                         <!-- Boton de edicion -->
-                        <button  class="btn btn-primary mx-1" *ngIf="typeUser=='rrhh'" (click)="controlModes('requeriments')">
-                            <!-- Icon from google -->
-                            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
-                        </button>
+                        <div class="" *ngIf="typeUser=='rrhh'">
+                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('requeriments')">
+                        </div>
                     </div>
                     
                 </div>
@@ -155,9 +151,10 @@
                             <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
                         </button>
                         <!-- Boton de edicion -->
-                        <button class="btn btn-primary mx-1" *ngIf="typeUser=='rrhh'" (click)="controlModes('responsabilities')">
-                            <span class="  material-symbols-outlined line-height-base text-start autowidth">edit_square</span>
-                        </button>
+                        <div class="" *ngIf="typeUser=='rrhh'">
+                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('responsabilities')">
+                        </div>
                     </div>
                 </div>
                 <!-- si no se activa la edicion tan solo mustra la info -->
@@ -170,7 +167,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5 col-sm-12 h-50">
+        <div class="col-lg-4 col-sm-12 h-50 p-4">
             <!-- Muestra las skills de la candidatura -->
             <div><app-skills [tableData]="'candidature'" [rol]="typeUser"></app-skills></div>
             <div class="d-flex flex-column justify-content-center align-items-center mt-3" *ngIf="typeUser == 'candidate'"> 
@@ -185,13 +182,14 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="typeUser == 'candidate'">
+        <div class="mt-5" *ngIf="typeUser == 'candidate'">
             <app-progress-bar [processes]="processes" [processStatus]="processStatus"></app-progress-bar>
         </div>
     </div>
     <!-- Informacion extra segun el usuario -->
-    <div class="row g-0">
+    <div class="row g-0 p-5">
         <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
         <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>
     </div>
+</div>
 </div>

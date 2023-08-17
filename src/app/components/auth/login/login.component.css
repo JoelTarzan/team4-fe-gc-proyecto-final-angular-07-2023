@@ -76,8 +76,24 @@
 
 .custom-link {
     text-decoration: none; /* Quitamos la subrayado del enlace */
-    color: black; /* Color del texto del enlace */
+    color: rgb(82, 82, 82); /* Color del texto del enlace */
     display: inline-block; /* Asegura que los enlaces se muestren en una línea */
     margin: 0 10px; /* Agrega un espacio entre los enlaces (opcional) */
     font-size: 13px;
+}
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-color: rgb(2, 85, 173);
+    border-color: transparent;
+    font-size: 15px;
+    border-radius: 4px !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 63, 128);
+    border-color: transparent;
 }

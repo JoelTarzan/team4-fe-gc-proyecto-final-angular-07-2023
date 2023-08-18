@@ -74,3 +74,15 @@
 .back-button button {
     padding: 3px 8px;
 }
+
+.btn-primary {
+    background-color: rgb(2, 85, 173);
+    border-color: transparent;
+    font-size: 15px;
+    border-radius: 4px !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 63, 128);
+    border-color: transparent;
+}

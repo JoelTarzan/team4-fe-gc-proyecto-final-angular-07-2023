@@ -1,11 +1,15 @@
-.main-container {
-    background-color: #eeeeee;
+.background-container {
+    background-color: #e0e0e0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
+}
+
+.main-container {
+    margin-top: 100px;
 }
 
 /* container de la hoja de perfil */
@@ -26,9 +30,9 @@
 }
 
 /* control de tamños en pantallas pequeñas y collapse de grid */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .container-profile {
-        width: 380px;
+        width: 600px;
         height: auto;
     }
 
@@ -68,6 +72,13 @@
 
     .quadrant.quadrant-2 .form-control {
         width: 230px;
+    }
+
+    .skills {
+        margin-top: 0px;
+        margin-left: 0px;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -110,14 +121,14 @@
     height: 200px;
     overflow: hidden;
     border-radius: 50%;
-    border: 1px solid #4284ff;
+    border: 1px solid rgb(2, 85, 173);
     box-shadow: 1px 2px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* container boton change (editor azul) */
 .change-image-container {
-    width: 30px;
-    height: 30px;  
+    width: 25px;
+    height: 25px;  
 }
 
 /* tamaño fijo del area de texto */
@@ -143,22 +154,25 @@ textarea {
 
 /* estilos letra nombre */
 .texto-grande {
-    font-size: 20px; 
+    font-size: 22px; 
     margin-bottom: -5px;
+    cursor: pointer;
 }
 
 .texto-titulo {
     color: rgb(129, 129, 129); 
-}
-
-.password-change-button {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #2877d1;
-    color: white;
-    text-decoration: none;
-    border-radius: 3px;
-    border: none;
     cursor: pointer;
 }
 
+.texto-grande:hover {
+    font-weight:500;
+}
+
+.texto-titulo:hover {
+    font-weight:500;
+}
+
+.skills {
+    margin-top: 32px;
+    margin-left: 89px;
+}

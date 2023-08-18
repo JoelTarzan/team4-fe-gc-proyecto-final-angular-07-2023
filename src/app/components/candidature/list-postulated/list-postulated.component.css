@@ -1,25 +1,21 @@
-.card {
-    border-radius: 4px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-    border-color: transparent !important ;
-    background-color: rgb(255, 255, 255);
+.max-height-100 {
+    width: 50px;
+    height: 50px;
+    max-height: 10vw;
+    max-width: 10vw;
 }
 
 .btn-primary {
     background-color: rgb(2, 85, 173);
     border-color: transparent;
     border-radius: 100%;
-    font-size: 15px;
+    font-size: 13px;
+    margin-right: 12px;
 }
 
 .btn-primary:hover {
     background-color: rgb(3, 63, 128);
     border-color: transparent;
-}
-
-.secundary-list {
-    font-size: 15px;
-    color: rgb(107, 107, 107);
 }
 
 .eye-icon {
@@ -29,3 +25,4 @@
     filter: saturate(90%);
     cursor: pointer;
 }
+

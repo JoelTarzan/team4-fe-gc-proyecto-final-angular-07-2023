@@ -4,3 +4,27 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.navbar {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.164); 
+    background-color: rgb(60,60,60) !important; 
+}
+
+.navbar a {
+    margin-right: 20px ;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    background-color: rgb(99, 99, 99);
+    left: -70px; /* Ajusta la posición horizontal del menú */
+    font-size: 15px;
+}
+
+.cursor-pointer {
+cursor: pointer;
+}

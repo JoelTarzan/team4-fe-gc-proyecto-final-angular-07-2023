@@ -1,14 +1,52 @@
+.background-container {
+  background-color: #e0e0e0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.main-container {
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+  height: auto;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+
 .icon-container {
-    width:50px;
-    height:60px;
-    }
-    .icon-container .autowidth {
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-    }
-    .h-custom{
-      min-height: 60px;
-      max-height: 150px;
-      height: 7vh;
-    }
+  width: 25px;
+  margin-bottom: 5px;
+}
+
+.btn-primary {
+  background-color: rgb(2, 85, 173);
+  border-color: transparent;
+  border-radius: 100%;
+  font-size: 13px;
+  margin-right: 12px;
+}
+
+.btn-primary:hover {
+  background-color: rgb(3, 63, 128);
+  border-color: transparent;
+}
+
+
+@media (max-width: 1000px) {
+
+  .main-container {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

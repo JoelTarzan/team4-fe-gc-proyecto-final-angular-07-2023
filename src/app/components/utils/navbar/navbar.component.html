@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
 
     <div class="container-fluid">
 
         <a class="navbar-brand" routerLink="/">
-            <img src="../../../../assets/aurum-icon-white.png" alt="Aurum RH" class="logo-image">
+            <img src="../../../../assets/aurum-icon-white-blue2.png" alt="Aurum RH" class="logo-image">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                 </li>
 
                 <li class="nav-item" *ngIf="rol == 'rrhh'">
-                    <a class="nav-link" routerLink="/interviews" routerLinkActive="active">Entrevistas Pendientes</a>
+                    <a class="nav-link" routerLink="/interviews" routerLinkActive="active">Procesos Pendientes</a>
                 </li>
 
                 <li class="nav-item" *ngIf="rol == 'admin'">
@@ -44,12 +44,20 @@
                 </li>
 
             </ul>
-
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/profile" routerLinkActive="active">Perfil</a>
+          
+            <ul class="navbar-nav" style="margin-right: 10px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" id="profileDropdown">
+                        Perfil
+                    </a>
+                    <div class="dropdown-menu cursor-pointer" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" [routerLink]="['/profile', userId]">Ver perfil</a>
+                        <li><hr class="dropdown-divider"></li>
+                        <a class="dropdown-item" routerLink="/password-change">Cambiar<br>contraseña</a>
+                    </div>
                 </li>
             </ul>
+          
         </div>
 
     </div>

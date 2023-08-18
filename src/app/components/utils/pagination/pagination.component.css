@@ -1,3 +1,22 @@
 li {
     cursor: pointer;
 }
+
+/* Estilos personalizados para la paginación */
+.custom-pagination .page-item a.page-link {
+    color: #ffffff; /* Cambia el color de la fuente */
+    background-color: rgb(133, 133, 133); /* Cambia el color de fondo */
+    border-color: #494949; /* Cambia el color del borde */
+}
+
+.custom-pagination .page-item.active a.page-link {
+    color: #313131; /* Cambia el color de fuente para la página activa */
+    background-color: rgb(255, 255, 255); /* Cambia el color de fondo para la página activa */
+    border-color: #494949; /* Cambia el color del borde para la página activa */
+}
+
+.custom-pagination .page-item.disabled a.page-link {
+    color: #ffffff; /* Cambia el color de fuente para los elementos deshabilitados */
+    background-color: rgb(95, 95, 95); /* Cambia el color de fondo para los elementos deshabilitados */
+    border-color: #494949; /* Cambia el color del borde para los elementos deshabilitados */
+}

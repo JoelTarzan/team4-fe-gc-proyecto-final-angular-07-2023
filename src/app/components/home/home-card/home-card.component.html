@@ -1,21 +1,23 @@
 <div class="card">
     <div class="card-body p-0">
+        <div class="d-flex p-2 align-items-center" >
+            <img src="../../../../assets/grupo-castilla.jpg" alt="logo" style="max-width: 50px; height: auto; padding-left: 5px;">
+            <h4 class="card-title p-3 m-1">{{ candidature.title }}</h4>
+        </div>
 
-        <h5 class="card-title p-3">{{ candidature.title }}</h5>
+        <p class="card-text p-3" style="text-align: justify; margin-left: 10px; margin-right: 10px;">{{ candidature.description }}</p>
 
-        <p class="card-text p-3">{{ candidature.description }}</p>
-
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ candidature.typeworkingday }}</li>
-            <li class="list-group-item">{{ candidature.location }}</li>
-            <li class="list-group-item" [ngClass]="{'list-group-item-success' : numSkillsMatch == numSkillsReq}">
-                Coincidencia Aptitudes - {{ numSkillsMatch }} de {{ numSkillsReq }}
+        <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item secundary-list">{{ candidature.typeworkingday +" - "+ candidature.location}}</li>
+            <li class="list-group-item secundary-list" [ngClass]="{'list-group-item-success' : numSkillsMatch == numSkillsReq}">
+                Aptitudes - {{ numSkillsMatch }} de {{ numSkillsReq }}
             </li>
         </ul>
 
-        <div class="d-flex justify-content-center p-3 mt-4">
-            <a type="button" class="btn btn-primary" [routerLink]="['/candidature-details', candidature.id]">Ver candidatura</a>
+        <div class="d-flex justify-content-end p-3 mt-2">
+            <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidature-details', candidature.id]" alt="eye">
         </div>
 
     </div>
+    
 </div>

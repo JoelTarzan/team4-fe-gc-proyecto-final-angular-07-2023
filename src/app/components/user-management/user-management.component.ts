@@ -17,7 +17,7 @@ export class UserManagementComponent implements OnInit {
 
   totalPages: number = 1;
   currentPage: number = 1;
-  itemsPerPage: number = 4;
+  itemsPerPage: number = 5;
 
   constructor(
     private usersService: UsersService) {

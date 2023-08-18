@@ -1,3 +1,60 @@
 .card, select {
-    border-radius: 3px;
+    border-radius: 5px;
+}
+
+.background-container {
+    background-color: #e0e0e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.container-candidaturas {
+    margin-top: 70px;
+    max-width: 1000px;
+}
+
+.btn-primary {
+    background-color: rgb(2, 85, 173);
+    border-color: transparent;
+    border-radius: 100%;
+    font-size: 15px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 63, 128);
+    border-color: transparent;
+}
+
+.eye-icon {
+    max-width: 40px;
+    height: auto; 
+    padding-left: 5px;
+    filter: saturate(90%);
+    cursor: pointer;
+}
+
+.cards-head {
+    background-color: rgb(114, 114, 114);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    max-height: 70px;
+}
+
+.badge-custom {
+    border-radius: 100%;
+    height: 15px;
+}
+
+.text-bg-success {
+    background-color: rgb(26, 199, 55) !important;
+}
+
+@media (max-width: 770px) {
+    .cards-head {
+        display: none;
+    }
 }

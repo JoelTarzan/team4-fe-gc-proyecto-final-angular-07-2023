@@ -1,3 +1,24 @@
+.background-container {
+    background-color: #e0e0e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.main-container {
+    background-color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: auto;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
 img {
     width: 10rem;
     border-radius: 50%;
@@ -5,4 +26,46 @@ img {
 
 .card {
     border-radius: 3px;
+}
+
+.grey-text {
+color: rgb(97, 97, 97);
+}
+
+.text-description {
+    text-align: justify;
+}
+
+.text-container {
+    max-width: 520px;
+}
+
+.custom-list {
+border-radius: 4px;
+}
+
+.date {
+    color: rgb(126, 126, 126);
+}
+
+.btn-primary {
+    background-color: rgb(2, 85, 173);
+    border-color: transparent;
+    border-radius: 100%;
+    font-size: 13px;
+    margin-right: 12px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(3, 63, 128);
+    border-color: transparent;
+}
+
+@media (max-width: 1000px) {
+
+    .main-container {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

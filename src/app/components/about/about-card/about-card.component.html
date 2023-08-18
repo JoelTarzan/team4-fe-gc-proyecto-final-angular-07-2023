@@ -1,1 +1,21 @@
-<p>about-card works!</p>
+<div class="custom-card col block border-light-subtle d-flex jus">
+    <app-navbar></app-navbar>
+    <div class="d-flex w-100 gap-3">
+        <!-- Image -->
+        <div class="p-2 col-6d-flex justify-content-start header">
+            <img src="{{developer.imgurl}}" class="rounded-circle max-height-100" alt="Image_Joel">
+        </div>
+        <!-- Content -->
+        <div class="d-flex border-resolution-position align-items-center pt-4">
+            <div class="p-2 w-100 d-flex overflow-hidden minor-resolution-position text-end justify-content-end size-custom">
+                <h5 class="card-title p b-auto mt-5 mr" style="margin-right: 20px;">{{developer.nombre}}</h5>
+                <div class="d-flex flex-column ms-auto button-resolution-position mt-5 ">
+                    <a href="{{developer.linkedinurl}}">
+                        <img src="../../../../assets/linkedin.png" class="lnk-icon" alt="lnk">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

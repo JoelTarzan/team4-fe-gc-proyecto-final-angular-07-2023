@@ -110,7 +110,7 @@
     color: rgb(2, 85, 173);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .step-wizard {
         height: auto;
         width: 100%;

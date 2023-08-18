@@ -19,9 +19,9 @@ export class SkillsComponent implements OnInit {
   // TITULO // 
   //que cambia segun la ruta (en la ruta detalle de candidato no sale titulo)
   //Perfil - candidate, Aplicacion_candidato - rrhh
-  title: string = "Habilidades";
+  title: string = "Aptitudes";
   //Detalle_Candidatura - candidate/rrhh
-  title2: string = "Habilidades Requeridas";
+  title2: string = "Aptitudes Requeridas";
 
   // DATOS BBDD GUARDADOS //
   user: any;
@@ -41,12 +41,14 @@ export class SkillsComponent implements OnInit {
     private userService: UsersService, 
     private candidatureService: CandidaturesService, 
     private router: Router, 
-    private routeActive: ActivatedRoute) {
+    private routeActive: ActivatedRoute
+    ) {
 
     }
 
   
   ngOnInit(): void {
+    
     /* obtiene datos de url actualRoute='/RUTA' e idRoute='/ID'*/
     this.actualRoute = this.router.url; 
     this.routeActive.params.subscribe(params => {

@@ -3,7 +3,7 @@
     <!-- container for head of skills (tittle and edit button) -->
     <div class="d-flex justify-content-between pb-3"><!-- mb-3 -->
         <!-- Cambia el titulo segun URL  -->
-        <h4 class="mx-2 pl-custom">{{ actualRoute == '/candidature-details/' + idRoute ? title2  : (actualRoute == '/candidate-details/' + idRoute ? '' : title) }}</h4>
+        <h5 class="mx-2 pl-custom">{{ actualRoute == '/candidature-details/' + idRoute ? title2  : (actualRoute == '/candidate-details/' + idRoute ? '' : title) }}</h5>
 
         <!-- Condicional para activar boton edicion (rol:candidate, url:/profile) y (rol:rrhh, url:/candidature-detail) -->
         <button class="btn-edit-custom" (click)="editFunction()" *ngIf="(actualRoute == '/profile/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-details/' + idRoute)">

@@ -28,7 +28,7 @@
                 </li>
 
                 <li class="nav-item" *ngIf="rol == 'rrhh'">
-                    <a class="nav-link" routerLink="/interviews" routerLinkActive="active">Entrevistas Pendientes</a>
+                    <a class="nav-link" routerLink="/interviews" routerLinkActive="active">Procesos Pendientes</a>
                 </li>
 
                 <li class="nav-item" *ngIf="rol == 'admin'">
@@ -47,11 +47,11 @@
           
             <ul class="navbar-nav" style="margin-right: 10px;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="profileDropdown" [routerLink]="['/profile', userId]" routerLinkActive="active">
+                    <a class="nav-link" id="profileDropdown">
                         Perfil
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" routerLink="/profile">Ver perfil</a>
+                    <div class="dropdown-menu cursor-pointer" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" [routerLink]="['/profile', userId]">Ver perfil</a>
                         <li><hr class="dropdown-divider"></li>
                         <a class="dropdown-item" routerLink="/password-change">Cambiar<br>contraseña</a>
                     </div>

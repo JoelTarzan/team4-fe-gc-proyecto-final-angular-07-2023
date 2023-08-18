@@ -24,3 +24,7 @@
     left: -70px; /* Ajusta la posición horizontal del menú */
     font-size: 15px;
 }
+
+.cursor-pointer {
+cursor: pointer;
+}

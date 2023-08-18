@@ -1,67 +1,78 @@
-<app-navbar></app-navbar>
-<div class="container">
+<div class="background-container">
+    <app-navbar></app-navbar>
+    <div class="container main-container d-column shadow p-3 rounded justify-content-center align-items-center">
 
-    <div class="my-5 row">
+        <div class="my-5 row">
 
-        <div class="col-12 col-md-5 d-flex flex-column align-items-center">
-            <img src="http://localhost:3000/user.jpg" alt="Imagen de usuario default" class="mb-4">
-    
-            <div class="d-flex flex-column justify-content-center text-center">
-                <p class="fs-3">{{ user?.name }} {{ user?.lastname }}</p>
-                <p class="fs-5">{{ user?.email }}</p>
+            <div class="col-12 col-md-5 d-flex flex-column align-items-center">
+                <img src="http://localhost:3000/user.jpg" alt="Imagen de usuario default" class="mb-4">
+
+                <div class="d-flex flex-column justify-content-center text-center">
+                    <p class="fs-4">{{ user?.lastname }}, {{ user?.name }}</p>
+                    <p class="fs-6 grey-text">{{ user?.email }}</p>
+                </div>
             </div>
-        </div>
-    
-        <div class="col-12 col-md-7">
-            <div>
-                <h4 class="mb-3">{{ candidature.title }}</h4>
-                <h6 class="mb-3">{{ candidature.location }} · {{ candidature.typeworkingday }} · {{ candidature.applicants }}</h6>
-                <h6 class="mb-2">Descripción</h6>
-                <p>{{ candidature.description }}</p>
+
+            <div class="col-12 col-md-7 text-container">
+                <div>
+                    <h3 class="mb-3">{{ candidature?.title }}</h3>
+                    <p class="mb-3 grey-text">{{ candidature?.location }} · {{ candidature?.typeworkingday }} · {{
+                        candidature?.applicants }} candidatos</p>
+                    <h6 class="mb-3 mt-4">Descripción</h6>
+                    <div class="text-description">
+                        <p>{{ candidature?.description }}</p>
+                    </div>
+                </div>
+
             </div>
-            
+
+            <div class="mt-5 col-12">
+                <app-progress-bar [processes]="processes" [processStatus]="processStatus"></app-progress-bar>
+            </div>
+
         </div>
 
-        <div class="mt-5 col-12">
-            <app-progress-bar [processes]="processes" [processStatus]="processStatus"></app-progress-bar>
+        <div class="row p-5">
+
+            <div class="col-12 col-md-3 d-flex flex-column align-items-center mb-5 mb-md-0">
+                <app-skills class="w-100" [tableData]="'user'" [rol]="'rrhh'"></app-skills>
+            </div>
+
+            <div class="col-12 col-md-9">
+                <div class="d-flex justify-content-between mb-3">
+                    <h5>Procesos</h5>
+                    <button class="btn btn-primary" (click)="addProcessMode = !addProcessMode">+</button>
+                </div>
+
+                <ul class="list-group custom-list">
+                    <li class="list-group-item d-flex flex-lg-row flex-column justify-content-between align-items-center" *ngFor="let process of processes">
+                        
+                        <div class="col-12 col-lg-9 d-flex flex-column flex-sm-row align-items-center text-center text-sm-start justify-content-between my-1 mb-3 mb-lg-0">
+                            <span class="mb-2 mb-sm-0 col-5">{{ process.title }}</span>
+                            <span class="">
+                                <img src="../../../assets/blue-bell.png" alt="bell-grey"
+                                style="width: 25px; height: 25px; cursor: pointer;">
+                            </span>
+                            <span class="date">{{ process.date }}</span>
+                        </div>
+
+                        <div class="d-flex my-2 mb-lg-0">
+                            <input class="form-check-input me-5 custom-radio-color" type="radio" name="radio"
+                                [checked]="process.title == processStatus" (click)="processStatus = process.title">
+                            <img src="../../../assets/cancelar.png" alt="cancelar"
+                                style="width: 25px; height: 25px; cursor: pointer;">
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex flex-lg-row flex-column gap-3" *ngIf="addProcessMode">
+                        <input type="text" class="form-control" id="processName" placeholder="Nombre del proceso">
+                        <input type="date" class="form-control" id="processDate">
+                        <img src="../../../assets/check.png" alt="guardar"
+                            style="width: 27px; height: 27px; cursor: pointer;">
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
     </div>
-
-    <div class="row mb-5">
-
-        <div class="col-12 col-md-5 d-flex flex-column align-items-center mb-5 mb-md-0">
-            <app-skills class="w-100" [tableData]="'user'" [rol]="'rrhh'"></app-skills>
-        </div>
-
-        <div class="col-12 col-md-7">
-            <div class="d-flex justify-content-between mb-3">
-                <h4>Procesos</h4>
-                <button class="btn btn-primary" (click)="addProcessMode = !addProcessMode">Nuevo proceso</button>
-            </div>
-            
-            <ul class="list-group">
-                <li class="list-group-item d-flex flex-lg-row flex-column justify-content-between align-items-center" *ngFor="let process of processes">
-                    <div class="col-8 d-flex justify-content-between my-2 mb-lg-0">
-                        <span>{{ process.title }}</span>
-                        <span>{{ process.date }}</span>
-                    </div>
-                    
-                    <div class="d-flex align-items-center my-2 mb-lg-0">
-                        <input class="form-check-input me-5" type="radio" name="radio" [checked]="process.title == processStatus" (click)="processStatus = process.title">
-                        <button class="btn btn-danger">Eliminar</button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex flex-lg-row flex-column gap-3" *ngIf="addProcessMode">
-                    <input type="text" class="form-control" id="processName" placeholder="Nombre del proceso">
-                    <input type="date" class="form-control" id="processDate">
-                    <button class="btn btn-primary">Guardar</button>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
-
-
 </div>

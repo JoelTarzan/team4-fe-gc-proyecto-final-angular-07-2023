@@ -14,7 +14,7 @@
     border-radius: 0; 
   }
 .max_size-scroll{
-  max-height: 200px;
+  max-height: 300px;
 }
 .icon-container {
     width: 25px;
@@ -239,7 +239,7 @@ ul{
   }
   .btn-edit-custom span {
     display: inline-block;
-    float: left;
+    /* float: left; */
   }
   .btn-edit-custom .edit-icon-custom {
     height: 40px;

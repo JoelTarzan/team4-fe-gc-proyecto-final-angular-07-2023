@@ -41,7 +41,10 @@
             <div class="col-12 col-md-8">
                 <div class="d-flex justify-content-between mb-3">
                     <h5>Procesos</h5>
-                    <button class="btn btn-primary" (click)="addProcessMode = !addProcessMode">+</button>
+                    <div class="col-1">
+                        <button class="circle-create-custom fromMiddle" data-animation="magnify" (click)="addProcessMode = !addProcessMode"><span></span></button>
+                    </div>
+                    
                 </div>
 
                 <ul class="list-group custom-list">

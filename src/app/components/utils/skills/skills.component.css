@@ -56,4 +56,6 @@ ul{
   }
 /* Fin de la era de Marco */
 
-  
+ul{
+  padding-inline-start: 0;
+}

@@ -59,8 +59,11 @@
                         <div class="d-flex my-2 mb-lg-0">
                             <input class="form-check-input me-5 custom-radio-color" type="radio" name="radio"
                                 [checked]="process.title == processStatus" (click)="processStatus = process.title">
-                            <img src="../../../assets/cancelar.png" alt="cancelar"
-                                style="width: 25px; height: 25px; cursor: pointer;">
+                            <button class="circle-delete-custom fromMiddle-delete-custom" alt="cancelar" data-animation="magnify" > 
+                                <span></span>
+                            </button>
+                            <!-- <img src="../../../assets/cancelar.png" alt="cancelar"
+                                style="width: 25px; height: 25px; cursor: pointer;"> -->
                         </div>
                     </li>
                     <li class="list-group-item d-flex flex-lg-row flex-column gap-3" *ngIf="addProcessMode">

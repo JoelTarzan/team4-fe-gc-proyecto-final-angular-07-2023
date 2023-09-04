@@ -15,33 +15,41 @@
                         <!-- Input text que añade como valor base el contenido que ya tiene -->
                         <input type="text" class="form-control" placeholder="Nombre Candidatura" value="{{data?.title}}" aria-label="Candidatura" aria-describedby="Candidatura">
                         <!-- Boton de confirmacion del titulo -->
-                        <button class="btn btn-light mx-1">
+                        <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditInfoCandidacy" alt="aplicar" data-animation="magnify" > 
+                            <span></span>
+                        </button>
+                        <!-- <button class="btn btn-light mx-1">
                             <span class="material-symbols-outlined line-height-base text-start autowidth">
                                 check_box
                             </span>
-                        </button>
+                        </button> -->
                     </div>
                     <!-- Boton de edicion para el titulo -->
-                    <div class="" *ngIf="typeUser=='rrhh'">
-                        <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                            (click)="controlModes('title')">
+                    <div class="btn-edit-custom" (click)="controlModes('title')" *ngIf="typeUser=='rrhh'">
+                        <span class="edit-icon-custom" ></span>
+                        <!-- <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                            (click)="controlModes('title')"> -->
                     </div>
                 </div>
                 <!-- FIN---TITULO/NOMBRE CANDIDATURA--- -->
 
                 <!-- INFO CANDIDATURA -->
                 <div class="mt-3" *ngIf="typeUser=='rrhh'">
+                        <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditInfoCandidacy" alt="aplicar" data-animation="magnify" > 
+                            <span></span>
+                        </button>
                         <!-- Boton de confirmacion que aplicaria los cambios -->
-                        <button *ngIf="modeEditInfoCandidacy" class="btn btn-light mx-1">
-                            <!-- Icon from google -->
+                        <!-- <button *ngIf="modeEditInfoCandidacy" class="btn btn-light mx-1">
+                            -- Icon from google --
                             <span class="material-symbols-outlined line-height-base text-start autowidth">
                                 check_box
                             </span>
-                        </button>
+                        </button> -->
                         <!-- Boton edicion de los 3 dialogos debajo del titulo (solicitantes, jornada...) -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('infocandidacy')">
+                        <div class="btn-edit-custom" (click)="controlModes('infocandidacy')" *ngIf="typeUser=='rrhh'">
+                            <span class="edit-icon-custom" ></span>
+                            <!-- <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('infocandidacy')"> -->
                         </div>
                 </div>
                 <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-between">
@@ -94,13 +102,17 @@
                     <h5>Descripcion</h5>
                     <div class="d-flex px-1 ">
                         <!-- Boton de añadir se activa si edicion esta activada -->
-                        <button class="btn btn-light  mx-1" *ngIf="modeEditDescription">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        <button class="circle-applied-custom fromMiddle-applied-custom"*ngIf="modeEditDescription" alt="aplicar" data-animation="magnify" > 
+                            <span></span>
                         </button>
+                        <!-- <button class="btn btn-light  mx-1" *ngIf="modeEditDescription">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        </button> -->
                         <!-- Boton de edicion -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('description')">
+                        <div class="btn-edit-custom" (click)="controlModes('description')" *ngIf="typeUser=='rrhh'">
+                            <span class="edit-icon-custom"></span>
+                            <!-- <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('description')"> -->
                         </div>
                     </div>
                 </div>
@@ -120,13 +132,17 @@
                     <h5>Requerimientos</h5>
                     <div class="d-flex px-1">
                         <!-- Boton de añadir se activa si edicion esta activada -->
-                        <button class="btn btn-light mx-1" *ngIf="modeEditRequeriments">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditRequeriments" alt="aplicar" data-animation="magnify" > 
+                            <span></span>
                         </button>
+                        <!-- <button class="btn btn-light mx-1" *ngIf="modeEditRequeriments">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        </button> -->
                         <!-- Boton de edicion -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('requeriments')">
+                        <div class="btn-edit-custom" (click)="controlModes('requeriments')" *ngIf="typeUser=='rrhh'">
+                            <span class="edit-icon-custom"></span>
+                            <!-- <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('requeriments')"> -->
                         </div>
                     </div>
                     
@@ -147,13 +163,17 @@
                     <h5>Responsabilidades</h5>
                     <div class="d-flex px-1">
                         <!-- Boton de añadir se activa si edicion esta activada -->
-                        <button class="btn btn-light mx-1" *ngIf="modeEditResponsibilities">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditResponsibilities" alt="aplicar" data-animation="magnify" > 
+                            <span></span>
                         </button>
+                        <!-- <button class="btn btn-light mx-1" *ngIf="modeEditResponsibilities">
+                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
+                        </button> -->
                         <!-- Boton de edicion -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('responsabilities')">
+                        <div class="btn-edit-custom" (click)="controlModes('responsabilities')" *ngIf="typeUser=='rrhh'">
+                            <span class="edit-icon-custom"></span>
+                            <!-- <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
+                                (click)="controlModes('responsabilities')"> -->
                         </div>
                     </div>
                 </div>

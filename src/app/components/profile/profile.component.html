@@ -11,10 +11,11 @@
                             <div class="image-container">
                                 <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">
                             </div>
-                            <div class="change-image-container">
-                                <a href="https://example.com">
+                            <div class="btn-edit-custom"><!-- change-image-container -->
+                                <span class="edit-icon-custom" alt="cambio imagen"></span>
+                                <!-- <a href="https://example.com">
                                     <img src="../../../assets/icon-edit.png" alt="cambio" class="img-fluid">
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <br>
@@ -40,8 +41,14 @@
                                         <input type="text" class="form-control" [(ngModel)]="tempText"> 
                                         <!-- Botones de guardar y cancelar -->
                                         <div class="d-flex justify-content-center">
-                                            <img src="../../../assets/check.png" alt="guardar" (click)="guardar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;">
-                                            <img src="../../../assets/cancelar.png" alt="cancelar" (click)="cancelar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;">
+                                            <button class="circle-applied-custom fromMiddle-applied-custom" (click)="guardar(claveTexto)" alt="cancelar" data-animation="magnify" > 
+                                                <span></span>
+                                            </button>
+                                            <!-- <img src="../../../assets/check.png" alt="guardar" (click)="guardar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;"> -->
+                                            <button class="circle-delete-custom fromMiddle-delete-custom" (click)="cancelar(claveTexto)" alt="cancelar" data-animation="magnify" > 
+                                                <span></span>
+                                            </button>
+                                            <!-- <img src="../../../assets/cancelar.png" alt="cancelar" (click)="cancelar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;"> -->
                                         </div>
                                     </div>
                                 </ng-template>

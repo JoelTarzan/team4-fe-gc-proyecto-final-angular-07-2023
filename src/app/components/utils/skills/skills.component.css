@@ -26,7 +26,7 @@
   
 }
 
-/* Marco estuvo aqui */
+/*  */
 .main-container {
   width: 100%;
   height: 100%;
@@ -34,6 +34,7 @@
 ul{
   height: 100%;
   margin:0;
+  padding-inline-start: 0;
 }
 
 .skills-container {
@@ -54,8 +55,4 @@ ul{
     width: 25px;
     margin-left: 100px;
   }
-/* Fin de la era de Marco */
-
-ul{
-  padding-inline-start: 0;
-}
+/* */

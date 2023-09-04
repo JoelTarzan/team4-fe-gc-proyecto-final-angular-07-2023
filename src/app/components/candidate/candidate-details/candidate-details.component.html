@@ -71,15 +71,15 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">
+                    <div class="card-text">
                         {{ activeTab === 1 ? notes : '' }}
-                    </p>
-                    <p class="card-text" *ngIf="activeTab === 2">
-                        <app-skills [tableData]="'user'" [rol]="'rrhh'"></app-skills>
-                    </p>
-                    <p class="card-text">
+                    </div>
+                    <div class="card-text d-flex justify-content-start " *ngIf="activeTab === 2">
+                            <app-skills class="col-12 col-md-5" [tableData]="'user'" [rol]="'rrhh'"></app-skills>
+                    </div>
+                    <div class="card-text">
                         {{ activeTab === 3 ? description : '' }}
-                    </p>
+                    </div>
                 </div>
             </div>
             <!-- Sección de postulaciones -->

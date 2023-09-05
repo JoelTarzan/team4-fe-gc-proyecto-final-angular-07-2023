@@ -32,7 +32,7 @@
 /* control de tamños en pantallas pequeñas y collapse de grid */
 @media (max-width: 1000px) {
     .container-profile {
-        width: 600px;
+        width: 500px;
         height: auto;
     }
 
@@ -42,7 +42,7 @@
     }
 
     .container-profile textarea {
-        width: 300px;
+        width: 350px;
         height: 150px;
         max-height: 150px;
         min-height: 150px;
@@ -50,11 +50,15 @@
     .quadrant.quadrant-2 .form-control {
         width: 230px;
     }
+
+    .skill-box {
+        padding: 50px;
+    }
 }
 
 @media (max-width: 700px) {
     .container-profile {
-        width: 340px;
+        width: 350px;
         height: auto;
     }
 
@@ -64,7 +68,7 @@
     }
 
     .container-profile textarea {
-        width: 300px;
+        width: 270px;
         height: 150px;
         max-height: 150px;
         min-height: 150px;
@@ -79,6 +83,44 @@
         margin-left: 0px;
         justify-content: center;
         align-items: center;
+    }
+
+    .skill-box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 340px) {
+    .container-profile {
+        width: 320px;
+        height: auto;
+    }
+
+    .container-profile .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+    }
+
+    .container-profile textarea {
+        width: 270px;
+        height: 150px;
+        max-height: 150px;
+        min-height: 150px;
+    }
+
+    .quadrant.quadrant-2 .form-control {
+        width: 230px;
+    }
+
+    .skills {
+        margin-top: 0px;
+        margin-left: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .skill-box {
+        padding: 20px;
     }
 }
 

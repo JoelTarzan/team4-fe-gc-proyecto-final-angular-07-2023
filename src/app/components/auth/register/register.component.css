@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 .register-form {
@@ -15,7 +16,7 @@
     padding: 35px;
     border-radius: 3px;
     max-width: 400px;
-    min-width: 350px;
+    width: 350px;
 }
 
 .register-form form {

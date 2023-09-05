@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <!-- === BOTON EDITAR === -->
-                    <div class="btn-edit-custom mb-4" (click)="controlModes('title')" *ngIf="typeUser=='rrhh' && !modeEditTitle ">
+                    <div class="btn-edit-custom mb-3 mx-2" (click)="controlModes('title')" *ngIf="typeUser=='rrhh' && !modeEditTitle ">
                         <span class="edit-icon-custom" ></span>
                     </div>
                 </div>
@@ -125,20 +125,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5 col-sm-12 h-50 p-4">
+        <div class="col-lg-5 col-sm-12 h-50 p-5 skill-box ">
             <!-- Muestra las skills de la candidatura -->
             <div>
                 <app-skills [tableData]="'candidature'" [rol]="typeUser"></app-skills>
             </div>
-            <div class="d-flex flex-column justify-content-center align-items-center mt-3" *ngIf="typeUser == 'candidate'"> 
+            <div class="d-flex flex-column justify-content-center align-items-center mt-4" *ngIf="typeUser == 'candidate'"> 
                 <div class="w-75 h-custom mt-3">
                     <!-- Botones para usuario, le deja aplicar a la oferta ¿o dejar de aplicar? -->
-                    <button class="btn btn-success w-100 h-100 btn-lg " *ngIf="userSubscribed">Aplicado</button>
-                    <button class="btn btn-primary w-100 h-100 btn-lg " *ngIf="!userSubscribed">Aplicar</button>
+                    <button class="btn btn-success w-100 h-100" *ngIf="userSubscribed">Aplicado</button>
+                    <button class="btn btn-primary w-100 h-100" *ngIf="!userSubscribed">Aplicar</button>
                 </div>
-                <div class="w-50 mt-5" *ngIf="userSubscribed">
+                <div class="w-40 mt-4" *ngIf="userSubscribed">
                     <!-- Boton para informar a usuario sobre estado de la aplicacion que realizo -->
-                    <button class="btn btn-secondary w-100 h-100 btn-lg" *ngIf="userSubscribed">Pendiente</button>
+                    <button class="btn btn-secondary active w-100 h-100" *ngIf="userSubscribed">Pendiente</button>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@
         </div>
     </div>
     <!-- Informacion extra segun el usuario -->
-    <div class="row g-0 px-5 py-2">
+    <div class="row g-0 px-5 py-2 mt-3">
         <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
         <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>
     </div>

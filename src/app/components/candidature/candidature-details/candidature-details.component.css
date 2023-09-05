@@ -41,6 +41,13 @@
   border-color: transparent;
 }
 
+.txt-justify{
+  text-align: justify;
+}
+
+textarea{
+  min-height: 200px;
+}
 
 @media (max-width: 1000px) {
 

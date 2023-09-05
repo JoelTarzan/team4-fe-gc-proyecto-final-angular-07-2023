@@ -27,12 +27,12 @@ export class CandidatureDetailsComponent implements OnInit {
   processes: any;
   processStatus: string = "Entrevista";
 
-  /* Booleanos para llevar control de los modos de edicion activados */
+  //Booleanos para llevar control de los modos de edicion activados
   modeEditTitle:boolean=false;
-  modeEditInfoCandidacy:boolean=false;
+  /* modeEditInfoCandidacy:boolean=false;
   modeEditDescription:boolean=false;
   modeEditRequeriments:boolean=false;
-  modeEditResponsibilities:boolean=false;
+  modeEditResponsibilities:boolean=false; */
 
   constructor(
     private candidaturesService: CandidaturesService, 
@@ -66,9 +66,25 @@ export class CandidatureDetailsComponent implements OnInit {
     });
   }
 
+  //Click boton guardar/aceptar datos
+  saveChanges(){
+    this.modeEditTitle=false;
+  }
+
+  //Click boton eliminar/descartar datos
+  deleteChanges(){
+    this.modeEditTitle=false;
+  }
+
   /* Controla que modos de edicion estan aplicados y cuales no */
   controlModes(modeSeccion: string){
-    switch (modeSeccion) {
+        if (this.modeEditTitle) {
+          this.modeEditTitle=false;
+        }else{
+          this.modeEditTitle=true;
+        }
+    /* switch (modeSeccion) {
+      
       case "description":
         if (this.modeEditDescription) {
           this.modeEditDescription=false;
@@ -94,11 +110,7 @@ export class CandidatureDetailsComponent implements OnInit {
         break;
     
       case "title":
-        if (this.modeEditTitle) {
-          this.modeEditTitle=false;
-        }else{
-          this.modeEditTitle=true;
-        }
+        
         break;
 
         case "infocandidacy":
@@ -111,7 +123,7 @@ export class CandidatureDetailsComponent implements OnInit {
         
       default:
         break;
-    }
+    } */
   }
 
   /* Metodos preparados para aplicar ediciones */

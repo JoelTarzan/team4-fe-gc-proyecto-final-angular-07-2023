@@ -11,49 +11,40 @@
                     <!-- Titulo de la candidatura, lleva un control por si el titulo fuera muy largo que no rompa la distribucion de la vista 
                         (un exceso de caracteres se muestra con puntos suspensivos) -->
                     <h3 class="text-truncate text-truncate-overflow mb-4" *ngIf="!modeEditTitle" title="{{data?.title.length>28 ? data?.title : ''}}">{{data?.title}}</h3>
-                    <div class="d-flex w-75 align-items-center" *ngIf="modeEditTitle">
+                    <div class="d-flex w-75 align-items-center mb-4" *ngIf="modeEditTitle">
                         <!-- Input text que añade como valor base el contenido que ya tiene -->
                         <input type="text" class="form-control" placeholder="Nombre Candidatura" value="{{data?.title}}" aria-label="Candidatura" aria-describedby="Candidatura">
-                        <!-- Boton de confirmacion del titulo -->
-                        <button class="btn btn-light mx-1">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">
-                                check_box
-                            </span>
-                        </button>
+                        <!-- === BOTON CONFIRMACION === -->
+                        <div class="px-2">
+                            <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditTitle" alt="aplicar" data-animation="magnify" (click)="saveChanges()"> 
+                                <span></span>
+                            </button>
+                        </div>
+                        <!-- === BOTON DESCARTAR === -->
+                        <div class="px-1">
+                            <button class="circle-delete-custom fromMiddle-delete-custom" *ngIf="modeEditTitle" alt="aplicar" data-animation="magnify" (click)="deleteChanges()"> 
+                                <span></span>
+                            </button>
+                        </div>
                     </div>
-                    <!-- Boton de edicion para el titulo -->
-                    <div class="" *ngIf="typeUser=='rrhh'">
-                        <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                            (click)="controlModes('title')">
+                    <!-- === BOTON EDITAR === -->
+                    <div class="btn-edit-custom mb-4" (click)="controlModes('title')" *ngIf="typeUser=='rrhh' && !modeEditTitle ">
+                        <span class="edit-icon-custom" ></span>
                     </div>
                 </div>
                 <!-- FIN---TITULO/NOMBRE CANDIDATURA--- -->
 
                 <!-- INFO CANDIDATURA -->
-                <div class="mt-3" *ngIf="typeUser=='rrhh'">
-                        <!-- Boton de confirmacion que aplicaria los cambios -->
-                        <button *ngIf="modeEditInfoCandidacy" class="btn btn-light mx-1">
-                            <!-- Icon from google -->
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">
-                                check_box
-                            </span>
-                        </button>
-                        <!-- Boton edicion de los 3 dialogos debajo del titulo (solicitantes, jornada...) -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('infocandidacy')">
-                        </div>
-                </div>
                 <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-between">
                     
                     <div class="col p-0 text-center text-break"><span class="fw-bold">Localidad</span>
                         <div class="w-100 h-100 p-2 border-top">
                             <!-- si no se activa la edicion tan solo muestra la info -->
-                            <div *ngIf="!modeEditInfoCandidacy">
+                            <div *ngIf="!modeEditTitle">
                                 {{data?.location}}
                             </div>
                             <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
-                            <div *ngIf="modeEditInfoCandidacy">
+                            <div *ngIf="modeEditTitle">
                                 <input type="text" class="form-control" placeholder="Localizacion" value="{{data?.location}}" aria-label="Localizacion" aria-describedby="Localizacion">
                             </div>
                         </div>
@@ -62,11 +53,11 @@
                         <span class="fw-bold">Jornada</span> 
                         <div class="w-100 h-100 p-2 border-top">
                             <!-- si no se activa la edicion tan solo muestra la info -->
-                            <div *ngIf="!modeEditInfoCandidacy">
+                            <div *ngIf="!modeEditTitle">
                                 {{data?.typeworkingday}}
                             </div>
                             <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
-                            <div *ngIf="modeEditInfoCandidacy">
+                            <div *ngIf="modeEditTitle">
                                 <input type="text" class="form-control" placeholder="Jornada" value="{{data?.typeworkingday}}" aria-label="Jornada" aria-describedby="Jornada">
                             </div>
                         </div>
@@ -75,11 +66,11 @@
                         <span class="fw-bold">solicitantes</span> 
                         <div class="w-100 h-100 p-2 border-top">
                             <!-- si no se activa la edicion tan solo muestra la info -->
-                            <div *ngIf="!modeEditInfoCandidacy">
+                            <div *ngIf="!modeEditTitle">
                                 {{data?.applicants}}
                             </div>
                             <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
-                            <div *ngIf="modeEditInfoCandidacy">
+                            <div *ngIf="modeEditTitle">
                                 <input type="text" class="form-control" placeholder="Solicitantes" value="{{data?.applicants}}" aria-label="Solicitantes" aria-describedby="Solicitantes">
                             </div>
                         </div>
@@ -89,27 +80,16 @@
             </div>
 
             <!-- DESCRIPCION -->
-            <div class="my-3 px-3 mb-4 p-3">
+            <div class="my-3 px-3 mb-4">
                 <div class="d-flex align-items-center">
                     <h5>Descripcion</h5>
-                    <div class="d-flex px-1 ">
-                        <!-- Boton de añadir se activa si edicion esta activada -->
-                        <button class="btn btn-light  mx-1" *ngIf="modeEditDescription">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
-                        </button>
-                        <!-- Boton de edicion -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('description')">
-                        </div>
-                    </div>
                 </div>
                 <!-- si no se activa la edicion tan solo muestra la info -->
-                <div class="" *ngIf="!modeEditDescription">
+                <div class="txt-justify" *ngIf="!modeEditTitle">
                     {{data?.description}}
                 </div>
                 <!-- Si edicion esta activada muestra un textarea -->
-                <div class="my-1 " *ngIf="modeEditDescription">
+                <div class="my-1 txt-justify" *ngIf="modeEditTitle">
                     <textarea class=" form-control" aria-label="With textarea">{{data?.description}}</textarea>
                 </div>
             </div>
@@ -118,51 +98,29 @@
             <div class="my-3 px-3 mb-4">
                 <div class="d-flex align-items-center">
                     <h5>Requerimientos</h5>
-                    <div class="d-flex px-1">
-                        <!-- Boton de añadir se activa si edicion esta activada -->
-                        <button class="btn btn-light mx-1" *ngIf="modeEditRequeriments">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
-                        </button>
-                        <!-- Boton de edicion -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('requeriments')">
-                        </div>
-                    </div>
                     
                 </div>
                 <!-- si no se activa la edicion tan solo mustra la info -->
-                <div *ngIf="!modeEditRequeriments">
+                <div class="txt-justify" *ngIf="!modeEditTitle">
                     {{data?.requirements}}
                 </div>
                 <!-- Si edicion esta activada muestra un textarea -->
-                <div class="my-1" *ngIf="modeEditRequeriments">
+                <div class="my-1 txt-justify" *ngIf="modeEditTitle">
                     <textarea class="form-control" aria-label="With textarea">{{data?.requirements}}</textarea>
                 </div>
             </div>
 
             <!-- RESPONSABILIDADES -->
-            <div class="my-3 px-3">
+            <div class="my-3 px-3 text-justify">
                 <div class="d-flex">
                     <h5>Responsabilidades</h5>
-                    <div class="d-flex px-1">
-                        <!-- Boton de añadir se activa si edicion esta activada -->
-                        <button class="btn btn-light mx-1" *ngIf="modeEditResponsibilities">
-                            <span class="material-symbols-outlined line-height-base text-start autowidth">check_box</span>
-                        </button>
-                        <!-- Boton de edicion -->
-                        <div class="" *ngIf="typeUser=='rrhh'">
-                            <img src="../../../../assets/icon-edit.png" class="cursor-pointer mx-2 col-1 d-flex justify-content-end icon-container"
-                                (click)="controlModes('responsabilities')">
-                        </div>
-                    </div>
                 </div>
                 <!-- si no se activa la edicion tan solo mustra la info -->
-                <div *ngIf="!modeEditResponsibilities">
+                <div class="txt-justify" *ngIf="!modeEditTitle">
                     {{data?.responsibilities}}
                 </div>
                 <!-- Si edicion esta activada muestra un textarea -->
-                <div class="my-1" *ngIf="modeEditResponsibilities">
+                <div class="my-1 txt-justify" *ngIf="modeEditTitle">
                     <textarea class="form-control" aria-label="With textarea">{{data?.responsibilities}}</textarea>
                 </div>
             </div>
@@ -189,7 +147,7 @@
         </div>
     </div>
     <!-- Informacion extra segun el usuario -->
-    <div class="row g-0 p-5">
+    <div class="row g-0 px-5 py-2">
         <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
         <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>
     </div>

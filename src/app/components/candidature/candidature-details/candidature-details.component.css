@@ -28,15 +28,16 @@
   margin-bottom: 5px;
 }
 
-/* .btn-primary {
-  background-color: rgb(2, 85, 173);
-  border-color: transparent;
-  border-radius: 100%;
-  font-size: 13px;
-  margin-right: 12px;
+.btn-danger {
+  width: 275px !important;
 }
 
-.btn-primary:hover {
+/* .btn-primary {
+  background-color: rgb(3, 75, 151);
+  border-color: transparent;
+} */
+
+/* .btn-primary:hover {
   background-color: rgb(3, 63, 128);
   border-color: transparent;
 } */
@@ -47,6 +48,10 @@
 
 textarea{
   min-height: 200px;
+}
+
+.btn-abrir-cerrar{
+border-radius: 4px !important;
 }
 
 @media (max-width: 1000px) {

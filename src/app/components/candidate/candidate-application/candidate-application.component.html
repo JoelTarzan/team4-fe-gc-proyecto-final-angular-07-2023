@@ -52,10 +52,14 @@
                         
                         <div class="col-12 col-lg-9 d-flex flex-column flex-sm-row align-items-center text-center text-sm-start justify-content-between my-1 mb-3 mb-lg-0">
                             <span class="mb-2 mb-sm-0 col-5">{{ process.title }}</span>
-                            <span class="">
-                                <img src="../../../assets/blue-bell.png" alt="bell-grey"
+                            <span class="" (click)="isSubscribedChange(process.id); isSubscribed(process?.id)"><!--  -->
+                                <img src='{{isSubscribed(process?.id)?"../../../assets/blue-bell.png":"../../../assets/grey-bell.png"}}' alt="bell-grey"
                                 style="width: 25px; height: 25px; cursor: pointer;">
                             </span>
+                            <!-- <span class="">
+                                <img src="../../../assets/blue-bell.png" alt="bell-grey"
+                                style="width: 25px; height: 25px; cursor: pointer;">
+                            </span> -->
                             <span class="date">{{ process.date }}</span>
                         </div>
 

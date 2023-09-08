@@ -6,7 +6,7 @@
         <h5 class="mx-2 mt-2">{{ actualRoute == '/candidature-details/' + idRoute ? title2  : (actualRoute == '/candidate-details/' + idRoute ? '' : title) }}</h5>
 
         <!-- Condicional para activar boton edicion (rol:candidate, url:/profile) y (rol:rrhh, url:/candidature-detail) -->
-        <button class="btn-edit-custom" (click)="editFunction()" *ngIf="(actualRoute == '/profile/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-details/' + idRoute)">
+        <button class="btn-edit-custom" (click)="editFunction()" *ngIf="(actualRoute == '/profile/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-details/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-create')">
             <span class="edit-icon-custom"></span>
         </button>
     </div>

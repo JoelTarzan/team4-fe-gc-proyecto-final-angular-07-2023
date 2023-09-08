@@ -48,7 +48,7 @@ export class CandidateApplicationComponent implements OnInit {
       this.processes = result;
     });
 
-    this.candidaturesService.getOneById(this.idCandidature).subscribe(result => {
+    this.candidaturesService.getById(this.idCandidature).subscribe(result => {
       this.candidature = result;
     });
 

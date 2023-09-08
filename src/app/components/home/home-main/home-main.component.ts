@@ -17,7 +17,7 @@ export class HomeMainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.candidaturesService.getCandidatures().subscribe(result => {
+    this.candidaturesService.getAll().subscribe(result => {
       this.candidatures = result;
       this.numberOfCandidatures = this.candidatures.length; 
     })

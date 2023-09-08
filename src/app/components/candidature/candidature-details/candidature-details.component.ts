@@ -44,7 +44,7 @@ export class CandidatureDetailsComponent implements OnInit {
   
   ngOnInit() {
     /* Recoge los datos de la candidatura que se esta observando */
-    this.candidaturesService.getOneById(this.idCandidacy)
+    this.candidaturesService.getById(this.idCandidacy)
     .subscribe((result: any) => {
       // save data in array
       this.data = result;

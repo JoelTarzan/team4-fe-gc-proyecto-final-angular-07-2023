@@ -26,7 +26,7 @@ export class CandidatureListComponent implements OnInit {
   ngOnInit(): void {
 
     // Recogemos todas las candidaturas
-    this.candidaturesService.getCandidatures().subscribe(result => {
+    this.candidaturesService.getAll().subscribe(result => {
       this.allCandidatures = result;
 
       // Calculamos las paginas totales

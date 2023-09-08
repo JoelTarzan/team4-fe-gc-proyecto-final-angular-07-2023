@@ -41,12 +41,14 @@ export class SkillsComponent implements OnInit {
     private userService: UsersService, 
     private candidatureService: CandidaturesService, 
     private router: Router, 
-    private routeActive: ActivatedRoute) {
+    private routeActive: ActivatedRoute
+    ) {
 
     }
 
   
   ngOnInit(): void {
+    
     /* obtiene datos de url actualRoute='/RUTA' e idRoute='/ID'*/
     this.actualRoute = this.router.url; 
     this.routeActive.params.subscribe(params => {

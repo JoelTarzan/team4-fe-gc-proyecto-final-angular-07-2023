@@ -34,14 +34,17 @@
 
         <div class="row p-5">
 
-            <div class="col-12 col-md-3 d-flex flex-column align-items-center mb-5 mb-md-0">
+            <div class="col-12 col-md-4 d-flex flex-column align-items-center mb-5 mb-md-0">
                 <app-skills class="w-100" [tableData]="'user'" [rol]="'rrhh'"></app-skills>
             </div>
 
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-md-8">
                 <div class="d-flex justify-content-between mb-3">
                     <h5>Procesos</h5>
-                    <button class="btn btn-primary" (click)="addProcessMode = !addProcessMode">+</button>
+                    <div class="col-1">
+                        <button class="circle-create-custom fromMiddle" data-animation="magnify" (click)="addProcessMode = !addProcessMode"><span></span></button>
+                    </div>
+                    
                 </div>
 
                 <ul class="list-group custom-list">
@@ -49,18 +52,25 @@
                         
                         <div class="col-12 col-lg-9 d-flex flex-column flex-sm-row align-items-center text-center text-sm-start justify-content-between my-1 mb-3 mb-lg-0">
                             <span class="mb-2 mb-sm-0 col-5">{{ process.title }}</span>
-                            <span class="">
-                                <img src="../../../assets/blue-bell.png" alt="bell-grey"
+                            <span class="" (click)="isSubscribedChange(process.id); isSubscribed(process?.id)"><!--  -->
+                                <img src='{{isSubscribed(process?.id)?"../../../assets/blue-bell.png":"../../../assets/grey-bell.png"}}' alt="bell-grey"
                                 style="width: 25px; height: 25px; cursor: pointer;">
                             </span>
+                            <!-- <span class="">
+                                <img src="../../../assets/blue-bell.png" alt="bell-grey"
+                                style="width: 25px; height: 25px; cursor: pointer;">
+                            </span> -->
                             <span class="date">{{ process.date }}</span>
                         </div>
 
                         <div class="d-flex my-2 mb-lg-0">
                             <input class="form-check-input me-5 custom-radio-color" type="radio" name="radio"
                                 [checked]="process.title == processStatus" (click)="processStatus = process.title">
-                            <img src="../../../assets/cancelar.png" alt="cancelar"
-                                style="width: 25px; height: 25px; cursor: pointer;">
+                            <button class="circle-delete-custom fromMiddle-delete-custom" alt="cancelar" data-animation="magnify" > 
+                                <span></span>
+                            </button>
+                            <!-- <img src="../../../assets/cancelar.png" alt="cancelar"
+                                style="width: 25px; height: 25px; cursor: pointer;"> -->
                         </div>
                     </li>
                     <li class="list-group-item d-flex flex-lg-row flex-column gap-3" *ngIf="addProcessMode">

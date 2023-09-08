@@ -4,7 +4,14 @@
 
 <div class="container py-4 container-candidaturas">
 
-    <div class="row d-flex flex-column flex-sm-row" [class]="rol == 'rrhh' || rol == 'admin' ? 'justify-content-end' : 'justify-content-end'">
+    <div class="row d-flex flex-column flex-sm-row justify-content-between">
+        <div class="mb-2 col-md-4 col-12 d-flex">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Nombre candidatura"
+                    aria-label="Nombre usuario">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            </div>
+        </div>
         <div class="mb-4 col-md-3 col-12 d-flex">
             
             <select class="form-select" aria-label="Alfabético ASC">
@@ -14,7 +21,7 @@
                 <option value="3">Cand. Cerradas</option>
             </select>
             <div class="col-md-5 col-xl-2 mx-1" *ngIf="rol == 'rrhh' || rol == 'admin'">
-                <a type="button" class="btn btn-primary">+</a>
+                <a type="button" class="btn btn-primary" routerLink="/candidature-create">+</a>
             </div>
         </div>
         

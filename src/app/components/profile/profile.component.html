@@ -11,10 +11,11 @@
                             <div class="image-container">
                                 <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">
                             </div>
-                            <div class="change-image-container">
-                                <a href="https://example.com">
+                            <div class="btn-edit-custom"><!-- change-image-container -->
+                                <span class="edit-icon-custom" alt="cambio imagen"></span>
+                                <!-- <a href="https://example.com">
                                     <img src="../../../assets/icon-edit.png" alt="cambio" class="img-fluid">
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <br>
@@ -39,9 +40,15 @@
                                     <div class="d-flex flex-column ">
                                         <input type="text" class="form-control" [(ngModel)]="tempText"> 
                                         <!-- Botones de guardar y cancelar -->
-                                        <div class="d-flex justify-content-center">
-                                            <img src="../../../assets/check.png" alt="guardar" (click)="guardar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;">
-                                            <img src="../../../assets/cancelar.png" alt="cancelar" (click)="cancelar(claveTexto)"style="width: 30px; height: 30px; cursor: pointer;">
+                                        <div class="d-flex justify-content-center mt-2">
+                                            <button class="circle-applied-custom fromMiddle-applied-custom mx-1" (click)="guardar(claveTexto)" alt="cancelar" data-animation="magnify" > 
+                                                <span></span>
+                                            </button>
+                                            
+                                            <button class="circle-delete-custom fromMiddle-delete-custom mx-1" (click)="cancelar(claveTexto)" alt="cancelar" data-animation="magnify" > 
+                                                <span></span>
+                                            </button>
+                                            
                                         </div>
                                     </div>
                                 </ng-template>
@@ -79,15 +86,15 @@
                     
                 </div>
                 <!-- Cuadrante 3: Descripción -->
-                <div class="quadrant quadrant-3 mt-4 ">
+                <div class="quadrant quadrant-3 mt-3 ">
                     <div class="text-section">
                         <h5 class="text-start mb-4">Descripción</h5>
                         <textarea class="form-control mb-1" rows="4" placeholder=""></textarea>
                     </div>
                 </div>
-                <!-- Cuadrante 4: Skills -->
-                <div class="skills"><!-- quadrant quadrant-4 <---- Clases comentadas ya que rompian el skills base -->
-                    <app-skills [tableData]="'user'" [rol]="'candidate'"></app-skills>
+                <!-- Cuadrante 4: Skills skills-->
+                <div class="quadrant quadrant-4 mt-3 justify-content-center skill-box"><!-- col-12 col-md-7 col-lg-9 quadrant quadrant-4 <---- Clases comentadas ya que rompian el skills base -->
+                    <app-skills class="col-12" [tableData]="'user'" [rol]="'candidate'"></app-skills>
                 </div>
             </div>
         </div>

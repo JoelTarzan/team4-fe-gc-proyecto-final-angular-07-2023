@@ -14,6 +14,7 @@ import { InterviewsComponent } from './components/interviews/interviews.componen
 import { OpenProcessesComponent } from './components/open-processes/open-processes.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { CandidatureCreateComponent } from './components/candidature/candidature-create/candidature-create.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'candidature-list',
     component: CandidatureListComponent,
+  },
+  {
+    path: 'candidature-create',
+    component: CandidatureCreateComponent,
   },
   {
     path: 'candidature-details/:id',

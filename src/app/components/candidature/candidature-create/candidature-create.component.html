@@ -40,7 +40,7 @@
                     <!-- FIN---TITULO/NOMBRE CANDIDATURA--- -->
 
                     <!-- INFO CANDIDATURA -->
-                    <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-between">
+                    <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-around">
 
                         <div class="col p-0 text-center text-break"><span class="fw-bold">Localidad</span>
                             <div class="w-100 h-100 p-2 border-top">
@@ -56,6 +56,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col p-0 text-center text-break">
                             <span class="fw-bold">Jornada</span>
                             <div class="w-100 h-100 p-2 border-top">
@@ -68,21 +69,6 @@
                                     <input type="text" class="form-control" placeholder="Jornada"
                                         value="{{data?.typeworkingday}}" aria-label="Jornada"
                                         aria-describedby="Jornada">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col p-0 text-center text-break">
-                            <span class="fw-bold">solicitantes</span>
-                            <div class="w-100 h-100 p-2 border-top">
-                                <!-- si no se activa la edicion tan solo muestra la info -->
-                                <div *ngIf="!modeEditTitle">
-                                    {{data?.applicants}}
-                                </div>
-                                <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
-                                <div *ngIf="modeEditTitle">
-                                    <input type="text" class="form-control" placeholder="Solicitantes"
-                                        value="{{data?.applicants}}" aria-label="Solicitantes"
-                                        aria-describedby="Solicitantes">
                                 </div>
                             </div>
                         </div>
@@ -164,19 +150,8 @@
                             autocomplete="off">
                         <label class="btn btn-outline-secondary mx-2 w-50" for="secondary-outlined">Cerrada</label>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center mt-4" >
-                        <button type="button" class="btn btn-danger w-100">Eliminar candidatura</button>
-                    </div>
                 </div>
             </div>
-            <div class="mt-5" *ngIf="typeUser == 'candidate'">
-                <app-progress-bar [processes]="processes" [processStatus]="processStatus"></app-progress-bar>
-            </div>
-        </div>
-        <!-- Informacion extra segun el usuario -->
-        <div class="row g-0 px-5 py-2 mt-3">
-            <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
-            <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>
         </div>
     </div>
 </div>

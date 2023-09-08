@@ -27,6 +27,7 @@ import { ListPostulatedComponent } from './components/candidature/list-postulate
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressBarComponent } from './components/utils/progress-bar/progress-bar.component';
 import { RatingComponent } from './components/candidate/rating/rating.component';
+import { CandidatureCreateComponent } from './components/candidature/candidature-create/candidature-create.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { RatingComponent } from './components/candidate/rating/rating.component'
     PaginationComponent,
     ListPostulatedComponent,
     ProgressBarComponent,
-    RatingComponent
+    RatingComponent,
+    CandidatureCreateComponent
   ],
   imports: [
     BrowserModule,

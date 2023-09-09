@@ -27,11 +27,11 @@ export class InterviewsComponent implements OnInit {
   ngOnInit(): void {
 
     // Recogemos todos los procesos abiertos
-    this.openProcessesService.getOpenProcesses().subscribe(result => {
+    this.openProcessesService.getAll().subscribe(result => {
       this.allOpenProcesses = result;
 
       // Filtramos solo los procesos que son entrevistas
-      this.allInterviews = this.allOpenProcesses.filter((openProcess: OpenProcess) => openProcess.interview);
+      this.allInterviews = this.allOpenProcesses.filter((openProcess: OpenProcess) => openProcess.open);
 
       // Calculamos las paginas totales
       this.totalPages = Math.ceil(this.allInterviews.length / this.itemsPerPage);

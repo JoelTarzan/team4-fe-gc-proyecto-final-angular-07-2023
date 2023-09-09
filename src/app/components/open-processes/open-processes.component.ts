@@ -24,7 +24,7 @@ export class OpenProcessesComponent implements OnInit {
   ngOnInit(): void {
     
     // Recogemos todos los procesos abiertos
-    this.openProcessesService.getOpenProcesses().subscribe(result => {
+    this.openProcessesService.getAll().subscribe(result => {
       this.allOpenProcesses = result;
 
       // Calculamos las paginas totales

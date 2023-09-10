@@ -15,8 +15,5 @@ export interface User {
     git: string;
     avatar: Uint8Array;
     role: Role;
-
-    //no se borra por si da error en el json server
-    rrhh: boolean;
     
 }

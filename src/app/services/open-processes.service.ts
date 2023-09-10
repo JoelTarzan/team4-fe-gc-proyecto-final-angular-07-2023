@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class OpenProcessesService {
 
-  endpoint: string = 'http://localhost:3000/';
+  endpoint: string = 'http://localhost:8080/';
 
   constructor(
     private http: HttpClient

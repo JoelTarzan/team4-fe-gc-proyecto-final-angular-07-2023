@@ -50,3 +50,7 @@
     }
 }
 
+/* Substitución de los style en el html*/
+#Copyright{
+    color:rgb(73, 73, 73);
+}

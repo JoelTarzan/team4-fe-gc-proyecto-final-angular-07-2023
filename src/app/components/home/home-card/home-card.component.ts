@@ -18,6 +18,7 @@ export class HomeCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.numSkillsReq = this.candidature.skills.length;
+    console.log(this.candidature);
 
     // Mira las skills del candidato que coinciden con las requeridas de la candidatura
     this.numSkillsMatch = this.skillsCandidate.filter(skill => 

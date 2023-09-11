@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { SkillUser } from '../models/skill-user';
+import { Skill } from '../models/skill';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,18 @@ export class SkillUserService {
 
   getByIdUser(idUser: number): Observable<SkillUser[]> {
 
-    return this.http.get<SkillUser[]>(`${this.endpoint}skillsusers/${idUser}`);
+    return this.http.get<SkillUser[]>(`${this.endpoint}skillsusers/user/${idUser}`);
+  }
+
+  // Mapear la respuesta para obtener solo el array de skills
+  getByIdUsermapSkills(idUser: number): Observable<Skill[]> {
+
+    return this.http.get<SkillUser[]>(`${this.endpoint}skillsusers/user/${idUser}`).pipe(
+      map(response => {
+        
+        return response.map(skillUser => skillUser.skill);
+      })
+    );
   }
 
   getByIdSkill(idSkill: number): Observable<SkillUser[]> {

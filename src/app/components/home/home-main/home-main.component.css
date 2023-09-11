@@ -54,3 +54,21 @@
 #Copyright{
     color:rgb(73, 73, 73);
 }
+
+#contador-ofertas{
+    margin-left: 50px;
+}
+
+#search-addon{
+    background-color: rgb(255, 255, 255);
+}
+
+#search-addon img{
+    width: 25px;
+}
+
+#logo-aurum{
+    max-width: 80%; 
+    height: auto; 
+    padding: 20px;
+}

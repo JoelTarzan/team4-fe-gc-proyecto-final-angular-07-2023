@@ -15,31 +15,54 @@ export class SubscriptionsServiceService {
 
   }
 
-    getAll(): Observable<Subscription[]> {
-      return this.http.get<Subscription[]>(this.endpoint + 'subscriptions');
-    }
-  
-    getById(id: number): Observable<Subscription> {
-      return this.http.get<Subscription>(this.endpoint + 'subscriptions/' + id);
-    }
-  
-    create(subscription: Subscription): Observable<Subscription> {
-      return this.http.post<Subscription>(this.endpoint + 'subscriptions', subscription);
-    }
-  
-    update(id: number, subscription: Subscription): Observable<Subscription> {
-      return this.http.put<Subscription>(this.endpoint + 'subscriptions/' + id, subscription);
-    }
-  
-    delete(id: number): Observable<Subscription> {
-      return this.http.delete<Subscription>(this.endpoint + 'subscriptions/' + id);
-    }
+  /* Endpoints Backend
+  * === Get ===
+  * /subscriptions
+  * /subscriptions/{id}
+  * /subscriptions/open-process/{id}
+  * /subscriptions/user/{id}
+  * 
+  * === Post ===
+  * /subscriptions
+  * 
+  * === Put ===
+  * /subscriptions/{id}
+  * 
+  * === Delete ===
+  * /subscriptions/{id}
+  */
 
-    getAllOpenProcess(id:number): Observable<Subscription[]> {
-      return this.http.get<Subscription[]>(this.endpoint + 'subscriptions/open-process/' + id);
-    }
+  // === Get ===
+  getAll(): Observable<Subscription[]> {
+    return this.http.get<Subscription[]>(this.endpoint + 'subscriptions');
+  }
 
-    getAllUser(id:number): Observable<Subscription[]> {
-      return this.http.get<Subscription[]>(this.endpoint + 'subscriptions/user/' + id);
-    }
+  getById(id: number): Observable<Subscription> {
+    return this.http.get<Subscription>(this.endpoint + 'subscriptions/' + id);
+  }
+
+  getAllOpenProcess(idOpenProcesses:number): Observable<Subscription[]> {
+    return this.http.get<Subscription[]>(this.endpoint + 'subscriptions/open-process/' + idOpenProcesses);
+  }
+
+  getAllUser(idUser:number): Observable<Subscription[]> {
+    return this.http.get<Subscription[]>(this.endpoint + 'subscriptions/user/' + idUser);
+  }
+
+  // === POST ===
+  create(subscription: Subscription): Observable<Subscription> {
+    return this.http.post<Subscription>(this.endpoint + 'subscriptions', subscription);
+  }
+
+  // === PUT ===
+  update(id: number, subscription: Subscription): Observable<Subscription> {
+    return this.http.put<Subscription>(this.endpoint + 'subscriptions/' + id, subscription);
+  }
+
+  // === DELETE ===
+  delete(id: number): Observable<Subscription> {
+    return this.http.delete<Subscription>(this.endpoint + 'subscriptions/' + id);
+  }
+
+    
 }

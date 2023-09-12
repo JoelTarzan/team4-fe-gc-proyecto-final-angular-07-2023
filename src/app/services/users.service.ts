@@ -74,12 +74,6 @@ export class UsersService {
     return this.http.post<User>(`${this.endpoint}users`, user);
   }
 
-  // Edita un usuario
-  /* roleNomAsc(role: Role): Observable<any> {
-    return this.http.put(`${this.endpoint}users/${id}`, user);
-  } */
-
-
   // === Put ===
   // Edita un usuario
   update(id: number, user: User): Observable<User> {

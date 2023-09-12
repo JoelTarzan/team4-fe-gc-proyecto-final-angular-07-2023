@@ -13,29 +13,51 @@ export class RolesServiceService {
   constructor(
     private http: HttpClient){ 
 
-    }
+  }
 
-    getAll(): Observable<Role[]> {
-      return this.http.get<Role[]>(this.endpoint + 'roles');
-    }
+  /* Endpoints Backend
+  * === Get ===
+  * /roles
+  * /roles/{id}
+  * /roles/name/{name}
+  * 
+  * === Post ===
+  * /roles
+  * 
+  * === Put ===
+  * /roles/{id}
+  * 
+  * === Delete ===
+  * /roles/{id}
+  */
 
-    getById(id: number): Observable<Role> {
-      return this.http.get<Role>(this.endpoint + 'roles/' + id);
-    }
+  // === Get ===
+  getAll(): Observable<Role[]> {
+    return this.http.get<Role[]>(this.endpoint + 'roles');
+  }
 
-    create(role : Role): Observable<Role> {
-      return this.http.post<Role>(this.endpoint + 'roles', role);
-    }
+  getById(id: number): Observable<Role> {
+    return this.http.get<Role>(this.endpoint + 'roles/' + id);
+  }
+  
+  getByName(name: string): Observable<Role> {
+    return this.http.get<Role>(this.endpoint + 'roles/name/' + name);
+  }
 
-    update(id: number, role : Role): Observable<Role> {
-      return this.http.put<Role>(this.endpoint + 'roles/' + id, role);
-    }
+  // === Post ===
+  create(role : Role): Observable<Role> {
+    return this.http.post<Role>(this.endpoint + 'roles', role);
+  }
 
-    delete(id: number): Observable<Role> {
-      return this.http.delete<Role>(this.endpoint + 'roles/' + id);
-    }
+  // === Put ===
+  update(id: number, role : Role): Observable<Role> {
+    return this.http.put<Role>(this.endpoint + 'roles/' + id, role);
+  }
 
-    getByName(name: string): Observable<Role> {
-      return this.http.get<Role>(this.endpoint + 'roles/name/' + name);
-    }
+  // === Delete ===
+  delete(id: number): Observable<Role> {
+    return this.http.delete<Role>(this.endpoint + 'roles/' + id);
+  }
+
+    
 }

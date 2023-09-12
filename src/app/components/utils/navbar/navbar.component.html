@@ -44,7 +44,7 @@
                 </li>
 
             </ul>
-          
+        
             <ul class="navbar-nav" style="margin-right: 10px;">
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="profileDropdown">
@@ -55,11 +55,11 @@
                         <li><hr class="dropdown-divider"></li>
                         <a class="dropdown-item" routerLink="/password-change">Cambiar<br>contraseña</a>
                         <li><hr class="dropdown-divider"></li>
-                        <a class="dropdown-item" routerLink="/login">Cerrar sesión</a>
+                        <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
                     </div>
                 </li>
             </ul>
-          
+        
         </div>
 
     </div>

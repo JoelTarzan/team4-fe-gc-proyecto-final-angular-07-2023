@@ -8,25 +8,87 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
 
-  endpoint: string = 'http://localhost:3000/';
+  
 
   constructor(
     private http: HttpClient) { 
       
   }
-
+  /* Endpoints Backend
+  * === Get ===
+  * /users
+  * /users/{id}
+  * /users/name-asc
+  * /users/name-desc
+  * /users/search/{letters}
+  * 
+  * === Post ===
+  * /users
+  * /users/role/name-asc
+  * /users/role/name-desc
+  * /users/role/search/{letters}
+  * /candidates/skills/name-asc
+  * /candidates/skills/name-desc
+  * /candidates/skills/search/{letters}
+  * 
+  * === Put ===
+  * /users/{id}
+  * 
+  * === Delete ===
+  * /users/{id}
+  */
+  
+  endpoint: string = 'http://localhost:8080/';
+  
+  //Endpoints Backend
+  
+  // === Get ===
   // Devuelve todos los usuarios
   getAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.endpoint + 'users');
+    return this.http.get<User[]>(`${this.endpoint}users`);
+  }
+
+  // Devuelve todos los usuarios con el nombre en oreden Descente
+  getAllNameDesc(): Observable<any> {
+    return this.http.get<User[]>(`${this.endpoint}users/name-desc`);
+  }
+
+  // Devuelve todos los usuarios con el nombre en oreden Descente
+  getAllNameAsc(): Observable<any> {
+    return this.http.get<User[]>(`${this.endpoint}/users/name-asc`);
   }
 
   // Devuelve un solo usuario por id
   getOneById(id: number) {
-    return this.http.get<User>(this.endpoint + 'users/' + id);
+    return this.http.get<User>(`${this.endpoint}users/${id}`);
+  }
+
+  // Devuelve un solo usuario por email
+  getOneByEmail(email: string) {
+    return this.http.get<User>(`${this.endpoint}users/email/${email}`);
+  }
+
+  // === Post ===
+  //Crea un nuevo usuario
+  create(user : User){
+    return this.http.post<User>(`${this.endpoint}users`, user);
   }
 
   // Edita un usuario
+  /* roleNomAsc(role: Role): Observable<any> {
+    return this.http.put(`${this.endpoint}users/${id}`, user);
+  } */
+
+
+  // === Put ===
+  // Edita un usuario
   update(id: number, user: User): Observable<any> {
-    return this.http.put(this.endpoint + 'users/' + id, user);
+    return this.http.put(`${this.endpoint}users/${id}`, user);
+  }
+
+  // === Delete ===
+  // Borra usuario
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.endpoint}users/${id}`);
   }
 }

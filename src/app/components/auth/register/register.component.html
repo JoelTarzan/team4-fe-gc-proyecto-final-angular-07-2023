@@ -4,24 +4,47 @@
             <img src="../../../../assets/aurum-nombre.png" alt="Logo">
         </div>
 
+        <div class="alert alert-danger fade show" role="alert" [hidden]="!usedEmail">
+            Este email ya esta en uso.
+        </div>
+
+        <div class="alert alert-success fade show" role="alert" [hidden]="!successfulRegister">
+            Registro correcto, serás redirigido/a al login.
+        </div>
+
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="username">Formulario de registro</label>
-                <br><br>
-                <input type="text" class="form-control" id="username" placeholder="Nombre" name="username"
-                    formControlName="username">
+            <div class="mb-3">
+                <label>Formulario de registro</label>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="email" placeholder="Correo" name="email"
-                    formControlName="email">
+                <input type="text" class="form-control" id="name" placeholder="Nombre" name="name" formControlName="name">
+                <div *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched" class="error-message">
+                    El nombre es obligatorio
+                </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password"
-                    formControlName="password">
+                <input type="text" class="form-control" id="email" placeholder="Correo" name="email" formControlName="email">
+                <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched" class="error-message">
+                    El correo electrónico es obligatorio
+                </div>
+                <div *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched" class="error-message">
+                    El correo electrónico no es válido
+                </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Repetir contraseña"
-                    name="confirmPassword" formControlName="confirmPassword">
+                <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password" formControlName="password">
+                <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="error-message">
+                    La contraseña es obligatoria
+                </div>
+                <div *ngIf="registerForm.get('password')?.hasError('pattern') && registerForm.get('password')?.touched" class="error-message">
+                    La contraseña debe tener como mínimo 8 caracteres con mayúsculas, minúsculas y números
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Repetir contraseña" name="confirmPassword" formControlName="confirmPassword">
+                <div *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="error-message">
+                    Las contraseñas no coinciden
+                </div>
             </div>
             <div class="button-container">
                 <div class="back-button">
@@ -30,7 +53,7 @@
                     </button>
                 </div>
                 <div class="submit-button">
-                    <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+                    <button type="submit" class="btn btn-primary btn-sm" [disabled]="!registerForm.valid">Enviar</button>
                 </div>
             </div>
         </form>

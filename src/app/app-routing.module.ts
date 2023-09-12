@@ -73,7 +73,7 @@ const routes: Routes = [
   {
     path: 'candidature-details/:id',
     component: CandidatureDetailsComponent,
-    canActivate: [authGuard, rrhhOrAdminGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'interviews',

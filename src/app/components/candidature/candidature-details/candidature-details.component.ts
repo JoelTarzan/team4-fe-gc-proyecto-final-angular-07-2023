@@ -4,6 +4,7 @@ import { Candidature } from 'src/app/models/candidature';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
 //import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-candidature-details',
@@ -37,12 +38,16 @@ export class CandidatureDetailsComponent implements OnInit {
     private candidaturesService: CandidaturesService, 
     //private userCandidacy:UsersCandidacyService,
     private openProcessesService: OpenProcessesService,
-    private routeActive: ActivatedRoute) {
+    private routeActive: ActivatedRoute,
+    private tokenStorageService: TokenStorageService) {
 
     }
 
   
   ngOnInit() {
+    this.typeUser = this.tokenStorageService.getRole();
+    this.idUser = this.tokenStorageService.getUser();
+
     /* Recoge la ruta atual y el parametro id */ 
     this.routeActive.params.subscribe(params => {
       this.idCandidacy = params['id'] || null;
@@ -53,12 +58,8 @@ export class CandidatureDetailsComponent implements OnInit {
     .subscribe((result: Candidature) => {
 
       this.candidatureData = result;
-      console.log(this.candidatureData.name.length);
+      //console.log(this.candidatureData.name.length);
     });
-
-
-
-
 
     /* Comprovacion de si el usuario esta registrado en la candidatura */
     /* if(this.typeUser=="user"){

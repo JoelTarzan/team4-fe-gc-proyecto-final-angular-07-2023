@@ -45,7 +45,7 @@ export class UsersService {
   // === Get ===
   // Devuelve todos los usuarios
   getAll(): Observable<User[]> {
-
+    
     return this.http.get<User[]>(`${this.endpoint}users`);
   }
 
@@ -65,6 +65,12 @@ export class UsersService {
   getOneById(id: number): Observable<User>{
 
     return this.http.get<User>(`${this.endpoint}users/${id}`);
+  }
+  
+  // Devuelve un solo usuario por email
+  getOneByEmail(email: string) {
+  
+    return this.http.get<User>(`${this.endpoint}users/email/${email}`);
   }
 
   // === Post ===

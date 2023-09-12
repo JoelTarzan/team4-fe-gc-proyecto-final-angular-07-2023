@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-candidature-list',
@@ -21,7 +22,8 @@ export class CandidatureListComponent implements OnInit {
   searchTxtOption!: string;
 
   constructor(
-    private candidaturesService: CandidaturesService
+    private candidaturesService: CandidaturesService,
+    private tokenStorageService: TokenStorageService
   ) {
 
   }
@@ -29,6 +31,7 @@ export class CandidatureListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllDefault();
 
+    this.rol = this.tokenStorageService.getRole();
   }
 
   // Actualiza las candidaturas a mostrar

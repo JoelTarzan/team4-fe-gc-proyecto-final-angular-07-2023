@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Application } from 'src/app/models/application';
+import { User } from 'src/app/models/user';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,31 +10,18 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./list-postulated.component.css']
 })
 export class ListPostulatedComponent implements OnInit{
-  idCandidature:any=1;
+  @Input() idCandidature!: number;
 
-  idusers:any;
+  userApplyList!: User[];
 
   userslist:any[] = [];
-  constructor(private relationService:UsersCandidacyService, private userService:UsersService){}
+  constructor(private aplicationsService:ApplicationsService){}
   
   
   ngOnInit(): void {
-    this.relationService.getIdUsers(this.idCandidature)
-        .subscribe((result: any) => {
-        /* console.warn(result); */
-        // save data in array
-        this.idusers = result;
-        console.log(this.idusers);
-
-
-        this.idusers.forEach((element: { idPostulatedUser: any; }) => {
-          this.userService.getOneById(element.idPostulatedUser).subscribe((result: any) => {
-            this.userslist.push(result);
-            /* console.log(this.userslist.length); */
-          });
-          
-        });
-        
+    this.aplicationsService.getByIdCandidaturemapUsers(this.idCandidature)
+        .subscribe((result: User[]) => {
+        this.userApplyList = result;
       });
   }
 

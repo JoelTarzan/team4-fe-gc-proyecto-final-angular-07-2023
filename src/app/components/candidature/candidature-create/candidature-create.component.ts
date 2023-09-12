@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
-import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
+//import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
   selector: 'app-candidature-create',
@@ -36,7 +36,7 @@ modeEditResponsibilities:boolean=false; */
 
 constructor(
   private candidaturesService: CandidaturesService, 
-  private userCandidacy: UsersCandidacyService,
+  //private userCandidacy: UsersCandidacyService,
   private openProcessesService: OpenProcessesService) {
 
   }

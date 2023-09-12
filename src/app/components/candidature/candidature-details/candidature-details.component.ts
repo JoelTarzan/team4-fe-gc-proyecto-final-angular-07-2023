@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Candidature } from 'src/app/models/candidature';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
-import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
+//import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
   selector: 'app-candidature-details',
@@ -16,41 +18,50 @@ export class CandidatureDetailsComponent implements OnInit {
   idUser:any=1;
   
   //representacion de cual es la ID de la candidatura seleccionada 
-  idCandidacy: number = 1;
+  idCandidacy!: number;
 
   // Boleano de control, guarda si el usuario esta aplicando a la candidatura
   userSubscribed:boolean=true;
   
   // Guarda los datos de la candidatura
-  data: any;
+  candidatureData!: Candidature;
 
   processes: any;
   processStatus: string = "Entrevista";
 
   //Booleanos para llevar control de los modos de edicion activados
   modeEditTitle:boolean=false;
-  /* modeEditInfoCandidacy:boolean=false;
-  modeEditDescription:boolean=false;
-  modeEditRequeriments:boolean=false;
-  modeEditResponsibilities:boolean=false; */
+  
 
   constructor(
     private candidaturesService: CandidaturesService, 
-    private userCandidacy:UsersCandidacyService,
-    private openProcessesService: OpenProcessesService) {
+    //private userCandidacy:UsersCandidacyService,
+    private openProcessesService: OpenProcessesService,
+    private routeActive: ActivatedRoute) {
 
     }
 
   
   ngOnInit() {
-    /* Recoge los datos de la candidatura que se esta observando */
-    this.candidaturesService.getById(this.idCandidacy)
-    .subscribe((result: any) => {
-      // save data in array
-      this.data = result;
+    /* Recoge la ruta atual y el parametro id */ 
+    this.routeActive.params.subscribe(params => {
+      this.idCandidacy = params['id'] || null;
     });
+
+    /* Guarda en la variable la candidatura encontrada por ID */
+    this.candidaturesService.getById(this.idCandidacy)
+    .subscribe((result: Candidature) => {
+
+      this.candidatureData = result;
+      console.log(this.candidatureData.name.length);
+    });
+
+
+
+
+
     /* Comprovacion de si el usuario esta registrado en la candidatura */
-    if(this.typeUser=="user"){
+    /* if(this.typeUser=="user"){
       this.userCandidacy.getIdUserSpecific(this.idUser, this.idCandidacy).subscribe((result: any) => {
         // save data in array
         if(result != null && result.length > 0){
@@ -63,7 +74,7 @@ export class CandidatureDetailsComponent implements OnInit {
 
     this.openProcessesService.getExampleProgressBar().subscribe(result => {
       this.processes = result;
-    });
+    }); */
   }
 
   //Click boton guardar/aceptar datos
@@ -83,53 +94,6 @@ export class CandidatureDetailsComponent implements OnInit {
         }else{
           this.modeEditTitle=true;
         }
-    /* switch (modeSeccion) {
-      
-      case "description":
-        if (this.modeEditDescription) {
-          this.modeEditDescription=false;
-        }else{
-          this.modeEditDescription=true;
-        }
-        break;
-      
-      case "requeriments":
-        if (this.modeEditRequeriments) {
-          this.modeEditRequeriments=false;
-        }else{
-          this.modeEditRequeriments=true;
-        }
-        break;
-    
-      case "responsabilities":
-        if (this.modeEditResponsibilities) {
-          this.modeEditResponsibilities=false;
-        }else{
-          this.modeEditResponsibilities=true;
-        }
-        break;
-    
-      case "title":
-        
-        break;
-
-        case "infocandidacy":
-          if (this.modeEditInfoCandidacy) {
-            this.modeEditInfoCandidacy=false;
-          }else{
-            this.modeEditInfoCandidacy=true;
-          }
-          break;
-        
-      default:
-        break;
-    } */
   }
 
-  /* Metodos preparados para aplicar ediciones */
-  // editTitle(){ }
-  // editInfoCandidacy(){ }
-  // editDescription(){ }
-  // editRequeriments(){ }
-  // editResponsibilities(){ }
 }

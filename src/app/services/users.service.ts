@@ -21,6 +21,10 @@ export class UsersService {
   * /users/name-asc
   * /users/name-desc
   * /users/search/{letters}
+  * /users/role/{rolename}/name-asc
+  * /users/role/{rolename}/name-desc
+  * /users/search/{letters}
+  * /users/role/{rolename}/search/{letters}
   * 
   * === Post ===
   * /users
@@ -55,10 +59,40 @@ export class UsersService {
     return this.http.get<User[]>(`${this.endpoint}users/name-desc`);
   }
 
-  // Devuelve todos los usuarios con el nombre en oreden Descente
+  // Devuelve todos los usuarios con el nombre en oreden Ascendente
   getAllNameAsc(): Observable<User[]> {
 
-    return this.http.get<User[]>(`${this.endpoint}/users/name-asc`);
+    return this.http.get<User[]>(`${this.endpoint}users/name-asc`);
+  }
+
+  // Devuelve todos los usuarios ordenados por rol
+  getAllOrderByRole(): Observable<User[]> {
+
+    return this.http.get<User[]>(`${this.endpoint}users/role`);
+  }
+
+  // Devuelve todos los usuarios con un rol, ordenados alfabeticamente de forma Ascendente
+  getAllByRoleNameAsc(rolename: string): Observable<User[]> {
+
+    return this.http.get<User[]>(`${this.endpoint}users/role/${rolename}/name-asc`);
+  }
+
+  // Devuelve todos los usuarios con un rol, ordenados alfabeticamente de forma Descendente
+  getAllByRoleNameDesc(rolename: string): Observable<User[]> {
+
+    return this.http.get<User[]>(`${this.endpoint}users/role/${rolename}/name-desc`);
+  }
+
+  // Devuelve todos los usuarios que empiezan por X letras
+  getAllStartingWith(letters: string){
+
+    return this.http.get<User[]>(`${this.endpoint}users/search/${letters}`);
+  }
+
+  // Devuelve todos los usuarios con un rol que empiezan por X letras
+  getAllByRoleStartingWith(rolename: string, letters: string): Observable<User[]> {
+
+    return this.http.get<User[]>(`${this.endpoint}users/role/${rolename}/search/${letters}`);
   }
 
   // Devuelve un solo usuario por id

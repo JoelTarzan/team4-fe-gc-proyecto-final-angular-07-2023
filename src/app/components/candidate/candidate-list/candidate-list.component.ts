@@ -29,7 +29,7 @@ export class CandidateListComponent implements OnInit {
   ngOnInit(): void {
 
     // Recogemos las skills
-    this.skillsService.getAllSkills().subscribe(result => {
+    this.skillsService.getAll().subscribe(result => {
       this.skills = result;
     });
     
@@ -38,7 +38,7 @@ export class CandidateListComponent implements OnInit {
       this.allUsers = result;
 
       // Filtramos solo los usuarios que son candidatos
-      this.allCandidates = this.allUsers.filter((user: User) => !user.rrhh);
+      this.allCandidates = this.allUsers.filter((user: User) => user.role.name == "candidate");
 
       // Calculamos las paginas totales
       this.totalPages = Math.ceil(this.allCandidates.length / this.itemsPerPage);

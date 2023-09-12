@@ -32,7 +32,7 @@ export class UserManagementComponent implements OnInit {
 
       // Contamos el numero de candidatos y usuarios de RRHH que existen
       this.allUsers.forEach(user => {
-        user.rrhh ? this.numRrhh++ : this.numCandidates++;
+        user.role.name=="rrhh" ? this.numRrhh++ : this.numCandidates++;
       });
 
       // Calculamos las paginas totales

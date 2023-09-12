@@ -44,9 +44,9 @@
                         <p>
                         <p class="grey-text email-text">{{ user.email }}</p>
                         <div class="col-md-2">
-                            <select class="form-select" aria-label="Candidato" [(ngModel)]="user.rrhh">
-                                <option [ngValue]="false">Candidato</option>
-                                <option [ngValue]="true">RRHH</option>
+                            <select class="form-select" aria-label="Candidato" [(ngModel)]="user.role.name">
+                                <option [ngValue]="'candidate'">Candidato</option>
+                                <option [ngValue]="'rrhh'">RRHH</option>
                             </select>
                         </div>
                     </div>

@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Candidature } from 'src/app/models/candidature';
+import { Skill } from 'src/app/models/skill';
+import { SkillCandidatureService } from 'src/app/services/skill-candidature.service';
 
 @Component({
   selector: 'app-home-card',
@@ -7,22 +10,39 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HomeCardComponent implements OnInit {
 
-  @Input() candidature: any;
+  //Trae la candidatura 
+  @Input() candidature!: Candidature;
+  
+  //Trae la lista de skills del usuario
+  //@Input() candidateSkills!: SkillUser[];
+  @Input() skillsUser!: Skill[];
 
-  skillsCandidate: string[] = ['angular', 'html', 'css', 'java'];
+  //Guarda las skills de la candidatura
+  skillsCandidature!: Skill[];
+  //skillsUser!: Skill[];
+
   numSkillsReq: number = 0;
   numSkillsMatch: number = 0;
 
-  constructor() {
+  constructor(private skillCandidature: SkillCandidatureService) {
   }
 
   ngOnInit(): void {
-    this.numSkillsReq = this.candidature.skills.length;
 
-    // Mira las skills del candidato que coinciden con las requeridas de la candidatura
-    this.numSkillsMatch = this.skillsCandidate.filter(skill => 
-      this.candidature.skills.includes(skill)
-    ).length;
-    
+    //Se llama al servicio para recibir una lista de (skill[]) que forman parte de la candidatura
+    this.skillCandidature.getByIdUsermapSkills(this.candidature.id).subscribe((result: Skill[]) => {
+
+      //Cuantos skills tiene candidatura
+      this.numSkillsReq = result.length; 
+      //Guarda (skill[]) de candidature
+      this.skillsCandidature = result;
+
+      //Compara entre Array (skill[]) Candidature con el Array (skill[]) de User
+      //Obtiene el numero de coincidencias
+      this.numSkillsMatch = this.skillsCandidature.filter(item1 =>
+        this.skillsUser.some(item2 => item2.id === item1.id)
+      ).length;
+    });
+
   }
 }

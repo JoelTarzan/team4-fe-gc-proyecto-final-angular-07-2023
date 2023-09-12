@@ -45,50 +45,52 @@ export class UsersService {
   // === Get ===
   // Devuelve todos los usuarios
   getAll(): Observable<User[]> {
+    
     return this.http.get<User[]>(`${this.endpoint}users`);
   }
 
   // Devuelve todos los usuarios con el nombre en oreden Descente
-  getAllNameDesc(): Observable<any> {
+  getAllNameDesc(): Observable<User[]> {
+
     return this.http.get<User[]>(`${this.endpoint}users/name-desc`);
   }
 
   // Devuelve todos los usuarios con el nombre en oreden Descente
-  getAllNameAsc(): Observable<any> {
+  getAllNameAsc(): Observable<User[]> {
+
     return this.http.get<User[]>(`${this.endpoint}/users/name-asc`);
   }
 
   // Devuelve un solo usuario por id
-  getOneById(id: number) {
+  getOneById(id: number): Observable<User>{
+
     return this.http.get<User>(`${this.endpoint}users/${id}`);
   }
-
+  
   // Devuelve un solo usuario por email
   getOneByEmail(email: string) {
+  
     return this.http.get<User>(`${this.endpoint}users/email/${email}`);
   }
 
   // === Post ===
   //Crea un nuevo usuario
-  create(user : User){
+  create(user : User): Observable<User>{
+
     return this.http.post<User>(`${this.endpoint}users`, user);
   }
 
-  // Edita un usuario
-  /* roleNomAsc(role: Role): Observable<any> {
-    return this.http.put(`${this.endpoint}users/${id}`, user);
-  } */
-
-
   // === Put ===
   // Edita un usuario
-  update(id: number, user: User): Observable<any> {
-    return this.http.put(`${this.endpoint}users/${id}`, user);
+  update(id: number, user: User): Observable<User> {
+
+    return this.http.put<User>(`${this.endpoint}users/${id}`, user);
   }
 
   // === Delete ===
   // Borra usuario
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.endpoint}users/${id}`);
+  delete(id: number): Observable<User> {
+    
+    return this.http.delete<User>(`${this.endpoint}users/${id}`);
   }
 }

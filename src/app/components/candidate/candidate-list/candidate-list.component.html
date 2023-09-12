@@ -25,7 +25,7 @@
                             <li *ngFor="let skill of skills">
                                 <input class="form-check-input mx-2" type="checkbox" [(ngModel)]="skill.value"
                                     (ngModelChange)="onFilterChange(skill)">
-                                <label class="form-check-label">{{ skill.title }}</label>
+                                <label class="form-check-label">{{ skill.name }}</label>
                             </li>
                         </ul>
                     </div>

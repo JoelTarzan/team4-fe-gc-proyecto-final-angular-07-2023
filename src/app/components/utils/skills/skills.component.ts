@@ -64,7 +64,7 @@ export class SkillsComponent implements OnInit {
       });
     //Recibe datos de Candidatura
     } else if(this.tableData == "candidature"){
-      this.candidatureService.getOneById(this.idRoute)
+      this.candidatureService.getById(this.idRoute)
       .subscribe((result: any) => {
         // Guarda Candidatura
         this.candidature = result;

@@ -11,11 +11,13 @@
                         <!-- Titulo de la candidatura, lleva un control por si el titulo fuera muy largo que no rompa la distribucion de la vista 
                         (un exceso de caracteres se muestra con puntos suspensivos) -->
                         <h3 class="text-truncate text-truncate-overflow mb-4" *ngIf="!modeEditTitle"
-                            title="{{data?.title.length>28 ? data?.title : ''}}">{{data?.title}}</h3>
+                            title="{{candidatureData.name.length>28 ? candidatureData.name : ''}}">
+                            {{candidatureData.name}}
+                        </h3>
                         <div class="d-flex w-75 align-items-center mb-4" *ngIf="modeEditTitle">
                             <!-- Input text que añade como valor base el contenido que ya tiene -->
                             <input type="text" class="form-control" placeholder="Nombre Candidatura"
-                                value="{{data?.title}}" aria-label="Candidatura" aria-describedby="Candidatura">
+                                value="{{candidatureData.name}}" aria-label="Candidatura" aria-describedby="Candidatura">
                             <!-- === BOTON CONFIRMACION === -->
                             <div class="px-2">
                                 <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditTitle"
@@ -41,47 +43,53 @@
 
                     <!-- INFO CANDIDATURA -->
                     <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 px-4 justify-content-between">
-
+                        
+                        
+                        <!-- SECCION LOCALIDAD -->
                         <div class="col p-0 text-center text-break"><span class="fw-bold">Localidad</span>
                             <div class="w-100 h-100 p-2 border-top">
                                 <!-- si no se activa la edicion tan solo muestra la info -->
                                 <div *ngIf="!modeEditTitle">
-                                    {{data?.location}}
+                                    {{candidatureData.location}}
                                 </div>
                                 <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
                                 <div *ngIf="modeEditTitle">
                                     <input type="text" class="form-control" placeholder="Localizacion"
-                                        value="{{data?.location}}" aria-label="Localizacion"
+                                        value="{{candidatureData.location}}" aria-label="Localizacion"
                                         aria-describedby="Localizacion">
                                 </div>
                             </div>
                         </div>
+
+                        <!-- SECCION JORNADA -->
                         <div class="col p-0 text-center text-break">
                             <span class="fw-bold">Jornada</span>
                             <div class="w-100 h-100 p-2 border-top">
                                 <!-- si no se activa la edicion tan solo muestra la info -->
                                 <div *ngIf="!modeEditTitle">
-                                    {{data?.typeworkingday}}
+                                    {{candidatureData.typeWorkingDate}}
                                 </div>
                                 <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
                                 <div *ngIf="modeEditTitle">
                                     <input type="text" class="form-control" placeholder="Jornada"
-                                        value="{{data?.typeworkingday}}" aria-label="Jornada"
+                                        value="{{candidatureData.typeWorkingDate}}" aria-label="Jornada"
                                         aria-describedby="Jornada">
                                 </div>
                             </div>
                         </div>
+
+                        <!-- SECCION PLAZAS -->
                         <div class="col p-0 text-center text-break">
                             <span class="fw-bold">solicitantes</span>
                             <div class="w-100 h-100 p-2 border-top">
                                 <!-- si no se activa la edicion tan solo muestra la info -->
                                 <div *ngIf="!modeEditTitle">
-                                    {{data?.applicants}}
+                                    {{candidatureData.applicantsNum}}
                                 </div>
                                 <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
                                 <div *ngIf="modeEditTitle">
                                     <input type="text" class="form-control" placeholder="Solicitantes"
-                                        value="{{data?.applicants}}" aria-label="Solicitantes"
+                                        value="{{candidatureData.applicantsNum}}" aria-label="Solicitantes"
                                         aria-describedby="Solicitantes">
                                 </div>
                             </div>
@@ -93,15 +101,15 @@
                 <!-- DESCRIPCION -->
                 <div class="my-3 px-3 mb-4">
                     <div class="d-flex align-items-center">
-                        <h5>Descripcion</h5>
+                        <h5>Descripción</h5>
                     </div>
                     <!-- si no se activa la edicion tan solo muestra la info -->
                     <div class="txt-justify" *ngIf="!modeEditTitle">
-                        {{data?.description}}
+                        {{candidatureData.description}}
                     </div>
                     <!-- Si edicion esta activada muestra un textarea -->
                     <div class="my-1 txt-justify" *ngIf="modeEditTitle">
-                        <textarea class=" form-control" aria-label="With textarea">{{data?.description}}</textarea>
+                        <textarea class=" form-control" aria-label="With textarea">{{candidatureData.description}}</textarea>
                     </div>
                 </div>
 
@@ -113,11 +121,11 @@
                     </div>
                     <!-- si no se activa la edicion tan solo mustra la info -->
                     <div class="txt-justify" *ngIf="!modeEditTitle">
-                        {{data?.requirements}}
+                        {{candidatureData.requirements}}
                     </div>
                     <!-- Si edicion esta activada muestra un textarea -->
                     <div class="my-1 txt-justify" *ngIf="modeEditTitle">
-                        <textarea class="form-control" aria-label="With textarea">{{data?.requirements}}</textarea>
+                        <textarea class="form-control" aria-label="With textarea">{{candidatureData.requirements}}</textarea>
                     </div>
                 </div>
 
@@ -128,11 +136,11 @@
                     </div>
                     <!-- si no se activa la edicion tan solo mustra la info -->
                     <div class="txt-justify" *ngIf="!modeEditTitle">
-                        {{data?.responsibilities}}
+                        {{candidatureData.responsabilities}}
                     </div>
                     <!-- Si edicion esta activada muestra un textarea -->
                     <div class="my-1 txt-justify" *ngIf="modeEditTitle">
-                        <textarea class="form-control" aria-label="With textarea">{{data?.responsibilities}}</textarea>
+                        <textarea class="form-control" aria-label="With textarea">{{candidatureData.responsabilities}}</textarea>
                     </div>
                 </div>
             </div>
@@ -175,7 +183,7 @@
         </div>
         <!-- Informacion extra segun el usuario -->
         <div class="row g-0 px-5 py-2 mt-3">
-            <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated></app-list-postulated></div>
+            <div *ngIf="typeUser == 'rrhh'"> <app-list-postulated [idCandidature]="this.idCandidacy"></app-list-postulated></div>
             <div *ngIf="typeUser == 'user'"> proceso (usuario) </div>
         </div>
     </div>

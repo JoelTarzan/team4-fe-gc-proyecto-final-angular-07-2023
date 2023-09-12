@@ -6,7 +6,7 @@ import { OpenProcess } from '../models/open-process';
   providedIn: 'root'
 })
 export class IdUserOpenProcessService {
-  endpoint: string = 'http://localhost:3000/';
+  endpoint: string = 'http://localhost:8080/';
 
   constructor(
     private http: HttpClient

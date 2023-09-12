@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'team4-fe-gc-proyecto-final-angular-07-2023';
+export class AppComponent implements OnInit {
+  
+  isLoggedIn: boolean = false;
+
+  constructor(private tokenStorageService: TokenStorageService) {
+
+  }
+  
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+    }
+  }
 }

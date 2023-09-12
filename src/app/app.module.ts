@@ -28,6 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressBarComponent } from './components/utils/progress-bar/progress-bar.component';
 import { RatingComponent } from './components/candidate/rating/rating.component';
 import { CandidatureCreateComponent } from './components/candidature/candidature-create/candidature-create.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { TokenStorageService } from './services/token-storage.service';
 
 
 @NgModule({
@@ -62,9 +64,18 @@ import { CandidatureCreateComponent } from './components/candidature/candidature
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('TOKEY_KEY');
+        },
+        allowedDomains: ['http://localhost:4200'],
+        disallowedRoutes: ['http://localhost:4200/login', 'http://localhost:4200/register']
+      }
+    })
   ],
-  providers: [],
+  providers: [TokenStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

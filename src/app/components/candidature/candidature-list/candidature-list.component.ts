@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-candidature-list',
@@ -18,12 +19,14 @@ export class CandidatureListComponent implements OnInit {
   itemsPerPage: number = 8;
 
   constructor(
-    private candidaturesService: CandidaturesService
+    private candidaturesService: CandidaturesService,
+    private tokenStorageService: TokenStorageService
   ) {
 
   }
 
   ngOnInit(): void {
+    this.rol = this.tokenStorageService.getRole();
 
     // Recogemos todas las candidaturas
     this.candidaturesService.getCandidatures().subscribe(result => {

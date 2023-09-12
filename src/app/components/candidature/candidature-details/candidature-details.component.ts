@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
@@ -37,12 +38,16 @@ export class CandidatureDetailsComponent implements OnInit {
   constructor(
     private candidaturesService: CandidaturesService, 
     private userCandidacy:UsersCandidacyService,
-    private openProcessesService: OpenProcessesService) {
+    private openProcessesService: OpenProcessesService,
+    private tokenStorageService: TokenStorageService) {
 
     }
 
   
   ngOnInit() {
+    this.typeUser = this.tokenStorageService.getRole();
+    this.idUser = this.tokenStorageService.getUser();
+    
     /* Recoge los datos de la candidatura que se esta observando */
     this.candidaturesService.getOneById(this.idCandidacy)
     .subscribe((result: any) => {

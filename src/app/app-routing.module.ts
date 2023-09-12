@@ -63,7 +63,7 @@ const routes: Routes = [
   {
     path: 'candidature-list',
     component: CandidatureListComponent,
-    canActivate: [authGuard, rrhhOrAdminGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'candidature-create',
@@ -103,6 +103,7 @@ const routes: Routes = [
   {
     path: '**',
     component: HomeMainComponent,
+    canActivate: [authGuard]
   }
 ];
 

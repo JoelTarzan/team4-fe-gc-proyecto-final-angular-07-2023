@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { Skill } from '../models/skill';
 
 @Injectable({
   providedIn: 'root'
@@ -112,6 +113,24 @@ export class UsersService {
   create(user : User): Observable<User>{
 
     return this.http.post<User>(`${this.endpoint}users`, user);
+  }
+
+  // Devuelve los candidatos con X skills, ordenados alfabeticamente de forma ascendente
+  getCandidatesWithSkillsNameAsc(skills: Skill[]): Observable<User[]> {
+
+    return this.http.post<User[]>(`${this.endpoint}candidates/skills/name-asc`, skills);
+  }
+
+  // Devuelve los candidatos con X skills, ordenados alfabeticamente de forma descendente
+  getCandidatesWithSkillsNameDesc(skills: Skill[]): Observable<User[]> {
+
+    return this.http.post<User[]>(`${this.endpoint}candidates/skills/name-desc`, skills);
+  }
+
+  // Devuelve los candidatos con X skills, que empiezan por X letras
+  getCandidatesWithSkillsStartingWith(letters: string, skills: Skill[]): Observable<User[]> {
+
+    return this.http.post<User[]>(`${this.endpoint}candidates/skills/search/${letters}`, skills);
   }
 
   // === Put ===

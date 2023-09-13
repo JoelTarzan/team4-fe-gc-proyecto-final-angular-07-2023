@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Skill } from 'src/app/models/skill';
+import { SkillUser } from 'src/app/models/skill-user';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
+import { SkillUserService } from 'src/app/services/skill-user.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -27,6 +30,8 @@ export class SkillsComponent implements OnInit {
   user: any;
   candidature: any;
 
+  skillsOfUser: any[] = [];
+
   // OBTENER DATOS URL
   actualRoute: any;
   idRoute: any;
@@ -41,7 +46,8 @@ export class SkillsComponent implements OnInit {
     private userService: UsersService, 
     private candidatureService: CandidaturesService, 
     private router: Router, 
-    private routeActive: ActivatedRoute
+    private routeActive: ActivatedRoute,
+    private skillUserService: SkillUserService
     ) {
 
     }
@@ -50,18 +56,26 @@ export class SkillsComponent implements OnInit {
   ngOnInit(): void {
     
     /* obtiene datos de url actualRoute='/RUTA' e idRoute='/ID'*/
-    this.actualRoute = this.router.url; 
+    this.actualRoute = this.router.url;
+    
     this.routeActive.params.subscribe(params => {
       this.idRoute = params['id'] || null;
     });
 
     //Recibe datos de usuario
     if(this.tableData == "user"){
-      this.userService.getOneById(this.idRoute)
-        .subscribe((result: any) => {
-        // Guarda Usuario
-        this.user = result;
+      // Guarda Usuario
+      this.userService.getOneById(this.idRoute).subscribe(result => {
+        
+        this.user = result; 
       });
+
+      // Busca las SkillUser y guarda las Skills
+      this.skillUserService.getByIdUser(this.idRoute).subscribe(result => {
+
+        this.skillsOfUser = result;
+      });
+
     //Recibe datos de Candidatura
     } else if(this.tableData == "candidature"){
       this.candidatureService.getById(this.idRoute)
@@ -69,7 +83,7 @@ export class SkillsComponent implements OnInit {
         // Guarda Candidatura
         this.candidature = result;
       });
-    }  
+    }
   }
 
   /* Función para activar o desactivar el modo editar */
@@ -77,19 +91,12 @@ export class SkillsComponent implements OnInit {
     this.editActivate = !this.editActivate;
   }
 
-  /* function for checkbox option  */
-  isChecked(itemSkill: any, confirmation: any){
-    /* Obtain number index item selected */
-    let indexArray: any = this.user.skills.findIndex((item: { skill: any; }) => item.skill === itemSkill);
-
-    /* conditional to know if the checkbox of the item is true or false 
-    and change it to the state that corresponds to it  */
-    this.user.skills[indexArray].confirmation = !confirmation;
+  /* Función para los checkbox  */
+  isChecked(skillUser: SkillUser){
+    skillUser.validated = !skillUser.validated;
     
-    /* this.skillService.confirmedSkill(this.skills).subscribe(result => {
-      // guarda los datos en el array de este componente
-      this.skills = result;
-    }); */
+    this.skillUserService.update(skillUser, skillUser.id).subscribe(result => {
+    });
   }
 
  /*  / Function for add more skills to database /

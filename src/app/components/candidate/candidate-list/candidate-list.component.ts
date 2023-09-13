@@ -16,6 +16,11 @@ export class CandidateListComponent implements OnInit {
   displayedCandidates:User[] = [];
   skills: Skill[] = [];
 
+  selectedOrder: string = 'name-asc';
+  selectedSkills: Skill[] = [];
+
+  inputValue: string = '';
+
   totalPages: number = 1;
   currentPage: number = 1;
   itemsPerPage: number = 5;
@@ -27,18 +32,14 @@ export class CandidateListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     // Recogemos las skills
     this.skillsService.getAll().subscribe(result => {
       this.skills = result;
     });
     
-    // Recogemos todos los usuarios
-    this.usersService.getAll().subscribe(result => {
-      this.allUsers = result;
-
-      // Filtramos solo los usuarios que son candidatos
-      this.allCandidates = this.allUsers.filter((user: User) => user.role.name == "candidate");
+    // Recogemos todos los candidatos
+    this.usersService.getAllByRoleNameAsc('candidate').subscribe(result => {
+      this.allCandidates = result;
 
       // Calculamos las paginas totales
       this.totalPages = Math.ceil(this.allCandidates.length / this.itemsPerPage);
@@ -46,7 +47,6 @@ export class CandidateListComponent implements OnInit {
       // Cambiamos los usuarios a mostrar
       this.onPageChanged(1);
     });
-
   }
 
   // Actualiza los candidatos
@@ -65,9 +65,99 @@ export class CandidateListComponent implements OnInit {
   onFilterChange(skill: any) {
 
     // Filtrar las opciones marcadas
-    const selectedSkills = this.skills.filter(skill => skill.value);
+    this.selectedSkills = this.skills.filter(skill => skill.value);
 
-    // AQUI HABRA QUE MANDAR UNA PETI A LA API LLEVANDO selectedSkills
+    // Activamos tambien la busqueda de candidatos al tocar las skills para filtrar
+    this.onOrderChange();
   }
 
+  // Maneja el cambio de orden en la vista
+  onOrderChange() {
+    switch (this.selectedOrder) {
+      case 'name-asc':
+        this.getUsersWithSkillsNameAsc();
+        break;
+    
+      case 'name-desc':
+        this.getUsersWithSkillsNameDesc();
+        break;
+    }
+  }
+
+  // Recoge los usuarios con X skills, ordenados alfabéticamente de forma ascendente
+  getUsersWithSkillsNameAsc() {
+    let skillsTemp: Skill[] = [];
+
+    // Si no hay ninguna skill seleccionada, mandamos todas, para ver todos los candidatos
+    if (this.selectedSkills.length == 0) {
+      skillsTemp = this.skills;
+
+    } else {
+
+      skillsTemp = this.selectedSkills;
+    }
+
+    // Recogemos los usuarios
+    this.usersService.getCandidatesWithSkillsNameAsc(skillsTemp).subscribe(result => {
+
+      this.allCandidates = result;
+      this.updateDisplayedUsers();
+    });
+  }
+
+  // Recoge los usuarios con X skills, ordenados alfabéticamente de forma descendente
+  getUsersWithSkillsNameDesc() {
+    let skillsTemp: Skill[] = [];
+
+    // Si no hay ninguna skill seleccionada, mandamos todas, para ver todos los candidatos
+    if (this.selectedSkills.length == 0) {
+      skillsTemp = this.skills;
+
+    } else {
+
+      skillsTemp = this.selectedSkills;
+    }
+
+    // Recogemos los usuarios
+    this.usersService.getCandidatesWithSkillsNameDesc(skillsTemp).subscribe(result => {
+
+      this.allCandidates = result;
+      this.updateDisplayedUsers();
+    });
+  }
+
+  // Actualiza la paginación y los usuarios a mostrar
+  updateDisplayedUsers() {
+    // Calculamos las paginas totales
+    this.totalPages = Math.ceil(this.allUsers.length / this.itemsPerPage);
+
+    // Cambiamos los usuarios a mostrar
+    this.onPageChanged(1);
+  }
+
+  // Busca los candidatos dependiendo de las skills y las letras escritas en el buscador
+  onInputChange() {
+    let skillsTemp: Skill[] = [];
+
+    // Si no hay ninguna skill seleccionada, mandamos todas, para ver todos los candidatos
+    if (this.selectedSkills.length == 0) {
+      skillsTemp = this.skills;
+
+    } else {
+
+      skillsTemp = this.selectedSkills;
+    }
+
+    if (this.inputValue == '') {
+      this.onOrderChange();
+
+    } else {
+
+      this.usersService.getCandidatesWithSkillsStartingWith(this.inputValue, skillsTemp).subscribe(result => {
+
+        this.allCandidates = result;
+        this.updateDisplayedUsers();
+      });
+    }
+  }
 }

@@ -65,23 +65,23 @@ export class SkillUserService {
 
   getOneByIdSkillandIdUser(idSkill: number, idUser: number): Observable<SkillUser>{
 
-    return this.http.get<SkillUser>(`${this.endpoint}/skillsusers/user/${idUser}/skill/${idSkill}`);
+    return this.http.get<SkillUser>(`${this.endpoint}skillsusers/user/${idUser}/skill/${idSkill}`);
   }
 
   // === Post ===
 
   create(skillUser: SkillUser): Observable<SkillUser>{
-    return this.http.post<SkillUser>(`${this.endpoint}/skillsusers`, skillUser);
+    return this.http.post<SkillUser>(`${this.endpoint}skillsusers`, skillUser);
   }
 
   // === Put ===
 
   update(skillUser: SkillUser, id: number): Observable<SkillUser>{
-    return this.http.put<SkillUser>(`${this.endpoint}/skillsusers/${id}`, skillUser);
+    return this.http.put<SkillUser>(`${this.endpoint}skillsusers/${id}`, skillUser);
   }
 
   // === Delete ===
   delete(id: number){
-    this.http.delete(`${this.endpoint}/skillsusers/${id}`);
+    this.http.delete(`${this.endpoint}skillsusers/${id}`);
   }
 }

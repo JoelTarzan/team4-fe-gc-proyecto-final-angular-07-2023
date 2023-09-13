@@ -9,20 +9,22 @@
                     <!-- Imagen del candidato -->
                     <img class="user-img" src="../../../../assets/userph.jpg" alt="Imagen de usuario default">
                     <div class="text-center mt-4">
-                        <p>{{ lastname + ', ' + name }}</p>
-                        <p class="title-text">{{ title }}</p>
+                        <p>{{ user?.lastname + ', ' + user?.name }}</p>
+                        <p class="title-text">{{ user?.title }}</p>
                     </div>
                     <!-- Selector de valoración -->
                     <div class="d-flex justify-content-center">
                         <div class="mx-auto" style="max-width: 150px;"> 
-                            <select class="form-select" aria-label="Default select example" style="margin-top: 5px;">
-                                <option selected>Valoración</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
+                            <div class="text-center mb-2">
+                                <label>Valoración</label>
+                            </div>
+                            <select class="form-select" aria-label="Default select example" (change)="onChangeRating()" [(ngModel)]="selectedRating">
+                                <option value=0>0</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
                             </select>
                         </div>
                     </div>
@@ -32,25 +34,25 @@
                 <div class="mb-3 row">
                     <label for="titleInput" class="col-sm-2 col-form-label">Teléfono</label>
                     <div class="col-sm-10">
-                        <input id="titleInput" class="form-control" type="text" [value]="tel" aria-label="Disabled input example" disabled readonly>
+                        <input id="titleInput" class="form-control" type="text" [value]="user?.phone" aria-label="Disabled input example" disabled readonly>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="titleInput" class="col-sm-2 col-form-label">Correo</label>
                     <div class="col-sm-10">
-                        <input id="titleInput" class="form-control" type="text" [value]="email" aria-label="Disabled input example" disabled readonly>
+                        <input id="titleInput" class="form-control" type="text" [value]="user?.email" aria-label="Disabled input example" disabled readonly>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="titleInput" class="col-sm-2 col-form-label">LinkedIn</label>
                     <div class="col-sm-10">
-                        <input id="titleInput" class="form-control" type="text" [value]="linkedin" aria-label="Disabled input example" disabled readonly>
+                        <input id="titleInput" class="form-control" type="text" [value]="user?.linkedin" aria-label="Disabled input example" disabled readonly>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="titleInput" class="col-sm-2 col-form-label">Web</label>
                     <div class="col-sm-10">
-                        <input id="titleInput" class="form-control" type="text" [value]="web" aria-label="Disabled input example" disabled readonly>
+                        <input id="titleInput" class="form-control" type="text" [value]="user?.web" aria-label="Disabled input example" disabled readonly>
                     </div>
                 </div>
                 </div>                          
@@ -59,9 +61,9 @@
             <div class="card">
                 <div class="card-header custom-card-header">
                     <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link custom-nav-link" [class.active]="activeTab === 1" (click)="changeTab(1)">Notas</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link custom-nav-link" [class.active]="activeTab === 2" (click)="changeTab(2)">Aptitudes</a>
                         </li>
@@ -71,14 +73,14 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="card-text">
+                    <!-- <div class="card-text">
                         {{ activeTab === 1 ? notes : '' }}
-                    </div>
+                    </div> -->
                     <div class="card-text d-flex justify-content-start " *ngIf="activeTab === 2">
                             <app-skills class="col-12 col-md-5" [tableData]="'user'" [rol]="'rrhh'"></app-skills>
                     </div>
                     <div class="card-text">
-                        {{ activeTab === 3 ? description : '' }}
+                        {{ activeTab === 3 ? user?.description : '' }}
                     </div>
                 </div>
             </div>
@@ -92,38 +94,23 @@
                     </div>                   
                 </div>
                 <div class="row post-cards d-flex justify-content-between">
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 mb-4" *ngFor="let application of applications">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                 <img src="../../../../assets/grupo-castilla.jpg" alt="logo" style="max-width: 35px; height: auto;">
-                                <h5 class="card-title m-1">Postulación 1</h5>
+                                <h5 class="card-title m-1">{{ application.candidature.name }}</h5>
                             </div>
-                                <p class="card-text mt-3">Descripción de la postulación 1 escrita por el usuario de RH.</p>
+                                <p class="card-text mt-3">{{ application.candidature.description }}</p>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <img src="../../../../assets/eye-icon.png" class="eye-icon" [routerLink]="['/candidate-application', 2]" alt="eye">
+                                <img src="../../../../assets/eye-icon.png" class="eye-icon" [routerLink]="['/candidate-application', application.id]" alt="eye">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                <img src="../../../../assets/grupo-castilla.jpg" alt="logo" style="max-width: 35px; height: auto;">
-                                <h5 class="card-title m-1">Postulación 2</h5>
-                            </div>
-                                <p class="card-text mt-3">Descripción de la postulación 2 escrita por el usuario de RH.</p>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <img src="../../../../assets/eye-icon.png" class="eye-icon" [routerLink]="['/candidate-application', 2]" alt="eye">
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
+                </div>       
             </div>
+
         </div>
     </div>
 </div>

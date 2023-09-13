@@ -38,20 +38,17 @@
             <!-- --- HABILIDADES USUARIO --- -->
             <!-- Este contenedor muestra las Habilidades de Usuario -->
             <ng-container *ngIf="user">
-                <li class="px-2 py-1 list-group-item" *ngFor="let user of user.skills">
-                    <div class="d-flex py-2 justify-content-start border br-custom align-items-center col-12">
-                        <!-- -- CHECKBOX (CONFIRMAR HABILIDAD) -- --><!--  -->
-                        <!-- Este div solo se muestra en la ruta "/candidate-application" -->
-                        <div class="col-10 d-flex justify-content-between text-start px-4">
-                            {{user.skill}}
-                        </div>
+                <li class="px-2 py-1 list-group-item" *ngFor="let skillUser of skillsOfUser">
+                    <div class="d-flex py-2 justify-content-start border br-custom align-items-center col-12"> 
                         <!-- Muestra el nombre de la hailidad -->
-                        
-                        <div class="col-2 d-flex align-items-center justify-content-end px-3" *ngIf="actualRoute == '/candidate-application/' + idRoute || actualRoute == '/candidate-details/' + idRoute">
-                            <input class="me-1 checkbox" type="checkbox" [checked]="user.confirmation">
-                            <!-- NO BORRAR SIRVE PARA BACKEND (click)="isChecked(item.skill, item.confirmation)" -->
+                        <div class="col-10 d-flex justify-content-between text-start px-4">
+                            {{skillUser.skill.name}}
                         </div>
-                        
+
+                        <!-- -- CHECKBOX (CONFIRMAR HABILIDAD) -- -->
+                        <div class="col-2 d-flex align-items-center justify-content-end px-3" *ngIf="actualRoute == '/candidate-application/' + idRoute || actualRoute == '/candidate-details/' + idRoute">
+                            <input class="me-1 checkbox" type="checkbox" [checked]="skillUser.validated" (click)="isChecked(skillUser)">
+                        </div>
 
                         <!-- -- BOTON ELIMINAR -- -->
                         <!-- Solo se vera si el boton editar es activado -->

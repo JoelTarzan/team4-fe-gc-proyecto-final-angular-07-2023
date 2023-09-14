@@ -128,9 +128,6 @@ export class CandidateListComponent implements OnInit {
 
   // Actualiza la paginación y los usuarios a mostrar
   updateDisplayedUsers() {
-    // Calculamos las paginas totales
-    this.totalPages = Math.ceil(this.allUsers.length / this.itemsPerPage);
-
     // Cambiamos los usuarios a mostrar
     this.onPageChanged(1);
   }

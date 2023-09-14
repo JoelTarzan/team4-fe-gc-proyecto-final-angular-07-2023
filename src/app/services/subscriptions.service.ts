@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SubscriptionsServiceService {
+export class SubscriptionsService {
 
   endpoint: string = 'http://localhost:8080/';
 

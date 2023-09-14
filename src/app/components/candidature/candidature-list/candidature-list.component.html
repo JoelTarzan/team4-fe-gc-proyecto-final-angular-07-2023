@@ -8,12 +8,13 @@
         <div class="mb-2 col-md-4 col-12 d-flex">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Nombre candidatura"
-                    aria-label="Nombre usuario" [(ngModel)]="searchTxtOption" (ngModelChange)="searchOption()">
+                    aria-label="Nombre usuario" [(ngModel)]="searchTxtOption" (ngModelChange)="onSearchInputChange()"
+                    *ngIf="roleuser == 'rrhh' || roleuser == 'admin'">
 
                 <!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button> -->
             </div>
         </div>
-        <div class="mb-4 col-md-3 col-12 d-flex">
+        <div class="mb-4 col-md-3 col-12 d-flex" *ngIf="roleuser == 'rrhh' || roleuser == 'admin'">
             
             <select class="form-select" aria-label="Alfabético ASC"   [(ngModel)]="optionSelected" (ngModelChange)="filterChange()">
                 <option selected="true" disabled="disabled">seleccione filtro</option>
@@ -22,7 +23,7 @@
                 <option value="2">Cand. Abiertas</option>
                 <option value="3">Cand. Cerradas</option>
             </select>
-            <div class="col-md-5 col-xl-2 mx-1" *ngIf="rol == 'rrhh' || rol == 'admin'">
+            <div class="col-md-5 col-xl-2 mx-1">
                 <a type="button" class="btn btn-primary" routerLink="/candidature-create">+</a>
             </div>
         </div>

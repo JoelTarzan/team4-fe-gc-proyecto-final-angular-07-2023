@@ -10,13 +10,15 @@
                     </div>
 
                     <div class="container-fluid col-md-3">
-                        <form class="d-flex input-group w-auto">
+                        <!-- <form > -->
+                        <div class="d-flex input-group w-auto">
                             <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-                                aria-describedby="search-addon" />
+                                aria-describedby="search-addon" [(ngModel)]="searchHomeTxt" (ngModelChange)="onSearchInputChange()" />
                             <span class="input-group-text border-0" id="search-addon">
                                 <img src="../../../../assets/icon-search.png" alt="search">
                             </span>
-                        </form>
+                        </div>
+
                     </div>
 
                     <div class="text-center p-3 p-md-5">

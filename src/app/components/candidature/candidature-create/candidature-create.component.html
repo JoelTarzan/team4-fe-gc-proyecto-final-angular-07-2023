@@ -32,8 +32,8 @@
                             </div>
                         </div>
                         <!-- === BOTON EDITAR === -->
-                        <div class="btn-edit-custom mb-3 mx-2" (click)="controlModes('title')"
-                            *ngIf="typeUser=='rrhh' && !modeEditTitle ">
+                        <div class="btn-edit-custom mb-3 mx-2" (click)="controlModes()"
+                            *ngIf="roleuser=='rrhh' && !modeEditTitle ">
                             <span class="edit-icon-custom"></span>
                         </div>
                     </div>
@@ -72,6 +72,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- SECCION PLAZAS -->
+                        <!-- <div class="col p-0 text-center text-break">
+                            <span class="fw-bold">solicitantes</span>
+                            <div class="w-100 h-100 p-2 border-top">
+                                !-- si no se activa la edicion tan solo muestra la info --
+                                <div *ngIf="!modeEditTitle">
+                                    {{candidatureData.applicantsNum}}
+                                </div>
+                                -- Si edicion esta activada muestra un inputtext que añade como valor base su contenido --
+                                <div *ngIf="modeEditTitle">
+                                    <input type="text" class="form-control" placeholder="Solicitantes"
+                                        value="{{candidatureData.applicantsNum}}" aria-label="Solicitantes"
+                                        aria-describedby="Solicitantes">
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                     <!-- FIN---INFO CANDIDATURA--- -->
                 </div>
@@ -125,10 +142,10 @@
             <div class="col-lg-5 col-sm-12 h-50 p-5 skill-box ">
                 <!-- Muestra las skills de la candidatura -->
                 <div>
-                    <app-skills [tableData]="'candidature'" [rol]="typeUser"></app-skills>
+                    <app-skills [tableData]="'candidature'" [rol]="roleuser"></app-skills>
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center mt-4"
-                    *ngIf="typeUser == 'candidate'">
+                    *ngIf="roleuser == 'candidate'">
                     <div class="w-75 h-custom mt-3">
                         <!-- Botones para usuario, le deja aplicar a la oferta ¿o dejar de aplicar? -->
                         <button class="btn btn-success w-100 h-100" *ngIf="userSubscribed">Aplicado</button>
@@ -140,7 +157,7 @@
                     </div>
                 </div>
                 <!-- Botones para cerrar, abrir candidaturas y eliminar -->
-                <div *ngIf="typeUser == 'rrhh'">
+                <div *ngIf="roleuser == 'rrhh'">
                     <div class="d-flex justify-content-center align-items-center mt-5 btn-abrir-cerrar">
                         <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
                             autocomplete="off" checked>

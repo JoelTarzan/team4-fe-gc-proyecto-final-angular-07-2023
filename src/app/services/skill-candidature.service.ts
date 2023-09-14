@@ -65,18 +65,18 @@ export class SkillCandidatureService {
   // === Post ===
 
   create(skillCandidature: SkillCandidature): Observable<SkillCandidature>{
-    return this.http.post<SkillCandidature>(`${this.endpoint}/skillscandidatures`, skillCandidature);
+    return this.http.post<SkillCandidature>(`${this.endpoint}skillscandidatures`, skillCandidature);
   }
 
   // === Put ===
 
   update(id: number, skillCandidature: SkillCandidature): Observable<SkillCandidature>{
-    return this.http.put<SkillCandidature>(`${this.endpoint}/skillscandidatures/${id}`, skillCandidature);
+    return this.http.put<SkillCandidature>(`${this.endpoint}skillscandidatures/${id}`, skillCandidature);
   }
 
   //=== Delete ===
 
   delete(id: number){
-    this.http.delete(`${this.endpoint}/skillscandidatures/${id}`);
+    this.http.delete(`${this.endpoint}skillscandidatures/${id}`);
   }
 }

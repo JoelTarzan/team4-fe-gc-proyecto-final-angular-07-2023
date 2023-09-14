@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Application } from '../models/application';
 import { Observable, map } from 'rxjs';
 import { User } from '../models/user';
+import { Candidature } from '../models/candidature';
 
 
 @Injectable({
@@ -60,6 +61,17 @@ export class ApplicationsService {
       map(response => {
         
         return response.map(Candidature => Candidature.user);
+      })
+    );
+  }
+
+  // Mapear la respuesta para obtener solo el array de skills
+  getByIdUserMapCandidatures(idUser: number): Observable<Candidature[]> {
+
+    return this.http.get<Application[]>(`${this.endpoint}applications/user/${idUser}`).pipe(
+      map(response => {
+
+        return response.map(user => user.candidature);
       })
     );
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Candidature } from 'src/app/models/candidature';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
 //import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
@@ -10,8 +12,9 @@ import { OpenProcessesService } from 'src/app/services/open-processes.service';
 })
 export class CandidatureCreateComponent {
 //representacion de tipo de usuario 
-typeUser: string = "rrhh";
-  
+roleuser: any;
+iduser: any;
+
 //representacion de cual es la ID del usuario que esta observando la candidatura 
 idUser:any=1;
 
@@ -29,14 +32,14 @@ processStatus: string = "Entrevista";
 
 //Booleanos para llevar control de los modos de edicion activados
 modeEditTitle: boolean = true;
-/* modeEditInfoCandidacy:boolean=false;
-modeEditDescription:boolean=false;
-modeEditRequeriments:boolean=false;
-modeEditResponsibilities:boolean=false; */
+
+// Guarda los datos de la candidatura
+candidatureData!: Candidature;
+
 
 constructor(
   private candidaturesService: CandidaturesService, 
-  //private userCandidacy: UsersCandidacyService,
+  private router: Router,
   private openProcessesService: OpenProcessesService) {
 
   }
@@ -50,68 +53,35 @@ ngOnInit() {
 
 //Click boton guardar/aceptar datos
 saveChanges(){
+  this.candidaturesService.create( <Candidature> this.candidatureData )
+  .subscribe((result: Candidature) => {
+
+    this.candidatureData = result;
+    
+    this.router.navigate(['/candidature-details', this.candidatureData.id]);
+  });
+  
   this.modeEditTitle=false;
 }
 
 //Click boton eliminar/descartar datos
 deleteChanges(){
+  /* Guarda en la variable la candidatura encontrada por ID */
+  this.candidaturesService.getById(this.idCandidacy)
+  .subscribe((result: Candidature) => {
+
+    this.candidatureData = result;
+  });
   this.modeEditTitle=false;
 }
 
 /* Controla que modos de edicion estan aplicados y cuales no */
-controlModes(modeSeccion: string){
-      if (this.modeEditTitle) {
-        this.modeEditTitle=false;
-      }else{
-        this.modeEditTitle=true;
-      }
-  /* switch (modeSeccion) {
-    
-    case "description":
-      if (this.modeEditDescription) {
-        this.modeEditDescription=false;
-      }else{
-        this.modeEditDescription=true;
-      }
-      break;
-    
-    case "requeriments":
-      if (this.modeEditRequeriments) {
-        this.modeEditRequeriments=false;
-      }else{
-        this.modeEditRequeriments=true;
-      }
-      break;
-  
-    case "responsabilities":
-      if (this.modeEditResponsibilities) {
-        this.modeEditResponsibilities=false;
-      }else{
-        this.modeEditResponsibilities=true;
-      }
-      break;
-  
-    case "title":
-      
-      break;
-
-      case "infocandidacy":
-        if (this.modeEditInfoCandidacy) {
-          this.modeEditInfoCandidacy=false;
-        }else{
-          this.modeEditInfoCandidacy=true;
-        }
-        break;
-      
-    default:
-      break;
-  } */
+controlModes(){
+  if (this.modeEditTitle) {
+    this.modeEditTitle=false;
+  }else{
+    this.modeEditTitle=true;
+  }
 }
 
-/* Metodos preparados para aplicar ediciones */
-// editTitle(){ }
-// editInfoCandidacy(){ }
-// editDescription(){ }
-// editRequeriments(){ }
-// editResponsibilities(){ }
 }

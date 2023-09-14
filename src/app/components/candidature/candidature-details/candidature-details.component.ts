@@ -13,13 +13,12 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 export class CandidatureDetailsComponent implements OnInit {
   //representacion de tipo de usuario 
-  typeUser:string="rrhh";
-  
-  //representacion de cual es la ID del usuario que esta observando la candidatura 
-  idUser:any=1;
+  roleuser: any;
+  //Usuario logeado
+  idUser: any;
   
   //representacion de cual es la ID de la candidatura seleccionada 
-  idCandidacy!: number;
+  idCandidature!: number;
 
   // Boleano de control, guarda si el usuario esta aplicando a la candidatura
   userSubscribed:boolean=true;
@@ -36,7 +35,6 @@ export class CandidatureDetailsComponent implements OnInit {
 
   constructor(
     private candidaturesService: CandidaturesService, 
-    //private userCandidacy:UsersCandidacyService,
     private openProcessesService: OpenProcessesService,
     private routeActive: ActivatedRoute,
     private tokenStorageService: TokenStorageService) {
@@ -45,51 +43,52 @@ export class CandidatureDetailsComponent implements OnInit {
 
   
   ngOnInit() {
-    this.typeUser = this.tokenStorageService.getRole();
+    //Recoge datos del sesion storage
+    this.roleuser = this.tokenStorageService.getRole();
     this.idUser = this.tokenStorageService.getUser();
 
     /* Recoge la ruta atual y el parametro id */ 
     this.routeActive.params.subscribe(params => {
-      this.idCandidacy = params['id'] || null;
+      this.idCandidature = params['id'] || null;
     });
 
     /* Guarda en la variable la candidatura encontrada por ID */
-    this.candidaturesService.getById(this.idCandidacy)
+    this.candidaturesService.getById(this.idCandidature)
     .subscribe((result: Candidature) => {
 
       this.candidatureData = result;
-      //console.log(this.candidatureData.name.length);
     });
 
-    /* Comprovacion de si el usuario esta registrado en la candidatura */
-    /* if(this.typeUser=="user"){
-      this.userCandidacy.getIdUserSpecific(this.idUser, this.idCandidacy).subscribe((result: any) => {
-        // save data in array
-        if(result != null && result.length > 0){
-          this.userSubscribed=true;
-        }else{
-          this.userSubscribed=false;
-        }
-      });
+    if(this.roleuser == "candidate"){
+      /* this.openProcessesService.get().subscribe(result => {
+        this.processes = result;
+      }); */
     }
-
-    this.openProcessesService.getExampleProgressBar().subscribe(result => {
-      this.processes = result;
-    }); */
   }
 
   //Click boton guardar/aceptar datos
   saveChanges(){
+    this.candidaturesService.update( <number> this.candidatureData?.id , <Candidature> this.candidatureData )
+    .subscribe((result: Candidature) => {
+
+      this.candidatureData = result;
+    });
     this.modeEditTitle=false;
   }
 
   //Click boton eliminar/descartar datos
   deleteChanges(){
+    /* Guarda en la variable la candidatura encontrada por ID */
+    this.candidaturesService.getById(this.idCandidature)
+    .subscribe((result: Candidature) => {
+
+      this.candidatureData = result;
+    });
     this.modeEditTitle=false;
   }
 
   /* Controla que modos de edicion estan aplicados y cuales no */
-  controlModes(modeSeccion: string){
+  controlModes(){
         if (this.modeEditTitle) {
           this.modeEditTitle=false;
         }else{

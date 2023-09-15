@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Skill } from 'src/app/models/skill';
 import { SkillUser } from 'src/app/models/skill-user';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { SkillUserService } from 'src/app/services/skill-user.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -47,7 +48,8 @@ export class SkillsComponent implements OnInit {
     private candidatureService: CandidaturesService, 
     private router: Router, 
     private routeActive: ActivatedRoute,
-    private skillUserService: SkillUserService
+    private skillUserService: SkillUserService,
+    private applicationsService: ApplicationsService
     ) {
 
     }
@@ -63,7 +65,7 @@ export class SkillsComponent implements OnInit {
     });
 
     //Recibe datos de usuario
-    if(this.tableData == "user"){
+    if(this.tableData == "user") {
       // Guarda Usuario
       this.userService.getOneById(this.idRoute).subscribe(result => {
         
@@ -77,11 +79,25 @@ export class SkillsComponent implements OnInit {
       });
 
     //Recibe datos de Candidatura
-    } else if(this.tableData == "candidature"){
-      this.candidatureService.getById(this.idRoute)
-      .subscribe((result: any) => {
-        // Guarda Candidatura
+    } else if(this.tableData == "candidature") {
+      // Guarda Candidatura
+      this.candidatureService.getById(this.idRoute).subscribe(result => {
+        
         this.candidature = result;
+      });
+
+    // Recibe los datos de una application
+    } else if (this.tableData == "application") {
+      // Guarda el usuario
+      this.applicationsService.getById(this.idRoute).subscribe(result => {
+        
+        this.user = result.user;
+
+        // Busca las SkillUser y guarda las Skills
+        this.skillUserService.getByIdUser(this.user.id).subscribe(result => {
+
+          this.skillsOfUser = result;
+        });
       });
     }
   }

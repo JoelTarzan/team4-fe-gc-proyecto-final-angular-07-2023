@@ -3,19 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Application } from 'src/app/models/application';
 import { Candidature } from 'src/app/models/candidature';
 import { OpenProcess } from 'src/app/models/open-process';
+import { Subscription } from 'src/app/models/subscription';
 import { User } from 'src/app/models/user';
 import { ApplicationsService } from 'src/app/services/applications.service';
-import { CandidaturesService } from 'src/app/services/candidatures.service';
-import { IdUserOpenProcessService } from 'src/app/services/id-user-open-process.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
 import { SubscriptionsService } from 'src/app/services/subscriptions.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UsersService } from 'src/app/services/users.service';
-
-interface Imagen {
-  ruta: string;
-  id: number;
-}
 
 @Component({
   selector: 'app-candidate-application',
@@ -38,16 +32,14 @@ export class CandidateApplicationComponent implements OnInit {
   newOpenProcessName: string = '';
   newOpenProcessDate: string = '';
 
-  subscriptions:any;
+  subscriptions: Subscription[] = [];
 
   // Control para que mustre el input para añadir un proceso
   addProcessMode: boolean = false;
 
   constructor(
     private openProcessesService: OpenProcessesService,
-    private candidaturesService: CandidaturesService,
     private usersService: UsersService,
-    private idUserProcessService : IdUserOpenProcessService,
     private subscriptionsService: SubscriptionsService,
     private applicationsService: ApplicationsService,
     private routeActive: ActivatedRoute, 
@@ -130,26 +122,58 @@ export class CandidateApplicationComponent implements OnInit {
     this.applicationsService.update(this.application!.id, this.application!).subscribe();
   }
   
+  // Verifica si el usuario esta subscrito
   isSubscribed(processId: number): boolean {
-    //Verifica que existe
-    if (this.subscriptions && Array.isArray(this.subscriptions)) {
-      return this.subscriptions.some((subscription: { id_open_processes: number; }) => subscription.id_open_processes === processId);
-    } else {
-      return false;
-    }
+
+    let result = false;
+
+    this.subscriptions.forEach(subscription => {
+      if (subscription.openProcess.id == processId) {
+        result = true;
+      }
+    });
+    
+    return result;
   }
 
-  isSubscribedChange(processId: any){
-    if (this.subscriptions && Array.isArray(this.subscriptions)) {
-      if(this.subscriptions.some((subscription: { id_open_processes: number; }) => subscription.id_open_processes === processId)){
-        //borra en la base de datos desde Service
-        this.subscriptionsService.delete(this.subscriptions.find((subscription: { id_open_processes: number; }) => subscription.id_open_processes === processId));
-      }else{
-        this.idUserProcessService.addSubscribeUserProcess ({id:99,id_open_processes: processId, id_user:this.userLogged!.id});
-      }
-    }
-    this.idUserProcessService.getSubscribeFindByUser_Process(this.userLogged!.id).subscribe((result: any) => {
+  // Conrola la subscripcion o la eliminación de esta
+  isSubscribedChange(openProcess: OpenProcess) {
+
+    let subscriptionId = 0;
+
+    if (this.isSubscribed(openProcess.id!)) {
+
+      // Buscamos el id de la susbcripcion a eliminar
+      this.subscriptions.forEach(subscription => {
+        if (subscription.openProcess.id == openProcess.id) {
+          subscriptionId = subscription.id!;
+        }
+      });
+
+      // Eliminamos la subscripcion
+      this.subscriptionsService.delete(subscriptionId).subscribe(() => {
+
+        // Actualizamos las subscripciones
+        this.subscriptionsService.getAllUser(this.userLogged!.id).subscribe(result => {
           this.subscriptions = result;
         });
+      });
+
+    } else {
+
+      let newSubscription: Subscription = {
+        openProcess: openProcess,
+        user: this.userLogged!
+      }
+
+      // Creamos la nueva subscripcion
+      this.subscriptionsService.create(newSubscription).subscribe(result => {
+
+        // Actualizamos las subscripciones
+        this.subscriptionsService.getAllUser(this.userLogged!.id).subscribe(result => {
+          this.subscriptions = result;
+        });
+      });
+    }
   }
 }

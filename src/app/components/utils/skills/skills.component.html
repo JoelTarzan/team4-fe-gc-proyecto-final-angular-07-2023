@@ -53,7 +53,7 @@
                         <!-- -- BOTON ELIMINAR -- -->
                         <!-- Solo se vera si el boton editar es activado -->
                         <div class="col-2 d-flex  justify-content-center align-items-center" *ngIf="editActivate">
-                            <button class="circle-delete-custom fromMiddle-delete-custom" data-animation="magnify" ><!--data-remove="3000" btn square-btn mx-1 material-symbols-outlined  icon-container btn-style-custom --> <!-- (click)="removeSkills(item.skill)" -->   
+                            <button class="circle-delete-custom fromMiddle-delete-custom" data-animation="magnify" (click)=" dropSkills(skillUser)" ><!--data-remove="3000" btn square-btn mx-1 material-symbols-outlined  icon-container btn-style-custom --> <!-- (click)="removeSkills(item.skill)" -->   
                                 <span></span>
                                 <!-- <span class="  material-symbols-outlined line-height-base text-start autowidth">   
                                     disabled_by_default
@@ -67,7 +67,7 @@
 
             <!-- --- HABILIDADES REQUERIDAS CANDIDATURA --- -->
             <ng-container *ngIf="candidature">
-                <li class="px-2 py-1 list-group-item" *ngFor="let skillCandidature of skillsOfUser">
+                <li class="px-2 py-1 list-group-item" *ngFor="let skillCandidature of skillsOfCandidature">
                     <div class="d-flex py-1 justify-content-start border br-custom align-items-center">
                         <!-- Muestra el nombre de la habilidad -->
                         <div class="col-10 text-start px-4">
@@ -77,7 +77,7 @@
                         <!-- -- BOTON ELIMINAR -- -->
                         <!-- Solo se vera si el boton editar es activado -->
                         <div class="col-2 d-flex  justify-content-center align-items-center" *ngIf="editActivate">
-                            <button class="circle-delete-custom fromMiddle-delete-custom " data-animation="magnify" ><!-- NO BORRAR SIRVE PARA BACKEND -- (click)="removeSkills(skill.skill)" -- -->   
+                            <button class="circle-delete-custom fromMiddle-delete-custom " data-animation="magnify" (click)=" dropSkills(skillCandidature)">
                                 <span></span>
                             </button>
                         </div>

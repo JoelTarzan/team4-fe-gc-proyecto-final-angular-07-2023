@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject, of, switchMap } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
 import { SkillCandidature } from 'src/app/models/skill-candidature';
 import { SkillUser } from 'src/app/models/skill-user';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { SkillCandidatureService } from 'src/app/services/skill-candidature.service';
 import { SkillUserService } from 'src/app/services/skill-user.service';
@@ -40,6 +42,7 @@ export class SkillsComponent implements OnInit {
   candidature: any;
 
   skillsOfUser: any[] = [];
+  skillsOfCandidature: any[] = [];
 
   //skill!: Skill;
 
@@ -61,6 +64,7 @@ export class SkillsComponent implements OnInit {
     private skillUserService: SkillUserService,
     private skillCandidatureService: SkillCandidatureService,
     private tokenStorageService: TokenStorageService,
+    private applicationsService: ApplicationsService,
     private skillService: SkillsService
     ) {}
 
@@ -75,6 +79,7 @@ export class SkillsComponent implements OnInit {
     
     this.routeActive.params.subscribe(params => {
       this.idRoute = params['id'] || null;
+      console.log(this.idRoute);
     });
 
     //USUARIO
@@ -90,11 +95,35 @@ export class SkillsComponent implements OnInit {
         this.skillsOfUser = result;
       });
 
+      
+
     //CANDIDATURA
     } else if(this.tableData == "candidature"){
+
       this.candidatureService.getById(this.idRoute).subscribe((result: any) => {
         // Guarda Candidature
         this.candidature = result;
+        //console.log(this.candidature);
+      });
+
+      this.skillCandidatureService.getByIdCandidature(this.idRoute).subscribe(result => {
+        // Guarda SkillCandidature
+        this.skillsOfCandidature = result;
+        // console.log(this.skillsOfCandidature);
+      });
+      
+      
+    } else if (this.tableData == "application") {
+      // Guarda el usuario
+      this.applicationsService.getById(this.idRoute).subscribe(result => {
+        
+        this.user = result.user;
+
+        // Busca las SkillUser y guarda las Skills
+        this.skillUserService.getByIdUser(this.user.id).subscribe(result => {
+
+          this.skillsOfUser = result;
+        });
       });
     }
   }
@@ -112,11 +141,153 @@ export class SkillsComponent implements OnInit {
     });
   }
 
+  addSkills() {
+    this.skillService.getOneByName(this.skillinsert).pipe(
+      switchMap((skill) => {
+        //skill no existe
+        if (!skill) {
+          
+          //crea una skill con el nombre introducido
+          let newSkill: Skill = {
+            name: this.skillinsert,
+            id: 0,
+          };
+          
+          //devuelve el objeto creado
+          return this.skillService.create(newSkill);
 
+        //skill existe
+        } else {
 
+          //devuelve la skill existente
+          return of(skill);
+        }
+      })).subscribe((skill) => {
+        if (this.tableData === "candidature") {
+          
+          // Crea la relación
+          let newSkillCandidature: SkillCandidature = {
+            id: 0,
+            skill: skill,
+            candidature: this.candidature,
+          };
 
+          this.skillCandidatureService.create(newSkillCandidature).subscribe(result => {
+            // Guarda Skill
+            result; 
+            // Realiza las acciones después de que se haya creado la relación
+            this.getListSkillCandidature();
+          });
+        } else if(this.tableData === "user"){
+          // Crea la relación
+          let newSkillUser: SkillUser = {
+            id: 0,
+            skill: skill,
+            user: this.user,
+            validated: false
+          };
+          this.skillUserService.create(newSkillUser).subscribe(result => {
+            // Guarda Skill
+            result; 
+            // Realiza las acciones después de que se haya creado la relación
+            this.getListSkillUser();
+          });
+        }
+        
+        
+        
+      });
+  }
+   /*  
 
-  // Function for add more skills to database 
+      //Se utilizan los (switchmap) para evitar problemas de asincronia
+      ,
+        switchMap((skill) => {
+          
+        })
+      
+        // Realiza las acciones después de que se haya creado la relación
+        this.getListSkillCandidature();
+      }); 
+    
+      //Se utilizan los (switchmap) para evitar problemas de asincronia
+      this.skillService.getOneByName(this.skillinsert).pipe(
+        switchMap((skill) => {
+          //skill no existe
+          if (!skill) {
+            
+            //crea una skill con el nombre introducido
+            let newSkill: Skill = {
+              name: this.skillinsert,
+              id: 0,
+            };
+            
+            //devuelve el objeto creado
+            return this.skillService.create(newSkill);
+
+          //skill existe
+          } else {
+
+            //devuelve la skill existente
+            return of(skill);
+          }
+        }),
+        switchMap((skill) => {
+          // Crea la relación
+          let newSkillCandidature: SkillCandidature = {
+            id: 0,
+            skill: skill,
+            candidature: this.candidature,
+          };
+          return this.skillCandidatureService.create(newSkillCandidature);
+        })
+      ).subscribe(() => {
+        // Realiza las acciones después de que se haya creado la relación
+        this.getListSkillCandidature();
+      });
+    }*/
+  
+
+  /* if (this.tableData === "candidature") {
+
+    //Se utilizan los (switchmap) para evitar problemas de asincronia
+    this.skillService.getOneByName(this.skillinsert).pipe(
+      switchMap((skill) => {
+        //skill no existe
+        if (!skill) {
+          
+          //crea una skill con el nombre introducido
+          let newSkill: Skill = {
+            name: this.skillinsert,
+            id: 0,
+          };
+          
+          //devuelve el objeto creado
+          return this.skillService.create(newSkill);
+
+        //skill existe
+        } else {
+
+          //devuelve la skill existente
+          return of(skill);
+        }
+      }),
+      switchMap((skill) => {
+        // Crea la relación
+        let newSkillCandidature: SkillCandidature = {
+          id: 0,
+          skill: skill,
+          candidature: this.candidature,
+        };
+        return this.skillCandidatureService.create(newSkillCandidature);
+      })
+    ).subscribe(() => {
+      // Realiza las acciones después de que se haya creado la relación
+      this.getListSkillCandidature();
+    });
+  } */
+
+  /* // Añade skills o relaciona existentes con candidaturas o usuarios
   addSkills(){
     let skill!: Skill;
 
@@ -152,68 +323,43 @@ export class SkillsComponent implements OnInit {
           // Guarda Skill
           result; 
         });
-      });
 
-      
-
-      
-
-      
-      /* if(skill){
-      
-        
-      } */
-    }
-  }
-    // Conditional for control void data
-    /* if (this.skillinsert!=null){
-      // Push new skill in array 
-      this.skills.skills.push(
-        {
-          "skill":this.skillinsert,
-          "confirmation":false
-        }
-      );
-
-      // Clean insert data 
-      this.skillinsert=null;
-
-      // save new data in database in respective id item 
-      if(this.applicant == "candidatura"){
-        this.skillService.addSkillsCandidacy(this.skills).subscribe(result => {
-          // guarda los datos en el array de este componente
-          this.skills = result;
-        });
-      } else if(this.applicant == "usuario"){
-        this.skillService.addSkillsCandidacy(this.skills).subscribe(result => {
-          // guarda los datos en el array de este componente
-          this.skills = result;
-        });
-      }
-    } */
-  } 
-  
-
-/* 
-  / remove skills from edit mode /
-  removeSkills(item:any){
-    / Obtain number index item selected /
-    let indexArray : any = this.skills.skills.findIndex((item: { skill: any; }) => item.skill === item);
-    / remove skill from id /
-    this.skills.skills.splice(indexArray, 1);
-    / Detect from data belongs /
-    if(this.applicant == "candidatura"){
-      console.log(item.skill);
-      this.skillService.removeSkillsCandidacy(this.skills).subscribe(result => {
-        console.log('Habilidad eliminada con éxito.')
-        // guarda los datos en el array de este componente
-        this.skills = result;
-      });
-    } else if(this.applicant == "usuario"){
-      this.skillService. removeSkillsUser(this.skills).subscribe(result => {
-        // guarda los datos en el array de este componente
-        this.skills = result;
+        this.getListSkillCandidature();
       });
     }
   } */
+  
+  dropSkills(skillRelation: SkillCandidature | SkillUser){
+      if(this.tableData == "candidature"){
+
+        this.skillCandidatureService.delete(skillRelation.id).subscribe(()=>{
+          this.getListSkillCandidature();
+        });
+
+      }else if(this.tableData == "user"){
+
+        this.skillUserService.delete(skillRelation.id).subscribe(()=>{
+          this.getListSkillUser();
+        });
+
+      }
+    }
+
+  getListSkillUser(){
+    this.skillUserService.getByIdUser(this.idRoute).subscribe(result => {
+      // Guarda SkillCandidature
+      this.skillsOfUser = result;
+    });
+  }
+
+  getListSkillCandidature(){
+    this.skillCandidatureService.getByIdCandidature(this.idRoute).subscribe(result => {
+      // Guarda SkillCandidature
+      this.skillsOfCandidature = result;
+    });
+  }
+} 
+  
+  
+
 

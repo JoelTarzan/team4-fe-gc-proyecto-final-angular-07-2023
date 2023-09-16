@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { OpenProcess } from 'src/app/models/open-process';
 
 @Component({
   selector: 'app-progress-bar',
@@ -7,8 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ProgressBarComponent {
 
-  @Input() processes: any;
-  @Input() processStatus: string = '';
+  @Input() processes: OpenProcess[] = [];
+  @Input() idCurrentProcess: number = 0;
 
   constructor() { }
 

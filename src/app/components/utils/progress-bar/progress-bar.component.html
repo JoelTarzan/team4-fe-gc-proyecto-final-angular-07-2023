@@ -1,11 +1,11 @@
 <section class="step-wizard">
 
     <ul class="step-wizard-list">
-        <li class="step-wizard-item" [class.current-item]="processStatus == process.title" *ngFor="let process of processes; let i = index">
+        <li class="step-wizard-item" [class.current-item]="idCurrentProcess == process.id" *ngFor="let process of processes; let i = index">
             <span class="progress-count">{{ i+1 }}</span>
             <div class="d-flex flex-column justify-content-center my-2">
-                <span class="progress-label">{{ process.title }}</span>
-                <span class="progress-label">{{ process.date }}</span>
+                <span class="progress-label">{{ process.name }}</span>
+                <span class="progress-label">{{ process.date | date:"dd-MM-yyyy" }}</span>
             </div>
         </li>
     </ul>

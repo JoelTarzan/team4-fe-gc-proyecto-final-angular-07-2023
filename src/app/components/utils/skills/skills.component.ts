@@ -66,9 +66,12 @@ export class SkillsComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private applicationsService: ApplicationsService,
     private skillService: SkillsService
-    ) {}
+    private applicationsService: ApplicationsService
+    ) {
 
-  // ===== INICIO =====
+    }
+
+  
   ngOnInit(): void {
     //Recoge datos del sesion storage
     this.roleuser = this.tokenStorageService.getRole();
@@ -95,13 +98,12 @@ export class SkillsComponent implements OnInit {
         this.skillsOfUser = result;
       });
 
-      
-
     //CANDIDATURA
     } else if(this.tableData == "candidature"){
 
       this.candidatureService.getById(this.idRoute).subscribe((result: any) => {
         // Guarda Candidature
+
         this.candidature = result;
         //console.log(this.candidature);
       });
@@ -111,8 +113,21 @@ export class SkillsComponent implements OnInit {
         this.skillsOfCandidature = result;
         // console.log(this.skillsOfCandidature);
       });
-      
-      
+     
+    } else if (this.tableData == "application") {
+      // Guarda el usuario
+      this.applicationsService.getById(this.idRoute).subscribe(result => {
+        
+        this.user = result.user;
+
+        // Busca las SkillUser y guarda las Skills
+        this.skillUserService.getByIdUser(this.user.id).subscribe(result => {
+
+          this.skillsOfUser = result;
+        });
+      });
+
+    // Recibe los datos de una application
     } else if (this.tableData == "application") {
       // Guarda el usuario
       this.applicationsService.getById(this.idRoute).subscribe(result => {

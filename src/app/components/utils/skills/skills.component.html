@@ -6,7 +6,7 @@
         <h5 class="mx-2 mt-2">{{ actualRoute == '/candidature-details/' + idRoute ? title2  : (actualRoute == '/candidate-details/' + idRoute ? '' : title) }}</h5>
 
         <!-- Condicional para activar boton edicion (rol:candidate, url:/profile) y (rol:rrhh, url:/candidature-detail) -->
-        <button class="btn-edit-custom" (click)="editFunction()" *ngIf="(actualRoute == '/profile/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-details/' + idRoute) || (rol == 'rrhh' && actualRoute == '/candidature-create')">
+        <button class="btn-edit-custom" (click)="editFunction()" *ngIf="(actualRoute == '/profile/' + idRoute) || (this.roleuser == 'rrhh' && actualRoute == '/candidature-details/' + idRoute) || (this.roleuser == 'rrhh' && actualRoute == '/candidature-create')">
             <span class="edit-icon-custom"></span>
         </button>
     </div>
@@ -23,12 +23,12 @@
                 <div class="d-flex  justify-content-between">
                     <!-- input that collects the text to add it as a skill  -->
                     <div class="col-10">
-                        <input class="form-control " type="text" id="miInput" placeholder="Inserte aptitud" ><!-- [(ngModel)]="skillinsert" -->
+                        <input class="form-control " type="text" id="miInput" placeholder="Inserte aptitud" [(ngModel)]="skillinsert"><!--  -->
                     </div>
                     
                     <!-- Boton Añadir -->
                     <div class="d-flex justify-content-center align-items-center col-2" *ngIf="editActivate">
-                        <button class="circle-create-custom  fromMiddle" data-animation="magnify" ><!-- btn square-btn mx-1 material-symbols-outlined  icon-container btn-style-custom --> <!-- (click)="removeSkills(item.skill)" -->   
+                        <button class="circle-create-custom  fromMiddle" data-animation="magnify" (click)="addSkills()"> <!-- btn square-btn mx-1 material-symbols-outlined  icon-container btn-style-custom -->   
                             <span></span>
                         </button>
                     </div>
@@ -53,7 +53,7 @@
                         <!-- -- BOTON ELIMINAR -- -->
                         <!-- Solo se vera si el boton editar es activado -->
                         <div class="col-2 d-flex  justify-content-center align-items-center" *ngIf="editActivate">
-                            <button class="circle-delete-custom fromMiddle-delete-custom" data-animation="magnify" ><!--data-remove="3000" btn square-btn mx-1 material-symbols-outlined  icon-container btn-style-custom --> <!-- (click)="removeSkills(item.skill)" -->   
+                            <button class="circle-delete-custom fromMiddle-delete-custom" data-animation="magnify" (click)=" dropSkills(skillUser)" ><!--data-remove="3000" btn square-btn mx-1 material-symbols-outlined  icon-container btn-style-custom --> <!-- (click)="removeSkills(item.skill)" -->   
                                 <span></span>
                                 <!-- <span class="  material-symbols-outlined line-height-base text-start autowidth">   
                                     disabled_by_default
@@ -67,17 +67,17 @@
 
             <!-- --- HABILIDADES REQUERIDAS CANDIDATURA --- -->
             <ng-container *ngIf="candidature">
-                <li class="px-2 py-1 list-group-item" *ngFor="let skill of candidature.skills">
+                <li class="px-2 py-1 list-group-item" *ngFor="let skillCandidature of skillsOfCandidature">
                     <div class="d-flex py-1 justify-content-start border br-custom align-items-center">
-                        <!-- Muestra el nombre de la hailidad -->
+                        <!-- Muestra el nombre de la habilidad -->
                         <div class="col-10 text-start px-4">
-                            {{skill}}
+                            {{skillCandidature.skill.name}}
                         </div>
 
                         <!-- -- BOTON ELIMINAR -- -->
                         <!-- Solo se vera si el boton editar es activado -->
                         <div class="col-2 d-flex  justify-content-center align-items-center" *ngIf="editActivate">
-                            <button class="circle-delete-custom fromMiddle-delete-custom " data-animation="magnify" ><!-- NO BORRAR SIRVE PARA BACKEND -- (click)="removeSkills(skill.skill)" -- -->   
+                            <button class="circle-delete-custom fromMiddle-delete-custom " data-animation="magnify" (click)=" dropSkills(skillCandidature)">
                                 <span></span>
                             </button>
                         </div>

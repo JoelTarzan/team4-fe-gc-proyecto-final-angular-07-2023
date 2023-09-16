@@ -81,7 +81,7 @@ export class SkillUserService {
   }
 
   // === Delete ===
-  delete(id: number){
-    this.http.delete(`${this.endpoint}skillsusers/${id}`);
+  delete(id: number): Observable<SkillUser>{
+    return this.http.delete<SkillUser>(`${this.endpoint}skillsusers/${id}`);
   }
 }

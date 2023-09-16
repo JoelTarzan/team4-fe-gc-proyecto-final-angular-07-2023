@@ -41,9 +41,14 @@ export class SkillCandidatureService {
     return this.http.get<SkillCandidature>(`${this.endpoint}skillscandidatures/${id}`);
   }
   
-  getByIdUser(idUser: number): Observable<SkillCandidature[]>{
+  getByIdSkill(idSkill: number): Observable<SkillCandidature[]>{
 
-    return this.http.get<SkillCandidature[]>(`${this.endpoint}skillscandidatures/skill/${idUser}`);
+    return this.http.get<SkillCandidature[]>(`${this.endpoint}skillscandidatures/skill/${idSkill}`);
+  }
+
+  getByIdCandidature(idCandidature: number): Observable<SkillCandidature[]>{
+
+    return this.http.get<SkillCandidature[]>(`${this.endpoint}skillscandidatures/candidature/${idCandidature}`);
   }
 
   // Mapear la respuesta para obtener solo el array de skills
@@ -57,26 +62,24 @@ export class SkillCandidatureService {
     );
   }
 
-  getByIdCandidature(idCandidature: number): Observable<SkillCandidature[]>{
-
-    return this.http.get<SkillCandidature[]>(`${this.endpoint}skillscandidatures/candidature/${idCandidature}`);
-  }
+  
 
   // === Post ===
 
   create(skillCandidature: SkillCandidature): Observable<SkillCandidature>{
-    return this.http.post<SkillCandidature>(`${this.endpoint}/skillscandidatures`, skillCandidature);
+    return this.http.post<SkillCandidature>(`${this.endpoint}skillscandidatures`, skillCandidature);
   }
 
   // === Put ===
 
   update(id: number, skillCandidature: SkillCandidature): Observable<SkillCandidature>{
-    return this.http.put<SkillCandidature>(`${this.endpoint}/skillscandidatures/${id}`, skillCandidature);
+    return this.http.put<SkillCandidature>(`${this.endpoint}skillscandidatures/${id}`, skillCandidature);
   }
 
   //=== Delete ===
 
-  delete(id: number){
-    this.http.delete(`${this.endpoint}/skillscandidatures/${id}`);
+  delete(id: number): Observable<SkillCandidature>{
+
+    return this.http.delete<SkillCandidature>(`${this.endpoint}skillscandidatures/${id}`);
   }
 }

@@ -66,7 +66,6 @@ export class SkillsComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private applicationsService: ApplicationsService,
     private skillService: SkillsService
-    private applicationsService: ApplicationsService
     ) {
 
     }

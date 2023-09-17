@@ -8,12 +8,12 @@
                     <div class="content1" >
                         <!-- Sección de imagen de perfil y cambio de imagen -->
                         <div class="image-section mb-4" style="padding-left: 35px;">
-                            <div *ngIf="user && user.avatar" class="image-container">
-                                <img [src]="getAvatarUrl()" alt="Avatar" class="img-fluid">
+                            <div class="image-container">
+                                <img [src]="getAvatarUrl(user!) != null ? getAvatarUrl(user!) : '../../../assets/userph.jpg'" alt="Avatar" class="img-fluid">
                             </div>
-                            <div class="image-container" *ngIf="!user || !user.avatar">
+                            <!-- <div class="image-container" *ngIf="!user || !user.avatar">
                                 <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">    
-                            </div>
+                            </div> -->
                             <div class="btn-edit-custom" (click)="changeEditMode()" *ngIf="!editMode">
                                 <span class="edit-icon-custom" alt="cambio imagen"></span>
                             </div>

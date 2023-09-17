@@ -15,8 +15,6 @@ export class ProfileComponent implements OnInit {
   user: User | undefined;
   copyOfUser: User | undefined;
 
-  imageUrl: string | null = null;
-
   constructor(
     private tokenStorageService: TokenStorageService,
     private usersService: UsersService) {
@@ -28,7 +26,6 @@ export class ProfileComponent implements OnInit {
     this.usersService.getOneById(this.tokenStorageService.getUser()).subscribe(result => {
       this.user = result;
       this.copyOfUser = { ...result };
-      this.convertBase64ToImage();
     });
   }
 
@@ -70,16 +67,13 @@ export class ProfileComponent implements OnInit {
   }
 
   // Transforma la imagen
-  convertBase64ToImage() {
-    if (this.user?.avatar && this.user?.avatar.length > 0) {
+  getAvatarUrl(user: User) {
+    if (user.avatar && user.avatar.length > 0) {
       
       // Creamos una URL de datos (Data URL) a partir de la cadena Base64
-      this.imageUrl = `data:image/png;base64,${this.user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
     }
-  }
 
-  // Devuelve la URL de la imagen
-  getAvatarUrl(): string | null {
-    return this.imageUrl;
+    return null;
   }
 }

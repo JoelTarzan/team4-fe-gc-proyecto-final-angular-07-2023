@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class RolesServiceService {
+export class RolesService {
 
   endpoint: string = 'http://localhost:8080/';
 

@@ -27,7 +27,7 @@ export class CandidatureDetailsComponent implements OnInit {
   candidatureData!: Candidature;
 
   processes: any;
-  processStatus: string = "Entrevista";
+  idCurrentProcess: number = 0;
 
   //Booleanos para llevar control de los modos de edicion activados
   modeEditTitle:boolean=false;

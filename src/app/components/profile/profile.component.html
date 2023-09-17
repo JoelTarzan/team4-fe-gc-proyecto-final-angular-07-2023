@@ -7,93 +7,76 @@
                 <div class="quadrant quadrant-1" >
                     <div class="content1" >
                         <!-- Sección de imagen de perfil y cambio de imagen -->
-                        <div class="image-section" style="padding-left: 35px;">
-                            <div class="image-container">
-                                <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">
+                        <div class="image-section mb-4" style="padding-left: 35px;">
+                            <div *ngIf="user && user.avatar" class="image-container">
+                                <img [src]="getAvatarUrl()" alt="Avatar" class="img-fluid">
                             </div>
-                            <div class="btn-edit-custom"><!-- change-image-container -->
+                            <div class="image-container" *ngIf="!user || !user.avatar">
+                                <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">    
+                            </div>
+                            <div class="btn-edit-custom" (click)="changeEditMode()" *ngIf="!editMode">
                                 <span class="edit-icon-custom" alt="cambio imagen"></span>
-                                <!-- <a href="https://example.com">
-                                    <img src="../../../assets/icon-edit.png" alt="cambio" class="img-fluid">
-                                </a> -->
+                            </div>
+                            <div class="d-flex justify-content-center mt-2" *ngIf="editMode">
+                                <button class="circle-applied-custom fromMiddle-applied-custom mx-1" alt="cancelar" data-animation="magnify" (click)="updateChanges()"></button>
+                                <button class="circle-delete-custom fromMiddle-delete-custom mx-1" alt="cancelar" data-animation="magnify" (click)="cancelChanges()"></button>
                             </div>
                         </div>
-                        <br>
                         <!-- Sección de información personal editable -->
                         <div class="perfil">
-                            <!-- Iteración sobre los textos en 'textosNombre' -->
-                            <div *ngFor="let claveTexto of textosNombre" class="mb-3">
-                                <div class="d-flex justify-content-center">
-                                    <!-- Mostrar el texto editable o el modo de edición -->
-                                    <ng-container *ngIf="!editando.get(claveTexto); else editarBloque">
-                                        <!-- Mostrar el texto normal o grande dependiendo del tipo -->
-                                        <p class="cursor-pointer" (click)="editar(claveTexto)" [ngClass] ="{'texto-grande texto-titulo': claveTexto === 'nombre' || claveTexto === 'apellidos', 'texto-titulo': claveTexto === 'titulo'}">{{ textos.get(claveTexto) }}</p>
-                                        <!-- Botón de edición -->
-                                        <!-- <div class="align-items-center">
-                                            <img src="../../../assets/icon-edit.png" alt="Editar" (click)="editar(claveTexto)"
-                                                style="width: 20px; height: 20px; cursor: pointer; margin-left: 15px;">
-                                        </div> -->
-                                    </ng-container>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-center flex-column text-center">
+                                    <p class="texto-grande mb-1" *ngIf="!editMode">{{ user?.lastname }}</p>
+                                    <p class="texto-grande mb-2" *ngIf="!editMode">{{ user?.name }}</p>
+                                    <p class="texto-titulo" *ngIf="!editMode">{{ user?.title }}</p>
+
+                                    <input type="file" class="mb-2" *ngIf="editMode" (change)="onFileSelected($event)">
+                                    <input type="text" class="form-control mb-1" [(ngModel)]="user!.lastname" *ngIf="editMode">
+                                    <input type="text" class="form-control mb-1" [(ngModel)]="user!.name" *ngIf="editMode">
+                                    <input type="text" class="form-control" [(ngModel)]="user!.title" *ngIf="editMode">
                                 </div>
-                                <!-- Modo de edición -->
-                                <ng-template #editarBloque>
-                                    <div class="d-flex flex-column ">
-                                        <input type="text" class="form-control" [(ngModel)]="tempText"> 
-                                        <!-- Botones de guardar y cancelar -->
-                                        <div class="d-flex justify-content-center mt-2">
-                                            <button class="circle-applied-custom fromMiddle-applied-custom mx-1" (click)="guardar(claveTexto)" alt="cancelar" data-animation="magnify" > 
-                                                <span></span>
-                                            </button>
-                                            
-                                            <button class="circle-delete-custom fromMiddle-delete-custom mx-1" (click)="cancelar(claveTexto)" alt="cancelar" data-animation="magnify" > 
-                                                <span></span>
-                                            </button>
-                                            
-                                        </div>
-                                    </div>
-                                </ng-template>
                             </div>
                         </div>                                              
                     </div>
                 </div>
                 <!-- Cuadrante 2: Información de contacto -->
-                <div class="quadrant quadrant-2 ">
+                <div class="quadrant quadrant-2" *ngIf="user">
                     <div class="d-flex align-items-center">
                         <img src="../../../assets/telephone.png" alt="num" style="width: 30px; height: 30px; margin-right: 20px;">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="user.phone" [disabled]="!editMode">
                     </div>
                     <br>
                     <div class="d-flex align-items-center">
                         <img src="../../../assets/mail.png" alt="email" style="width: 30px; height: 30px; margin-right: 20px;">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="user.email" [disabled]="!editMode">
                     </div>
                     <br>
                     <div class="d-flex align-items-center">
                         <img src="../../../assets/linkedin.png" alt="linkdin" style="width: 30px; height: 30px; margin-right: 20px;">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="user.linkedin" [disabled]="!editMode">
                     </div>
                     <br>
                     <div class="d-flex align-items-center">
                         <img src="../../../assets/github.png" alt="github" style="width: 30px; height: 30px; margin-right: 20px;">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="user.git" [disabled]="!editMode">
                     </div>
                     <br>
                     <div class="d-flex align-items-center">
                         <img src="../../../assets/web.png" alt="web" style="width: 30px; height: 30px; margin-right: 20px;">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="user.web" [disabled]="!editMode">
                     </div>
                     <br>
                     
                 </div>
                 <!-- Cuadrante 3: Descripción -->
-                <div class="quadrant quadrant-3 mt-3 ">
+                <div class="quadrant quadrant-3 mt-3" *ngIf="user">
                     <div class="text-section">
                         <h5 class="text-start mb-4">Descripción</h5>
-                        <textarea class="form-control mb-1" rows="4" placeholder=""></textarea>
+                        <textarea class="form-control mb-1" rows="4" placeholder="" [(ngModel)]="user.description" [disabled]="!editMode"></textarea>
                     </div>
                 </div>
                 <!-- Cuadrante 4: Skills skills-->
-                <div class="quadrant quadrant-4 mt-3 justify-content-center skill-box"><!-- col-12 col-md-7 col-lg-9 quadrant quadrant-4 <---- Clases comentadas ya que rompian el skills base -->
+                <div class="quadrant quadrant-4 mt-3 justify-content-center skill-box">
                     <app-skills class="col-12" [tableData]="'user'" [rol]="'candidate'"></app-skills>
                 </div>
             </div>

@@ -45,7 +45,7 @@ export class CandidatureListComponent implements OnInit {
       // Recogemos todas las candidaturas
       this.applicationService.getByIdUserMapCandidatures(this.iduser).subscribe(result => {
         this.allCandidatures = result;
-        //console.log(this.allCandidatures);
+        
 
         // Calculamos las paginas totales
         this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);

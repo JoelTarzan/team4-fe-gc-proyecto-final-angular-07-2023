@@ -7,9 +7,9 @@ export interface Candidature {
     closingDate: Date;
     typeWorkingDate: string;
     applicantsNum: number;
-    description: Text;
-    requirements: Text;
-    responsabilities: Text;
+    description: Text | string;
+    requirements: Text | string;
+    responsabilities: Text | string;
     state: boolean;
     creator: User
 }

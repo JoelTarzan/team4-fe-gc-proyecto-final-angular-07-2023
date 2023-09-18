@@ -59,7 +59,7 @@ export class CandidateApplicationComponent implements OnInit {
         this.candidate = this.application.user;
         this.candidature = this.application.candidature;
 
-        this.idCurrentProcess = this.application.phase.id!;
+        this.idCurrentProcess = this.application.phase!.id!;
         
         this.openProcessesService.getAllCandidatureAndUserByDateASC(this.candidature.id, this.candidate.id).subscribe(result => {
           this.processes = result;

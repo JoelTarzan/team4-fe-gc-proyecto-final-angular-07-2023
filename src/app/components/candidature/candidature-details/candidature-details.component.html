@@ -3,6 +3,7 @@
     <div class="container main-container py-4 ">
         <div class="row g-0 p-4 ju">
             <div class="col-lg-7 col-sm-12 text-start ">
+                
                 <!-- ENUNCIADO -->
                 <div class="p-1">
 
@@ -80,17 +81,15 @@
 
                         <!-- SECCION PLAZAS -->
                         <div class="col p-0 text-center text-break">
-                            <span class="fw-bold">solicitantes</span>
+                            <span class="fw-bold">Candidatos</span>
                             <div class="w-100 h-100 p-2 border-top">
                                 <!-- si no se activa la edicion tan solo muestra la info -->
                                 <div *ngIf="!modeEditTitle && candidatureData">
-                                    {{candidatureData.applicantsNum}}
+                                    {{this.applyCount}}
                                 </div>
                                 <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
                                 <div *ngIf="modeEditTitle && candidatureData">
-                                    <input type="text" class="form-control" placeholder="Solicitantes"
-                                    [(ngModel)]="candidatureData.applicantsNum" aria-label="Solicitantes"
-                                        aria-describedby="Solicitantes">
+                                    {{this.applyCount}}
                                 </div>
                             </div>
                         </div>
@@ -150,30 +149,31 @@
                     <app-skills [tableData]="'candidature'" [rol]="roleuser"></app-skills>
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center mt-4"
-                    *ngIf="roleuser == 'candidate'">
+                    *ngIf="roleuser == 'candidate' && candidatureData">
                     <div class="w-75 h-custom mt-3">
                         <!-- Botones para usuario, le deja aplicar a la oferta ¿o dejar de aplicar? -->
-                        <button class="btn btn-success w-100 h-100" *ngIf="userSubscribed">Aplicado</button>
-                        <button class="btn btn-primary w-100 h-100" *ngIf="!userSubscribed">Aplicar</button>
+                        <button class="btn btn-success w-100 h-100" (click)="userAplicate()" *ngIf="userAplicated">Aplicado</button>
+                        <button class="btn active btn-primary w-100 h-100" (click)="userAplicate()" *ngIf="!userAplicated && candidatureData.state ">Aplicar</button>
                     </div>
-                    <div class="w-75 mt-4" *ngIf="userSubscribed">
+                    <div class="w-75 mt-4" *ngIf="userAplicated">
                         <!-- Boton para informar a usuario sobre estado de la aplicacion que realizo -->
-                        <button class="btn btn-secondary active w-100 h-100" *ngIf="userSubscribed">Pendiente</button>
+                        <button class="btn  active w-100 h-100" [ngClass]="{ 'btn-secondary': aplicationStatus=='Pendiente', 'finalized': aplicationStatus=='Finalizado' }">{{aplicationStatus}}</button><!-- *ngIf="userAplicated" Pendiente [(ngModel)]="aplicationStatus"-->
                     </div>
                 </div>
                 <!-- Botones para cerrar, abrir candidaturas y eliminar -->
-                <div *ngIf="roleuser == 'rrhh'">
+                <div *ngIf="roleuser == 'rrhh' && candidatureData">
                     <div class="d-flex justify-content-center align-items-center mt-5 btn-abrir-cerrar">
+                        
                         <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
-                            autocomplete="off" checked>
-                        <label class="btn btn-outline-success mx-2 w-50" for="success-outlined">Abierta</label>
+                            autocomplete="off" [checked]="this.radioBtn">
+                        <label class="btn btn-outline-success mx-2 w-50" for="success-outlined" (click)="changeStatusCandidature()">Abierta</label>
 
                         <input type="radio" class="btn-check" name="options-outlined" id="secondary-outlined"
-                            autocomplete="off">
-                        <label class="btn btn-outline-secondary mx-2 w-50" for="secondary-outlined">Cerrada</label>
+                            autocomplete="off" [checked]="!this.radioBtn">
+                        <label class="btn btn-outline-secondary mx-2 w-50" for="secondary-outlined" (click)="changeStatusCandidature()">Cerrada</label>
                     </div>
                     <div class="d-flex justify-content-center align-items-center mt-4" >
-                        <button type="button" class="btn btn-danger w-100">Eliminar candidatura</button>
+                        <button type="button" class="btn btn-danger w-100" (click)="deleteCandidature()">Eliminar candidatura</button>
                     </div>
                 </div>
             </div>
@@ -184,7 +184,13 @@
         <!-- Informacion extra segun el usuario -->
         <div class="row g-0 px-5 py-2 mt-3">
             <div *ngIf="roleuser == 'rrhh'"> <app-list-postulated [idCandidature]="this.idCandidature"></app-list-postulated></div>
-            <div *ngIf="roleuser == 'user'"> proceso (usuario) </div>
+           <!--  <div *ngIf="roleuser == 'user'"> proceso (usuario) </div> -->
+        </div>
+        <div class="row  pt-5 px-5 " *ngIf="candidatureData">
+            <p class="mb-0 fw-lighter fs-6"><span class="fw-bold">Fecha creación:</span> {{candidatureData.closingDate}}</p>
+        </div>
+        <div class="row g-0 px-5" *ngIf="roleuser == 'rrhh' && candidatureData">
+            <p class="fw-lighter fs-6"><span class="fw-bold">creado por:</span> {{candidatureData.creator.name}} {{candidatureData.creator.lastname}}</p>
         </div>
     </div>
 </div>

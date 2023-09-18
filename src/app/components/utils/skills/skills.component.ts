@@ -81,7 +81,7 @@ export class SkillsComponent implements OnInit {
     
     this.routeActive.params.subscribe(params => {
       this.idRoute = params['id'] || null;
-      console.log(this.idRoute);
+      /* console.log(this.idRoute); */
     });
 
     //USUARIO

@@ -1,55 +1,79 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
-  // Mapa para almacenar los textos y sus valores actuales
-  textos: Map<string, string> = new Map<string, string>();
+  editMode: boolean = false;
 
-  // Mapa para rastrear si un texto está siendo editado o no
-  editando: Map<string, boolean> = new Map<string, boolean>();
+  user: User | undefined;
+  copyOfUser: User | undefined;
 
-  // Variable temporal para almacenar el texto mientras se edita
-  tempText: string = ''; 
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private usersService: UsersService) {
 
-  // Array de nombres de textos que se mostrarán en el perfil
-  textosNombre: string[] = ['apellidos', 'nombre', 'titulo']; 
+  }
 
-  constructor() {
-    // Configuración inicial de los textos y valores
-    this.textos.set('apellidos', 'Apellidos');
-    this.textos.set('nombre', 'Nombre');
-    this.textos.set('titulo', 'Título');
-    // Agregar más textos y valores iniciales si es necesario
-
-    // Inicializar el rastreo de edición para cada texto
-    this.textosNombre.forEach(texto => {
-      this.editando.set(texto, false);
+  ngOnInit(): void {
+    // Recogemos el usuario logueado
+    this.usersService.getOneById(this.tokenStorageService.getUser()).subscribe(result => {
+      this.user = result;
+      this.copyOfUser = { ...result };
     });
   }
 
-  // Función para iniciar la edición de un texto
-  editar(texto: string) {
-    const textoActual = this.textos.get(texto);
-    if (textoActual !== undefined) {
-      this.tempText = textoActual;
-      this.editando.set(texto, true);
+  // Controla el modo edición
+  changeEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+  // Actualiza los cambios
+  updateChanges() {
+    this.usersService.update(this.user!.id, this.user!).subscribe(() => {
+      this.changeEditMode();
+    });
+  }
+
+  // Cancela los cambios
+  cancelChanges() {
+    this.user = {...this.copyOfUser!};
+    this.changeEditMode();
+  }
+
+  // Guarda la imagen
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = e => {
+        const uint8Array = new Uint8Array(e.target?.result as ArrayBuffer);
+  
+        const avatarArray: number[] = Array.from(new Uint8Array(uint8Array));
+        this.user!.avatar = avatarArray;
+
+      };
+  
+      reader.readAsArrayBuffer(file);
     }
   }
-  
-  // Función para guardar los cambios realizados en un texto editado
-  guardar(texto: string) {
-    this.textos.set(texto, this.tempText);
-    this.editando.set(texto, false);
-  }
 
-  // Función para cancelar la edición de un texto
-  cancelar(texto: string) {
-    this.editando.set(texto, false);
-  }
+  // Transforma la imagen
+  getAvatarUrl(user: User) {
+    if (user?.avatar && user?.avatar.length > 0) {
+      
+      // Creamos una URL de datos (Data URL) a partir de la cadena Base64
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+    }
 
+    return null;
+  }
 }

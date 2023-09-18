@@ -15,6 +15,11 @@ import { OpenProcessesComponent } from './components/open-processes/open-process
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { CandidatureCreateComponent } from './components/candidature/candidature-create/candidature-create.component';
+import { authGuard } from './guards/auth.guard';
+import { candidateGuard } from './guards/candidate.guard';
+import { adminGuard } from './guards/admin.guard';
+import { rrhhOrAdminGuard } from './guards/rrhh-or-admin.guard';
+import { rrhhGuard } from './guards/rrhh.guard';
 
 const routes: Routes = [
   {
@@ -27,55 +32,68 @@ const routes: Routes = [
   },
   {
     path: 'password-change',
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
+    canActivate: [authGuard]
   },
   {
     path: '',
     component: HomeMainComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'about',
     component: AboutMainComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'candidate-list',
     component: CandidateListComponent,
+    canActivate: [authGuard, rrhhOrAdminGuard]
   },
   {
     path: 'candidate-details/:id',
     component: CandidateDetailsComponent,
+    canActivate: [authGuard, rrhhOrAdminGuard]
   },
   {
     path: 'candidate-application/:id',
     component: CandidateApplicationComponent,
+    canActivate: [authGuard, rrhhOrAdminGuard]
   },
   {
     path: 'candidature-list',
     component: CandidatureListComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'candidature-create',
     component: CandidatureCreateComponent,
+    canActivate: [authGuard, rrhhOrAdminGuard]
   },
   {
     path: 'candidature-details/:id',
     component: CandidatureDetailsComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'interviews',
     component: InterviewsComponent,
+    canActivate: [authGuard, rrhhGuard]
   },
   {
     path: 'open-processes',
     component: OpenProcessesComponent,
+    canActivate: [authGuard, candidateGuard]
   },
   {
     path: 'profile/:id',
     component: ProfileComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'user-management',
     component: UserManagementComponent,
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: '',
@@ -85,6 +103,7 @@ const routes: Routes = [
   {
     path: '**',
     component: HomeMainComponent,
+    canActivate: [authGuard]
   }
 ];
 

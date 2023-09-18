@@ -2,20 +2,17 @@
     <app-navbar></app-navbar>
     <div class="container main-container py-4 ">
         <div class="row g-0 p-4 ju">
-            <div class="col-lg-7 col-sm-12 text-start ">
+            <div class="col-lg-12 col-sm-12 text-start ">
                 <!-- ENUNCIADO -->
                 <div class="p-1">
 
                     <!-- TITULO/NOMBRE CANDIDATURA -->
                     <div class="d-flex align-items-center px-3">
-                        <!-- Titulo de la candidatura, lleva un control por si el titulo fuera muy largo que no rompa la distribucion de la vista 
-                        (un exceso de caracteres se muestra con puntos suspensivos) -->
-                        <h3 class="text-truncate text-truncate-overflow mb-4" *ngIf="!modeEditTitle"
-                            title="{{data?.title.length>28 ? data?.title : ''}}">{{data?.title}}</h3>
+
                         <div class="d-flex w-75 align-items-center mb-4" *ngIf="modeEditTitle">
                             <!-- Input text que añade como valor base el contenido que ya tiene -->
                             <input type="text" class="form-control" placeholder="Nombre Candidatura"
-                                value="{{data?.title}}" aria-label="Candidatura" aria-describedby="Candidatura">
+                            [(ngModel)]="name" aria-label="Candidatura" aria-describedby="Candidatura">
                             <!-- === BOTON CONFIRMACION === -->
                             <div class="px-2">
                                 <button class="circle-applied-custom fromMiddle-applied-custom" *ngIf="modeEditTitle"
@@ -31,11 +28,7 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- === BOTON EDITAR === -->
-                        <div class="btn-edit-custom mb-3 mx-2" (click)="controlModes('title')"
-                            *ngIf="typeUser=='rrhh' && !modeEditTitle ">
-                            <span class="edit-icon-custom"></span>
-                        </div>
+                        
                     </div>
                     <!-- FIN---TITULO/NOMBRE CANDIDATURA--- -->
 
@@ -44,14 +37,10 @@
 
                         <div class="col p-0 text-center text-break"><span class="fw-bold">Localidad</span>
                             <div class="w-100 h-100 p-2 border-top">
-                                <!-- si no se activa la edicion tan solo muestra la info -->
-                                <div *ngIf="!modeEditTitle">
-                                    {{data?.location}}
-                                </div>
                                 <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
                                 <div *ngIf="modeEditTitle">
                                     <input type="text" class="form-control" placeholder="Localizacion"
-                                        value="{{data?.location}}" aria-label="Localizacion"
+                                        [(ngModel)]="location" aria-label="Localizacion"
                                         aria-describedby="Localizacion">
                                 </div>
                             </div>
@@ -60,18 +49,40 @@
                         <div class="col p-0 text-center text-break">
                             <span class="fw-bold">Jornada</span>
                             <div class="w-100 h-100 p-2 border-top">
-                                <!-- si no se activa la edicion tan solo muestra la info -->
-                                <div *ngIf="!modeEditTitle">
-                                    {{data?.typeworkingday}}
-                                </div>
                                 <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
                                 <div *ngIf="modeEditTitle">
                                     <input type="text" class="form-control" placeholder="Jornada"
-                                        value="{{data?.typeworkingday}}" aria-label="Jornada"
+                                    [(ngModel)]="typeWorkingDate" aria-label="Jornada"
                                         aria-describedby="Jornada">
                                 </div>
                             </div>
                         </div>
+
+                        <!-- SECCION PLAZAS -->
+                        <!-- <div class="col p-0 text-center text-break">
+                            <span class="fw-bold">solicitantes</span>
+                            <div class="w-100 h-100 p-2 border-top">-->
+                                <!-- Si edicion esta activada muestra un inputtext que añade como valor base su contenido -->
+                                <!-- <div *ngIf="modeEditTitle">
+                                    <input type="text" class="form-control" placeholder="Solicitantes"
+                                    [(ngModel)]="applicantsNum" aria-label="Solicitantes"
+                                        aria-describedby="Solicitantes">
+                                </div>
+                            </div>
+                        </div>  -->
+                        
+                        <!-- SECCION VENCIMIENTO -->
+                        <!-- <div class="col p-0 text-center text-break">
+                            <span class="fw-bold">Vencimiento</span>
+                            <div class="w-100 h-100 p-2 border-top">
+                                -- Si edicion esta activada muestra un inputtext que añade como valor base su contenido --
+                                <div *ngIf="modeEditTitle ">
+                                    <input type="text" class="form-control" placeholder="yyyy-mm-dd"
+                                    [(ngModel)]="closingDate" aria-label="Vencimiento"
+                                        aria-describedby="Vencimiento">
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                     <!-- FIN---INFO CANDIDATURA--- -->
                 </div>
@@ -81,13 +92,9 @@
                     <div class="d-flex align-items-center">
                         <h5>Descripcion</h5>
                     </div>
-                    <!-- si no se activa la edicion tan solo muestra la info -->
-                    <div class="txt-justify" *ngIf="!modeEditTitle">
-                        {{data?.description}}
-                    </div>
                     <!-- Si edicion esta activada muestra un textarea -->
                     <div class="my-1 txt-justify" *ngIf="modeEditTitle">
-                        <textarea class=" form-control" aria-label="With textarea">{{data?.description}}</textarea>
+                        <textarea class=" form-control" aria-label="With textarea" [(ngModel)]="this.description"></textarea>
                     </div>
                 </div>
 
@@ -97,13 +104,9 @@
                         <h5>Requerimientos</h5>
 
                     </div>
-                    <!-- si no se activa la edicion tan solo mustra la info -->
-                    <div class="txt-justify" *ngIf="!modeEditTitle">
-                        {{data?.requirements}}
-                    </div>
                     <!-- Si edicion esta activada muestra un textarea -->
                     <div class="my-1 txt-justify" *ngIf="modeEditTitle">
-                        <textarea class="form-control" aria-label="With textarea">{{data?.requirements}}</textarea>
+                        <textarea class="form-control" aria-label="With textarea" [(ngModel)]="this.requirements"></textarea>
                     </div>
                 </div>
 
@@ -112,45 +115,17 @@
                     <div class="d-flex">
                         <h5>Responsabilidades</h5>
                     </div>
-                    <!-- si no se activa la edicion tan solo mustra la info -->
-                    <div class="txt-justify" *ngIf="!modeEditTitle">
-                        {{data?.responsibilities}}
-                    </div>
                     <!-- Si edicion esta activada muestra un textarea -->
                     <div class="my-1 txt-justify" *ngIf="modeEditTitle">
-                        <textarea class="form-control" aria-label="With textarea">{{data?.responsibilities}}</textarea>
+                        <textarea class="form-control" aria-label="With textarea" [(ngModel)]="this.responsabilities"></textarea>
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 col-sm-12 h-50 p-5 skill-box ">
                 <!-- Muestra las skills de la candidatura -->
-                <div>
-                    <app-skills [tableData]="'candidature'" [rol]="typeUser"></app-skills>
-                </div>
-                <div class="d-flex flex-column justify-content-center align-items-center mt-4"
-                    *ngIf="typeUser == 'candidate'">
-                    <div class="w-75 h-custom mt-3">
-                        <!-- Botones para usuario, le deja aplicar a la oferta ¿o dejar de aplicar? -->
-                        <button class="btn btn-success w-100 h-100" *ngIf="userSubscribed">Aplicado</button>
-                        <button class="btn btn-primary w-100 h-100" *ngIf="!userSubscribed">Aplicar</button>
-                    </div>
-                    <div class="w-75 mt-4" *ngIf="userSubscribed">
-                        <!-- Boton para informar a usuario sobre estado de la aplicacion que realizo -->
-                        <button class="btn btn-secondary active w-100 h-100" *ngIf="userSubscribed">Pendiente</button>
-                    </div>
-                </div>
-                <!-- Botones para cerrar, abrir candidaturas y eliminar -->
-                <div *ngIf="typeUser == 'rrhh'">
-                    <div class="d-flex justify-content-center align-items-center mt-5 btn-abrir-cerrar">
-                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
-                            autocomplete="off" checked>
-                        <label class="btn btn-outline-success mx-2 w-50" for="success-outlined">Abierta</label>
-
-                        <input type="radio" class="btn-check" name="options-outlined" id="secondary-outlined"
-                            autocomplete="off">
-                        <label class="btn btn-outline-secondary mx-2 w-50" for="secondary-outlined">Cerrada</label>
-                    </div>
-                </div>
+                <!-- <div>
+                    <app-skills [tableData]="'candidature'" [rol]="roleUser"></app-skills>
+                </div> -->
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Application } from 'src/app/models/application';
+import { User } from 'src/app/models/user';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,32 +10,32 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./list-postulated.component.css']
 })
 export class ListPostulatedComponent implements OnInit{
-  idCandidature:any=1;
+  @Input() idCandidature!: number;
 
-  idusers:any;
+  ApplyList!: Application[];
 
   userslist:any[] = [];
-  constructor(private relationService:UsersCandidacyService, private userService:UsersService){}
+  constructor(private aplicationsService:ApplicationsService){}
   
   
   ngOnInit(): void {
-    this.relationService.getIdUsers(this.idCandidature)
-        .subscribe((result: any) => {
-        /* console.warn(result); */
-        // save data in array
-        this.idusers = result;
-        console.log(this.idusers);
+    this.aplicationsService.getByIdCandidature(this.idCandidature)
+        .subscribe((result: Application[]) => {
 
+          this.ApplyList = result;
 
-        this.idusers.forEach((element: { idPostulatedUser: any; }) => {
-          this.userService.getOneById(element.idPostulatedUser).subscribe((result: any) => {
-            this.userslist.push(result);
-            /* console.log(this.userslist.length); */
-          });
           
-        });
-        
       });
   }
 
+  // Transforma la imagen
+  getAvatarUrl(user: User) {
+    if (user.avatar && user.avatar.length > 0) {
+      
+      // Creamos una URL de datos (Data URL) a partir de la cadena Base64
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+    }
+
+    return null;
+  }
 }

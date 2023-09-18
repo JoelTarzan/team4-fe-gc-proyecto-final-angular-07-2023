@@ -5,22 +5,30 @@
                 <img src="../../../../assets/aurum-nombre.png" alt="Logo">
             </div>
 
-            <form>
-                <div class="form-group">
-                    <label for="username">Inicia sesión</label>
-                    <br><br>
-                    <input type="text" class="form-control" id="username" placeholder="Correo">
+            <div class="alert alert-danger fade show" role="alert" [hidden]="!notExistingEmail">
+                No existe ninguna cuenta con este email.
+            </div>
+    
+            <div class="alert alert-danger fade show" role="alert" [hidden]="!invalidPassword">
+                Contraseña incorrecta.
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label>Inicia sesión</label>
+                </div>
+                <div class="form-group" >
+                    <input type="text" class="form-control" id="email" placeholder="Correo" formControlName="email">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                    <input type="password" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm">Acceder</button>
+                <button type="submit" class="btn btn-primary btn-sm" [disabled]="!loginForm.valid">Acceder</button>
             </form>
             <div>
             </div>
         </div>
         <div class="links-container col-12">
             <a routerLink="/register" class="custom-link">Regístrate</a>
-            <!-- <a routerLink="/password-change" class="custom-link">Cambiar contraseña</a> -->
         </div>
     </div>

@@ -87,3 +87,13 @@
     background-color: rgb(3, 63, 128);
     border-color: transparent;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+}
+
+.alert {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.9rem;
+}

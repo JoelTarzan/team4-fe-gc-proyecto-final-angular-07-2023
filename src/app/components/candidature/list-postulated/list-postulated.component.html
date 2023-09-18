@@ -11,12 +11,12 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-3 justify-content-between overflow-y-auto max_size-scroll" >
-        <div class=" p-2" *ngFor="let item of userslist">
+        <div class=" p-2" *ngFor="let aplication of ApplyList">
             <div class="card h-100 p-2">
                 <div class="d-flex flex-wrap align-content-between justify-content-between align-items-center">
-                    <img src="{{item.avatar}}" class="rounded-circle max-height-100" alt="">
-                    {{item.name}} {{item.lastname}}
-                    <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidate-application', 1]" alt="eye">
+                    <img [src]="getAvatarUrl(aplication.user) != null ? getAvatarUrl(aplication.user) : '../../../assets/userph.jpg'" alt="Imagen de usuario default" class="img-fluid rounded-circle max-height-100">
+                    {{aplication.user.name}} {{aplication.user.lastname}}
+                    <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidate-application', aplication.id]" alt="eye">
                 </div>
             </div>
         </div>

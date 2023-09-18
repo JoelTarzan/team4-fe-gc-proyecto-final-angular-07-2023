@@ -32,15 +32,20 @@
   width: 275px !important;
 }
 
-/* .btn-primary {
+.btn-primary, .finalized {
   background-color: rgb(3, 75, 151);
   border-color: transparent;
-} */
+}
 
-/* .btn-primary:hover {
+.finalized {
+  color: #fff;
+}
+
+
+.btn-primary:hover {
   background-color: rgb(3, 63, 128);
   border-color: transparent;
-} */
+}
 
 .txt-justify{
   text-align: justify;

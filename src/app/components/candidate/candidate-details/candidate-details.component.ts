@@ -1,31 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Application } from 'src/app/models/application';
+import { User } from 'src/app/models/user';
+import { ApplicationsService } from 'src/app/services/applications.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-candidate-details',
   templateUrl: './candidate-details.component.html',
   styleUrls: ['./candidate-details.component.css']
 })
-export class CandidateDetailsComponent {
+export class CandidateDetailsComponent implements OnInit {
 
-  name: string = "Laura";
-  lastname: string = "Tarzán Jane";
-  email: string = "laura@madeupmail.com";
-  tel: string = "644 288 990";
-  title: string = "Programadora Full Stack";
-  linkedin: string = "https://www.linkedin.com/in/laura-tarzán-a778a6184/";
-  web: string = "https://www.laura.com/inicio";
-  notes: string = "Notas del usuario de RH sobre el candidato, solo visible para el rol de RH. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  skills: string = "Habilidades del candidato regogidas de su perfil.";
-  description: string = "Descripción del candidato escrita por él y recogida de su perfil. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  activeTab: number = 1; // Pestaña activa por defecto
+  idCandidate: number = 0;
+  user: User | undefined;
 
-  constructor() {
+  selectedRating: number = 0;
 
+  applications: Application[] = [];
+
+  activeTab: number = 2; // Pestaña activa por defecto
+
+  constructor(
+    private routeActive: ActivatedRoute, 
+    private usersService: UsersService,
+    private applicationsService: ApplicationsService) {
+
+  }
+
+  ngOnInit(): void {
+    /* Recoge la ruta atual y el parametro id */ 
+    this.routeActive.params.subscribe(params => {
+      this.idCandidate = params['id'] || null;
+      
+      this.usersService.getOneById(this.idCandidate).subscribe(result => {
+
+        this.user = result;
+        this.selectedRating = this.user.rating;
+      });
+
+      this.applicationsService.getByIdUser(this.idCandidate).subscribe(result => {
+
+        this.applications = result;
+      });
+    });
   }
 
   changeTab(tabNumber: number) {
     this.activeTab = tabNumber;
   }
 
-  
+  // Controla el cambio de valoración
+  onChangeRating() {
+    this.user!.rating = this.selectedRating;
+    this.user!.rating++;
+    
+    this.usersService.update(this.user!.id, this.user!).subscribe(result => {
+      this.user = result;
+    });
+  }
+
+  // Transforma la imagen
+  getAvatarUrl(user: User) {
+    if (user?.avatar && user?.avatar.length > 0) {
+      
+      // Creamos una URL de datos (Data URL) a partir de la cadena Base64
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+    }
+
+    return null;
+  }
 }

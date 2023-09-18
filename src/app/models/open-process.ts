@@ -1,8 +1,11 @@
+import { Candidature } from "./candidature";
+import { User } from "./user";
+
 export interface OpenProcess {
-    id: number;
-    candidature: string;
-    title: string;
+    id?: number;
+    candidature: Candidature;
+    name: string;
     date: string;
-    user: string;
-    interview: boolean;
+    user: User;
+    open: boolean;
 }

@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Skill } from '../models/skill';
-
-
-const baseUrlCandidacy = 'http://localhost:3000/candidatures';
-const baseUrlUser = 'http://localhost:3000/users';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,43 +9,61 @@ const baseUrlUser = 'http://localhost:3000/users';
 
 export class SkillsService {
 
-  skillsEndpoint: string = 'http://localhost:3000/skills';
+  endpoint: string = 'http://localhost:8080/';
   
   constructor( private http:HttpClient ) {}
+  /* Endpoints Backend
+  * === Get ===
+  * /skills
+  * /skills/{id}
+  * /skills/name/{name}
+  * 
+  * === Post ===
+  * /skills
+  * 
+  * === Put ===
+  * /skills/{id}
+  * 
+  * === Delete ===
+  * /skills/{id}
+  */
   
-  //get skills from one candidacy
-  getSkillsCandidacy (id:any):any{
-    return this.http.get(`${baseUrlCandidacy}/${id}`);
-  }
-  getSkillsUser (id:any):any{
-    return this.http.get(`${baseUrlUser}/${id}`);
+  // === Get ===
+  // Devuelve todos los skills
+  getAll(){
+
+    return this.http.get<Skill[]>(`${this.endpoint}skills`);
   }
 
-  //add skills in Candidacy
-  addSkillsCandidacy (data:any) {
-    return this.http.put(`${baseUrlCandidacy}/${data.id}`,data);
-  }
-  addSkillsUser (data:any) {
-    return this.http.put(`${baseUrlUser}/${data.id}`, data);
+  // Devuelve una skill por id
+  getOneById(id: number): Observable<Skill>{
+
+    return this.http.get<Skill>(`${this.endpoint}skills/${id}`);
   }
 
-  //delete skills in Candidacy
-  removeSkillsCandidacy(data:any) {
-    return this.http.put(`${baseUrlCandidacy}/${data.id}`, data);
-  }
-  removeSkillsUser (data:any) {
-    return this.http.put(`${baseUrlUser}/${data.id}`, data);
+  // Devuelve una skill por nombre
+  getOneByName(name: String): Observable<Skill>{
+
+    return this.http.get<Skill>(`${this.endpoint}skills/name/${name}`);
   }
 
-  confirmedSkill(skills:any){
-    console.log(`id:${skills.id} skill:${skills.skills} y confirmacion:${skills.confirmation}`);
-    return this.http.put(`${baseUrlCandidacy}/${skills.id}`, skills);
+  // === Post ===
+  // Crea una nueva skill
+  create(skill: Skill): Observable<Skill>{
 
+    return this.http.post<Skill>(`${this.endpoint}skills`, skill);
   }
 
-  // Devuelve todas las skills
-  getAllSkills() {
-    return this.http.get<Skill[]>(this.skillsEndpoint);
+  // === Put === /skills/{id}
+
+  update(id: number, skill: Skill): Observable<Skill> {
+
+    return this.http.put<Skill>(`${this.endpoint}skills/${id}`, skill);
   }
 
+  // === Delete ===
+  delete(id: number): Observable<Skill>{
+
+    return this.http.delete<Skill>(`${this.endpoint}skills/${id}`)
+  }
 }

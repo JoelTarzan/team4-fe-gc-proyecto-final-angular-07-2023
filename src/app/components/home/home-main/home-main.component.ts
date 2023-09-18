@@ -69,17 +69,17 @@ export class HomeMainComponent implements OnInit {
     //Para evitar errores cuando el texto del buscador este vacio pondra el metodo getAll
     if(this.searchHomeTxt==""){
 
-      this.candidaturesService.getAll().subscribe((result: Candidature[]) => {
+      this.candidaturesService.getAllOpen().subscribe((result: Candidature[]) => {
         this.candidatures = result;
         this.numberOfCandidatures = this.candidatures.length; 
       });
-      console.log(this.candidatures);
+      
     }else{
 
       // Recogemos todas las candidaturas
-      this.candidaturesService.getStartingWith(this.searchHomeTxt).subscribe(result => {
+      this.candidaturesService.getAllOrderOpenStartingWith(this.searchHomeTxt).subscribe(result => {
         this.candidatures = result;
-        console.log(this.candidatures);
+        
       });
 
     }  

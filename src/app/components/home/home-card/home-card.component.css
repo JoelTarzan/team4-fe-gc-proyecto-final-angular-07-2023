@@ -29,3 +29,9 @@
     filter: saturate(90%);
     cursor: pointer;
 }
+
+.truncate-text {
+    max-height: 160px; /* Altura máxima antes de truncar */
+    min-height: 160px; /* Altura mínima antes de truncar */
+    overflow-y: auto;
+}

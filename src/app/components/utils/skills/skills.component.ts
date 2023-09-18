@@ -81,7 +81,7 @@ export class SkillsComponent implements OnInit {
     
     this.routeActive.params.subscribe(params => {
       this.idRoute = params['id'] || null;
-      /* console.log(this.idRoute); */
+      
     });
 
     //USUARIO
@@ -104,13 +104,13 @@ export class SkillsComponent implements OnInit {
         // Guarda Candidature
 
         this.candidature = result;
-        //console.log(this.candidature);
+        
       });
 
       this.skillCandidatureService.getByIdCandidature(this.idRoute).subscribe(result => {
         // Guarda SkillCandidature
         this.skillsOfCandidature = result;
-        // console.log(this.skillsOfCandidature);
+        
       });
      
     } else if (this.tableData == "application") {

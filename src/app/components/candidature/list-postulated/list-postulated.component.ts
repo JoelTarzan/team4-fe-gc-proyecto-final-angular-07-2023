@@ -12,16 +12,19 @@ import { UsersService } from 'src/app/services/users.service';
 export class ListPostulatedComponent implements OnInit{
   @Input() idCandidature!: number;
 
-  userApplyList!: User[];
+  ApplyList!: Application[];
 
   userslist:any[] = [];
   constructor(private aplicationsService:ApplicationsService){}
   
   
   ngOnInit(): void {
-    this.aplicationsService.getByIdCandidaturemapUsers(this.idCandidature)
-        .subscribe((result: User[]) => {
-        this.userApplyList = result;
+    this.aplicationsService.getByIdCandidature(this.idCandidature)
+        .subscribe((result: Application[]) => {
+
+          this.ApplyList = result;
+
+          
       });
   }
 

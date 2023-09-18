@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Candidature } from 'src/app/models/candidature';
+import { User } from 'src/app/models/user';
 import { CandidaturesService } from 'src/app/services/candidatures.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UsersService } from 'src/app/services/users.service';
 //import { UsersCandidacyService } from 'src/app/services/users-candidacy.service';
 
 @Component({
@@ -12,23 +15,13 @@ import { OpenProcessesService } from 'src/app/services/open-processes.service';
 })
 export class CandidatureCreateComponent {
 //representacion de tipo de usuario 
-roleuser: any;
-iduser: any;
-
-//representacion de cual es la ID del usuario que esta observando la candidatura 
-idUser:any=1;
-
-//representacion de cual es la ID de la candidatura seleccionada 
-idCandidacy: number = 1;
+roleUser: any;
+idUser: any;
 
 // Boleano de control, guarda si el usuario esta aplicando a la candidatura
-userSubscribed:boolean=true;
+userAplicated:boolean=false;
 
-// Guarda los datos de la candidatura
-data: any;
 
-processes: any;
-processStatus: string = "Entrevista";
 
 //Booleanos para llevar control de los modos de edicion activados
 modeEditTitle: boolean = true;
@@ -37,51 +30,63 @@ modeEditTitle: boolean = true;
 candidatureData!: Candidature;
 
 
+
+
+name: string = "";
+location: string = "";
+closingDate: Date = new Date('2023-12-23');
+typeWorkingDate: string = "";
+applicantsNum: number = 0;
+description: string = "";
+requirements: string = "";
+responsabilities: string = "";
+state: boolean = false;
+creator!: User;
+
 constructor(
   private candidaturesService: CandidaturesService, 
+  private userService: UsersService,
   private router: Router,
-  private openProcessesService: OpenProcessesService) {
-
-  }
+  private tokenStorageService: TokenStorageService,
+  private openProcessesService: OpenProcessesService) {  }
 
 
 ngOnInit() {
-  this.openProcessesService.getExampleProgressBar().subscribe(result => {
-    this.processes = result;
-  });
+  this.roleUser = this.tokenStorageService.getRole();
+  this.idUser = this.tokenStorageService.getUser();
 }
 
 //Click boton guardar/aceptar datos
 saveChanges(){
-  this.candidaturesService.create( <Candidature> this.candidatureData )
-  .subscribe((result: Candidature) => {
 
-    this.candidatureData = result;
-    
-    this.router.navigate(['/candidature-details', this.candidatureData.id]);
+  this.userService.getOneById(this.idUser).subscribe(result=>{/* this.closingDate */
+  let newCandidature: Candidature={
+      "id": 0,
+      "name": this.name,
+      "location": this.location,
+      "closingDate": new Date(),
+      "typeWorkingDate": this.typeWorkingDate,
+      "applicantsNum": this.applicantsNum,
+      "description": this.description,
+      "requirements": this.requirements,
+      "responsabilities": this.responsabilities,
+      "state": this.state,
+      "creator": result,
+    };
+    console.log(newCandidature);
+    this.candidaturesService.create(<Candidature> newCandidature )
+    .subscribe((result: Candidature) => {
+
+      this.candidatureData = result;
+      
+      this.router.navigate([`/candidature-details/${this.candidatureData.id}`]); 
+    });
   });
-  
-  this.modeEditTitle=false;
 }
 
 //Click boton eliminar/descartar datos
 deleteChanges(){
-  /* Guarda en la variable la candidatura encontrada por ID */
-  this.candidaturesService.getById(this.idCandidacy)
-  .subscribe((result: Candidature) => {
-
-    this.candidatureData = result;
-  });
-  this.modeEditTitle=false;
-}
-
-/* Controla que modos de edicion estan aplicados y cuales no */
-controlModes(){
-  if (this.modeEditTitle) {
-    this.modeEditTitle=false;
-  }else{
-    this.modeEditTitle=true;
-  }
+  this.router.navigate(['/candidature-list']);
 }
 
 }

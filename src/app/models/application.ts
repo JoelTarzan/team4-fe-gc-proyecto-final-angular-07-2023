@@ -6,5 +6,5 @@ export interface Application {
     id: number;
     user: User;
     candidature: Candidature;
-    phase: OpenProcess;
+    phase?: OpenProcess;
 }

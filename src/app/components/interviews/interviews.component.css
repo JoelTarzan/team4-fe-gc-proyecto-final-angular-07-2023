@@ -23,6 +23,8 @@ img {
     width: 3.8rem;
     height: 3.8rem;
     border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
 }
 
 h5 {

@@ -17,6 +17,8 @@ img {
     width: 3.8rem;
     height: 3.8rem;
     border-radius: 50%;
+    object-fit: cover; /* Ajusta la imagen al tamaño del círculo sin dejar huecos en blanco */
+    object-position: center;
 }
 
 .card {

@@ -53,7 +53,6 @@ export class CandidateDetailsComponent implements OnInit {
   // Controla el cambio de valoración
   onChangeRating() {
     this.user!.rating = this.selectedRating;
-    this.user!.rating++;
     
     this.usersService.update(this.user!.id, this.user!).subscribe(result => {
       this.user = result;

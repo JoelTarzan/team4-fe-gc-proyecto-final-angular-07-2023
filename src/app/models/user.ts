@@ -13,7 +13,7 @@ export interface User {
     web: string;
     linkedin: string;
     git: string;
-    avatar: Uint8Array;
+    avatar: number[] | string | null;
     role: Role;
     //no se borra por si da error en el json server
     // rrhh: boolean;

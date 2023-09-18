@@ -176,4 +176,15 @@ export class CandidateApplicationComponent implements OnInit {
       });
     }
   }
+
+  // Transforma la imagen
+  getAvatarUrl(user: User) {
+    if (user?.avatar && user?.avatar.length > 0) {
+      
+      // Creamos una URL de datos (Data URL) a partir de la cadena Base64
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+    }
+
+    return null;
+  }
 }

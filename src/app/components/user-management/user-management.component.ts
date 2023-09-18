@@ -29,8 +29,6 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsersNameAsc();
-
-    
   }
 
   // Actualiza los usaurios
@@ -105,6 +103,7 @@ export class UserManagementComponent implements OnInit {
       // Contamos el numero de candidatos y usuarios de RRHH que existen, lo hacemos aquí ya que es el filtro que se carga por defecto
       this.allUsers.forEach(user => {
         user.role.name=="rrhh" ? this.numRrhh++ : this.numCandidates++;
+        user.avatar = this.getAvatarUrl(user);
       });
 
       this.updateDisplayedUsers();
@@ -119,6 +118,7 @@ export class UserManagementComponent implements OnInit {
 
       // Cogemos solo los usuarios que no sean admin
       this.allUsers = this.allUsers.filter(user => {
+        user.avatar = this.getAvatarUrl(user);
         return user.role.name !== 'admin';
       });
 
@@ -133,6 +133,7 @@ export class UserManagementComponent implements OnInit {
 
       // Cogemos solo los usuarios que no sean admin
       this.allUsers = this.allUsers.filter(user => {
+        user.avatar = this.getAvatarUrl(user);
         return user.role.name !== 'admin';
       });
 
@@ -147,6 +148,7 @@ export class UserManagementComponent implements OnInit {
 
       // Cogemos solo los usuarios que no sean admin
       this.allUsers = this.allUsers.filter(user => {
+        user.avatar = this.getAvatarUrl(user);
         return user.role.name !== 'admin';
       });
 
@@ -167,6 +169,7 @@ export class UserManagementComponent implements OnInit {
 
          // Cogemos solo los usuarios que no sean admin
         this.allUsers = this.allUsers.filter(user => {
+          user.avatar = this.getAvatarUrl(user);
           return user.role.name !== 'admin';
         });
 
@@ -182,5 +185,16 @@ export class UserManagementComponent implements OnInit {
 
     // Cambiamos los usuarios a mostrar
     this.onPageChanged(1);
+  }
+
+  // Transforma la imagen
+  getAvatarUrl(user: User) {
+    if (user.avatar && user.avatar.length > 0) {
+      
+      // Creamos una URL de datos (Data URL) a partir de la cadena Base64
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+    }
+
+    return null;
   }
 }

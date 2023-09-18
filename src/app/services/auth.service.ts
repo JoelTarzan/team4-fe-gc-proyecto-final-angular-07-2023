@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  endpoint: string = 'http://localhost:8080/';
+  endpoint: string = 'https://aurum-backend-production.up.railway.app/';
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

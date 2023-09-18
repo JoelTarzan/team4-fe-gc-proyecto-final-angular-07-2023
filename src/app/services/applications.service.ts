@@ -11,7 +11,7 @@ import { Candidature } from '../models/candidature';
 })
 export class ApplicationsService {
 
-  endpoint: string = 'http://localhost:8080/';
+  endpoint: string = 'https://aurum-backend-production.up.railway.app/';
 
   constructor(
     private http: HttpClient) { 

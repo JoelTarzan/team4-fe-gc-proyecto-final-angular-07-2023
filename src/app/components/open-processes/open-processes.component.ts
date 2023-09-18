@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { OpenProcess } from 'src/app/models/open-process';
+import { User } from 'src/app/models/user';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-open-processes',
@@ -8,30 +12,32 @@ import { OpenProcessesService } from 'src/app/services/open-processes.service';
 })
 export class OpenProcessesComponent implements OnInit {
 
-  allOpenProcesses: any;
-  displayedOpenProcesses: any[] = [];
+  userLogged: User | undefined;
+
+  selectedOrder: string = 'date-asc';
+
+  allOpenProcesses: OpenProcess[] = [];
+  displayedOpenProcesses: OpenProcess[] = [];
 
   totalPages: number = 1;
   currentPage: number = 1;
   itemsPerPage: number = 7;
 
   constructor(
-    private openProcessesService: OpenProcessesService
+    private openProcessesService: OpenProcessesService,
+    private tokenStorageService: TokenStorageService,
+    private usersService: UsersService
   ) {
 
   }
 
   ngOnInit(): void {
-    
-    // Recogemos todos los procesos abiertos
-    this.openProcessesService.getAll().subscribe(result => {
-      this.allOpenProcesses = result;
+    // Recogemos el usuario logueado
+    this.usersService.getOneById(this.tokenStorageService.getUser()).subscribe(result => {
+      this.userLogged = result;
 
-      // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
-
-      // Cambiamos los procesos abiertos a mostrar
-      this.onPageChanged(1);
+      // Recogemos las procesos abiertos del usuario
+      this.getAllProcessesByUserOrderDateASC();
     });
   }
 
@@ -47,4 +53,42 @@ export class OpenProcessesComponent implements OnInit {
     this.displayedOpenProcesses = this.allOpenProcesses.slice(startIndex, endIndex);
   }
 
+  // Controla el filtro de orden de la vista
+  onOrderChange() {
+    switch (this.selectedOrder) {
+      case 'date-asc':
+        this.getAllProcessesByUserOrderDateASC();
+        break;
+        
+      case 'date-desc':
+        this.getAllProcessesByUserOrderDateDESC();
+        break;
+    }
+  }
+
+  // Devuelve todos los procesos abiertos a partir de un usuario y ordenados por fecha ascendente
+  getAllProcessesByUserOrderDateASC() {
+    this.openProcessesService.getAllByUserOrderDateASC(this.userLogged!.id).subscribe(result => {
+      this.allOpenProcesses = result;
+
+      // Calculamos las paginas totales
+      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+
+      // Cambiamos los procesos abiertos a mostrar
+      this.onPageChanged(1);
+    });
+  }
+
+  // Devuelve todos los procesos abiertos a partir de un usuario y ordenados por fecha ascendente
+  getAllProcessesByUserOrderDateDESC() {
+    this.openProcessesService.getAllByUserOrderDateDESC(this.userLogged!.id).subscribe(result => {
+      this.allOpenProcesses = result;
+
+      // Calculamos las paginas totales
+      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+
+      // Cambiamos los procesos abiertos a mostrar
+      this.onPageChanged(1);
+    });
+  }
 }

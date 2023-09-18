@@ -14,7 +14,7 @@
         <div class=" p-2" *ngFor="let aplication of ApplyList">
             <div class="card h-100 p-2">
                 <div class="d-flex flex-wrap align-content-between justify-content-between align-items-center">
-                    <img src="{{aplication.user.avatar}}" class="rounded-circle max-height-100" alt="">
+                    <img [src]="getAvatarUrl(user) != null ? getAvatarUrl(user) : '../../../assets/userph.jpg'" alt="Imagen de usuario default" class="img-fluid rounded-circle max-height-100">
                     {{aplication.user.name}} {{aplication.user.lastname}}
                     <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidate-application', aplication.id]" alt="eye">
                 </div>

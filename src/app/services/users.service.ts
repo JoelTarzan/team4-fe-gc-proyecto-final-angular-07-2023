@@ -38,6 +38,7 @@ export class UsersService {
   * 
   * === Put ===
   * /users/{id}
+  * /change-password/{id}/{newPassword}
   * 
   * === Delete ===
   * /users/{id}
@@ -138,6 +139,11 @@ export class UsersService {
   update(id: number, user: User): Observable<User> {
 
     return this.http.put<User>(`${this.endpoint}users/${id}`, user);
+  }
+
+  changePassword(id: number, user: User): Observable<User> {
+
+    return this.http.put<User>(`${this.endpoint}change-password/${id}`, user);
   }
 
   // === Delete ===

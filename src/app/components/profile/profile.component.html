@@ -9,8 +9,10 @@
                         <!-- Sección de imagen de perfil y cambio de imagen -->
                         <div class="image-section mb-4" style="padding-left: 35px;">
                             <div class="image-container">
+                                <div class="circle">
                                 <img [src]="getAvatarUrl(user!) != null ? getAvatarUrl(user!) : '../../../assets/userph.jpg'" alt="Avatar" class="img-fluid">
                             </div>
+                        </div>
                             <!-- <div class="image-container" *ngIf="!user || !user.avatar">
                                 <img src="../../../assets/userph.jpg" alt="Imagen" class="img-fluid">    
                             </div> -->
@@ -69,14 +71,14 @@
                     
                 </div>
                 <!-- Cuadrante 3: Descripción -->
-                <div class="quadrant quadrant-3 mt-3" *ngIf="user">
+                <div class="quadrant quadrant-3 mt-3 justify-content-start" *ngIf="user">
                     <div class="text-section">
                         <h5 class="text-start mb-4">Descripción</h5>
                         <textarea class="form-control mb-1" rows="4" placeholder="" [(ngModel)]="user.description" [disabled]="!editMode"></textarea>
                     </div>
                 </div>
                 <!-- Cuadrante 4: Skills skills-->
-                <div class="quadrant quadrant-4 mt-3 justify-content-center skill-box">
+                <div class="quadrant quadrant-4 mt-3 justify-content-start skill-box">
                     <app-skills class="col-12" [tableData]="'user'" [rol]="'candidate'"></app-skills>
                 </div>
             </div>

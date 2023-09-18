@@ -41,6 +41,10 @@ export class CandidateListComponent implements OnInit {
     this.usersService.getAllByRoleNameAsc('candidate').subscribe(result => {
       this.allCandidates = result;
 
+      this.allCandidates.forEach(candidate => {
+        candidate.avatar = this.getAvatarUrl(candidate);
+      });
+
       // Calculamos las paginas totales
       this.totalPages = Math.ceil(this.allCandidates.length / this.itemsPerPage);
 
@@ -101,6 +105,9 @@ export class CandidateListComponent implements OnInit {
     this.usersService.getCandidatesWithSkillsNameAsc(skillsTemp).subscribe(result => {
 
       this.allCandidates = result;
+      this.allCandidates.forEach(candidate => {
+        candidate.avatar = this.getAvatarUrl(candidate);
+      });
       this.updateDisplayedUsers();
     });
   }
@@ -122,6 +129,9 @@ export class CandidateListComponent implements OnInit {
     this.usersService.getCandidatesWithSkillsNameDesc(skillsTemp).subscribe(result => {
 
       this.allCandidates = result;
+      this.allCandidates.forEach(candidate => {
+        candidate.avatar = this.getAvatarUrl(candidate);
+      });
       this.updateDisplayedUsers();
     });
   }
@@ -153,8 +163,22 @@ export class CandidateListComponent implements OnInit {
       this.usersService.getCandidatesWithSkillsStartingWith(this.inputValue, skillsTemp).subscribe(result => {
 
         this.allCandidates = result;
+        this.allCandidates.forEach(candidate => {
+          candidate.avatar = this.getAvatarUrl(candidate);
+        });
         this.updateDisplayedUsers();
       });
     }
+  }
+
+  // Transforma la imagen
+  getAvatarUrl(user: User) {
+    if (user.avatar && user.avatar.length > 0) {
+      
+      // Creamos una URL de datos (Data URL) a partir de la cadena Base64
+      return `data:image/png;base64,${user?.avatar}`; // Cambia 'image/png' al tipo de imagen correcto si es diferente
+    }
+
+    return null;
   }
 }

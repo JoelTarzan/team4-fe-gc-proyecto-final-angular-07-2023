@@ -44,7 +44,7 @@ export class UsersService {
   * /users/{id}
   */
   
-  endpoint: string = 'http://localhost:8080/';
+  endpoint: string = 'https://aurum-backend-production.up.railway.app/';
   
   //Endpoints Backend
   

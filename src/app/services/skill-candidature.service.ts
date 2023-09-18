@@ -9,7 +9,7 @@ import { Skill } from '../models/skill';
 })
 export class SkillCandidatureService {
 
-  endpoint: string = 'http://localhost:8080/';
+  endpoint: string = 'https://aurum-backend-production.up.railway.app/';
 
   constructor(private http: HttpClient) { }
 

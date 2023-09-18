@@ -128,7 +128,7 @@ export class CandidatureDetailsComponent implements OnInit {
 
       }
 
-      console.log(this.idCandidature);
+      
       this.applicationsService.getByIdCandidature(this.idCandidature)
       .subscribe((result: Application[]) => {
         this.applyCount = result.length;

@@ -39,7 +39,7 @@
 
             <div class="row justify-content-center cards">
                 <ng-container *ngFor="let candidature of candidatures">
-                    <div class="col-md-6 col-12 mb-3" *ngIf="candidature.state">
+                    <div class="col-md-6 col-12 mb-3" *ngIf="candidature.state && skillsUser">
                         <app-home-card [candidature]="candidature" [skillsUser]="skillsUser"></app-home-card>
                     </div>
                 </ng-container>

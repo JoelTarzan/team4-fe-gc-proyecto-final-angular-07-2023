@@ -39,8 +39,10 @@ El administrador comparte funcionalidades del reclutador pero principalmente su 
 Además de vistas comunes a todos los usuarios algunas varian según el rol y otras solo son accesibles por determinado rol.
 
 ### Inicio de sesión
+![image](https://github.com/JoelTarzan/team4-fe-gc-proyecto-final-angular-07-2023/assets/45524750/330c80ab-b390-4993-8cd4-1d3244bb733a)
 
 ### Registro
+![image](https://github.com/JoelTarzan/team4-fe-gc-proyecto-final-angular-07-2023/assets/45524750/b6ed82f4-ff04-4833-83ad-e3aeafc84a54)
 
 ### Inicio
 

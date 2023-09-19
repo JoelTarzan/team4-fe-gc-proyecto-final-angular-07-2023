@@ -7,7 +7,8 @@
             <div class="d-flex justify-content-evenly flex-wrap my-5 gap-5 items-align-center">
                 <div>
                     <!-- Imagen del candidato -->
-                    <img [src]="getAvatarUrl(user!) != null ? getAvatarUrl(user!) : '../../../assets/userph.jpg'" alt="Avatar" class="img-fluid user-img">
+                    
+                    <img [src]="getAvatarUrl(user!) != null ? getAvatarUrl(user!) : '../../../assets/userph.jpg'" alt="Avatar" class="img-fluid user-img circle">
                     <div class="text-center mt-4">
                         <p>{{ user?.lastname + ', ' + user?.name }}</p>
                         <p class="title-text">{{ user?.title }}</p>

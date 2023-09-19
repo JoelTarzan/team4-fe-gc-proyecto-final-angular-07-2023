@@ -28,7 +28,7 @@ export class HomeCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    /* console.log(this.skillsUser); */
     //Se llama al servicio para recibir una lista de (skill[]) que forman parte de la candidatura
     this.skillCandidature.getByIdUsermapSkills(this.candidature.id).subscribe((result: Skill[]) => {
 
@@ -39,9 +39,13 @@ export class HomeCardComponent implements OnInit {
 
       //Compara entre Array (skill[]) Candidature con el Array (skill[]) de User
       //Obtiene el numero de coincidencias
-      this.numSkillsMatch = this.skillsCandidature.filter(item1 =>
-        this.skillsUser.some(item2 => item2.id === item1.id)
-      ).length;
+      this.skillsCandidature.filter(item1 =>{
+        this.skillsUser.some(item2 => {
+          if(item2.id === item1.id){
+            this.numSkillsMatch++;
+          }
+        })
+      });
     });
 
   }

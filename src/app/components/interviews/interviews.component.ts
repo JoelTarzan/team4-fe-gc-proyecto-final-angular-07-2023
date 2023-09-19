@@ -106,7 +106,7 @@ export class InterviewsComponent implements OnInit {
 
       if (this.allOpenProcesses.length != 0) {
         // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+        this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
       }
 
       // Cambiamos los procesos abiertos a mostrar
@@ -125,7 +125,7 @@ export class InterviewsComponent implements OnInit {
 
       if (this.allOpenProcesses.length != 0) {
         // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+        this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
       }
 
       // Cambiamos los procesos abiertos a mostrar
@@ -139,7 +139,7 @@ export class InterviewsComponent implements OnInit {
 
     if (this.allOpenProcesses.length != 0) {
       // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
     }
 
     // Cambiamos los procesos abiertos a mostrar
@@ -152,7 +152,7 @@ export class InterviewsComponent implements OnInit {
 
     if (this.allOpenProcesses.length != 0) {
       // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
     }
 
     // Cambiamos los procesos abiertos a mostrar

@@ -40,7 +40,18 @@ export class CandidatureListComponent implements OnInit {
     this.roleuser=this.tokenStorageService.getRole();
 
     if (this.roleuser == "rrhh" || this.roleuser == "admin") {
-      this.getAllDefault();
+      // Recogemos todas las candidaturas
+      this.candidaturesService.getAllNameASC().subscribe(result => {
+        this.allCandidatures = result;
+
+        if (this.allCandidatures.length != 0) {
+          // Calculamos las paginas totales
+          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        }
+
+        // Cambiamos las candidaturas a mostrar
+        this.onPageChanged(1);
+      });
     }else if(this.roleuser == "candidate"){
       // Recogemos todas las candidaturas
       this.applicationService.getByIdUserMapCandidatures(this.iduser).subscribe(result => {
@@ -148,7 +159,7 @@ export class CandidatureListComponent implements OnInit {
 
   searchOption(){
     //Limpia el filtro ya que se usa el buscador
-    this.optionSelected="seleccione filtro";
+    //this.optionSelected="Orden";
 
     //Para evitar errores cuando el texto del buscador este vacio pondra el metodo getAll
     if(this.searchTxtOption==""){

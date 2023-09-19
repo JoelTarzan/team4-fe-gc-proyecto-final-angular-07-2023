@@ -100,8 +100,10 @@ export class InterviewsComponent implements OnInit {
       // Nos quedamos solo con los procesos abiertos a los que el usuario esta suscrito
       this.filterOpenProcesses();
 
-      // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
+      if (this.allOpenProcesses.length != 0) {
+        // Calculamos las paginas totales
+        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      }
 
       // Cambiamos los procesos abiertos a mostrar
       this.onPageChanged(1);
@@ -117,8 +119,10 @@ export class InterviewsComponent implements OnInit {
       // Nos quedamos solo con los procesos abiertos a los que el usuario esta suscrito
       this.filterOpenProcesses();
 
-      // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
+      if (this.allOpenProcesses.length != 0) {
+        // Calculamos las paginas totales
+        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      }
 
       // Cambiamos los procesos abiertos a mostrar
       this.onPageChanged(1);
@@ -129,8 +133,10 @@ export class InterviewsComponent implements OnInit {
   getProcessesSubscribedNameAsc() {
     this.openProcessesSubscribed.sort((a, b) => a.user.name.localeCompare(b.user.name));
 
-    // Calculamos las paginas totales
-    this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
+    if (this.allOpenProcesses.length != 0) {
+      // Calculamos las paginas totales
+      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+    }
 
     // Cambiamos los procesos abiertos a mostrar
     this.onPageChanged(1);
@@ -140,8 +146,10 @@ export class InterviewsComponent implements OnInit {
   getProcessesSubscribedNameDesc() {
     this.openProcessesSubscribed.sort((a, b) => b.user.name.localeCompare(a.user.name));
 
-    // Calculamos las paginas totales
-    this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
+    if (this.allOpenProcesses.length != 0) {
+      // Calculamos las paginas totales
+      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+    }
 
     // Cambiamos los procesos abiertos a mostrar
     this.onPageChanged(1);

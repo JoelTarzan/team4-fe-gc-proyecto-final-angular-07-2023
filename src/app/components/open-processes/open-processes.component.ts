@@ -71,8 +71,10 @@ export class OpenProcessesComponent implements OnInit {
     this.openProcessesService.getAllByUserOrderDateASC(this.userLogged!.id).subscribe(result => {
       this.allOpenProcesses = result;
 
-      // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      if (this.allOpenProcesses.length != 0) {
+        // Calculamos las paginas totales
+        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      }
 
       // Cambiamos los procesos abiertos a mostrar
       this.onPageChanged(1);
@@ -84,8 +86,10 @@ export class OpenProcessesComponent implements OnInit {
     this.openProcessesService.getAllByUserOrderDateDESC(this.userLogged!.id).subscribe(result => {
       this.allOpenProcesses = result;
 
-      // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      if (this.allOpenProcesses.length != 0) {
+        // Calculamos las paginas totales
+        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      }
 
       // Cambiamos los procesos abiertos a mostrar
       this.onPageChanged(1);

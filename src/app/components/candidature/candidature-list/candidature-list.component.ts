@@ -21,7 +21,7 @@ export class CandidatureListComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 8;
 
-  optionSelected: string="seleccione filtro";
+  optionSelected: string="0";
   searchTxtOption!: string;
 
   //"Subject" emite valores al mismo tiempo puede suscribirse a el para recibir esos valores. 
@@ -46,9 +46,10 @@ export class CandidatureListComponent implements OnInit {
       this.applicationService.getByIdUserMapCandidatures(this.iduser).subscribe(result => {
         this.allCandidatures = result;
         
-
-        // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        if (this.allCandidatures.length != 0) {
+          // Calculamos las paginas totales
+          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        }
 
         // Cambiamos las candidaturas a mostrar
         this.onPageChanged(1);
@@ -87,8 +88,10 @@ export class CandidatureListComponent implements OnInit {
         this.candidaturesService.getAllNameASC().subscribe(result => {
           this.allCandidatures = result;
 
-          // Calculamos las paginas totales
-          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          if (this.allCandidatures.length != 0) {
+            // Calculamos las paginas totales
+            this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          }
 
           // Cambiamos las candidaturas a mostrar
           this.onPageChanged(1);
@@ -100,8 +103,10 @@ export class CandidatureListComponent implements OnInit {
         this.candidaturesService.getAllNameDESC().subscribe(result => {
           this.allCandidatures = result;
 
-          // Calculamos las paginas totales
-          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          if (this.allCandidatures.length != 0) {
+            // Calculamos las paginas totales
+            this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          }
 
           // Cambiamos las candidaturas a mostrar
           this.onPageChanged(1);
@@ -112,8 +117,10 @@ export class CandidatureListComponent implements OnInit {
         this.candidaturesService.getAllOrderOpen().subscribe(result => {
           this.allCandidatures = result;
 
-          // Calculamos las paginas totales
-          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          if (this.allCandidatures.length != 0) {
+            // Calculamos las paginas totales
+            this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          }
 
           // Cambiamos las candidaturas a mostrar
           this.onPageChanged(1);
@@ -124,8 +131,10 @@ export class CandidatureListComponent implements OnInit {
         this.candidaturesService.getAllOrderClose().subscribe(result => {
           this.allCandidatures = result;
 
-          // Calculamos las paginas totales
-          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          if (this.allCandidatures.length != 0) {
+            // Calculamos las paginas totales
+            this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+          }
 
           // Cambiamos las candidaturas a mostrar
           this.onPageChanged(1);
@@ -151,8 +160,10 @@ export class CandidatureListComponent implements OnInit {
       this.candidaturesService.getStartingWith(this.searchTxtOption).subscribe(result => {
         this.allCandidatures = result;
 
-        // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        if (this.allCandidatures.length != 0) {
+          // Calculamos las paginas totales
+          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        }
 
         // Cambiamos las candidaturas a mostrar
         this.onPageChanged(1);
@@ -167,8 +178,10 @@ export class CandidatureListComponent implements OnInit {
       this.candidaturesService.getAll().subscribe(result => {
         this.allCandidatures = result;
 
-        // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        if (this.allCandidatures.length != 0) {
+          // Calculamos las paginas totales
+          this.totalPages = Math.ceil(this.allCandidatures.length / this.itemsPerPage);
+        }
 
         // Cambiamos las candidaturas a mostrar
         this.onPageChanged(1);

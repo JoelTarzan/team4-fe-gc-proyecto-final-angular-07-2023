@@ -17,7 +17,6 @@
         <div class="mb-4 col-md-3 col-12 d-flex" *ngIf="roleuser == 'rrhh' || roleuser == 'admin'">
             
             <select class="form-select" aria-label="Alfabético ASC"   [(ngModel)]="optionSelected" (ngModelChange)="filterChange()">
-                <option selected="true" disabled="disabled">seleccione filtro</option>
                 <option value="0">Alfabético Asc.</option>
                 <option value="1">Alfabético Desc.</option>
                 <option value="2">Cand. Abiertas</option>

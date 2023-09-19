@@ -96,13 +96,13 @@
                 </div>
                 <div class="row post-cards d-flex justify-content-between">
                     <div class="col-md-6 mb-4" *ngFor="let application of applications">
-                        <div class="card">
+                        <div class="card card-fix">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                 <img src="../../../../assets/grupo-castilla.jpg" alt="logo" style="max-width: 35px; height: auto;">
                                 <h5 class="card-title m-1">{{ application.candidature.name }}</h5>
                             </div>
-                                <p class="card-text mt-3">{{ application.candidature.description }}</p>
+                                <p class="card-text mt-3 card-scroll">{{ application.candidature.description }}</p>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <img src="../../../../assets/eye-icon.png" class="eye-icon" [routerLink]="['/candidate-application', application.id]" alt="eye">

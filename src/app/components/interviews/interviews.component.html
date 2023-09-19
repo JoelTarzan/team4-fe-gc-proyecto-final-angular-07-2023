@@ -36,7 +36,7 @@
                     <h5 class="mt-md-0">
                         {{ openProcess.name }} - {{ openProcess.date | date:"dd-MM-yyyy" }}
                     </h5>
-                    <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidate-application', openProcess.id]" alt="eye">
+                    <img src="../../../../assets/eye-icon.png" class="eye-icon"[routerLink]="['/candidate-application', openProcess.candidature.id]" alt="eye">
                 </div>
             </div>
         </div>

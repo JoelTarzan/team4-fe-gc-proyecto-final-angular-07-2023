@@ -35,7 +35,7 @@
                                     <p class="texto-grande mb-2" *ngIf="!editMode">{{ user?.name || 'Nombre' }}</p>
                                     <p class="texto-titulo" *ngIf="!editMode">{{ user?.title || 'Título'}}</p>
 
-                                    <input type="file" class="mb-2" *ngIf="editMode" (change)="onFileSelected($event)">
+                                    <input type="file" class="mb-2 re-size" *ngIf="editMode" (change)="onFileSelected($event)">
                                     <input type="text" class="form-control mb-1" [(ngModel)]="user!.lastname"
                                         *ngIf="editMode">
                                     <input type="text" class="form-control mb-1" [(ngModel)]="user!.name"

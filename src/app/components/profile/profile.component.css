@@ -90,15 +90,18 @@
     }
 }
 
-@media (max-width: 340px) {
+
+
+@media (max-width: 350px) {
     .container-profile {
-        width: 320px;
+        width: auto;
         height: auto;
     }
 
     .container-profile .grid-container {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(1, 1fr);
+        width: auto;
     }
 
     .container-profile textarea {
@@ -121,6 +124,10 @@
 
     .skill-box {
         padding: 20px;
+    }
+
+    .re-size {
+        max-width: 280px;
     }
 }
 
@@ -212,21 +219,21 @@ textarea {
 .texto-grande {
     font-size: 22px; 
     margin-bottom: -5px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .texto-titulo {
     color: rgb(129, 129, 129); 
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
-.texto-grande:hover {
+/* .texto-grande:hover {
     font-weight:500;
 }
 
 .texto-titulo:hover {
     font-weight:500;
-}
+} */
 
 /* .skills {
     margin-top: 32px;

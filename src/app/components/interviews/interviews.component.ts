@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OpenProcess } from 'src/app/models/open-process';
 import { Subscription } from 'src/app/models/subscription';
 import { User } from 'src/app/models/user';
+import { ApplicationsService } from 'src/app/services/applications.service';
 import { OpenProcessesService } from 'src/app/services/open-processes.service';
 import { SubscriptionsService } from 'src/app/services/subscriptions.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -32,7 +34,9 @@ export class InterviewsComponent implements OnInit {
     private openProcessesService: OpenProcessesService,
     private tokenStorageService: TokenStorageService,
     private usersService: UsersService, 
-    private subscriptionsService: SubscriptionsService) {
+    private subscriptionsService: SubscriptionsService,
+    private applicationsService: ApplicationsService,
+    private router: Router) {
 
   }
 
@@ -102,7 +106,7 @@ export class InterviewsComponent implements OnInit {
 
       if (this.allOpenProcesses.length != 0) {
         // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+        this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
       }
 
       // Cambiamos los procesos abiertos a mostrar
@@ -121,7 +125,7 @@ export class InterviewsComponent implements OnInit {
 
       if (this.allOpenProcesses.length != 0) {
         // Calculamos las paginas totales
-        this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+        this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
       }
 
       // Cambiamos los procesos abiertos a mostrar
@@ -135,7 +139,7 @@ export class InterviewsComponent implements OnInit {
 
     if (this.allOpenProcesses.length != 0) {
       // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
     }
 
     // Cambiamos los procesos abiertos a mostrar
@@ -148,7 +152,7 @@ export class InterviewsComponent implements OnInit {
 
     if (this.allOpenProcesses.length != 0) {
       // Calculamos las paginas totales
-      this.totalPages = Math.ceil(this.allOpenProcesses.length / this.itemsPerPage);
+      this.totalPages = Math.ceil(this.openProcessesSubscribed.length / this.itemsPerPage);
     }
 
     // Cambiamos los procesos abiertos a mostrar
@@ -164,5 +168,13 @@ export class InterviewsComponent implements OnInit {
     }
 
     return null;
+  }
+
+  // Obtenemos la id de la application
+  redirectToApplication(openProcess: OpenProcess) {
+    this.applicationsService.getOneByIdCandidatureandIdUser(openProcess.user.id, openProcess.candidature.id).subscribe(result => {
+      
+      return this.router.navigate(['/candidate-application', result.id]);
+    });
   }
 }

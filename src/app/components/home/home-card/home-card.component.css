@@ -31,7 +31,12 @@
 }
 
 .truncate-text {
-    max-height: 160px; /* Altura máxima antes de truncar */
-    min-height: 160px; /* Altura mínima antes de truncar */
+    max-height: 170px; /* Altura máxima antes de truncar */
+    min-height: 170px; /* Altura mínima antes de truncar */
     overflow-y: auto;
+}
+
+.truncate-title {
+    max-height: 280px; 
+    min-height: 280px;
 }

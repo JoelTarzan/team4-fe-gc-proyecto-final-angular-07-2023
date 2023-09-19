@@ -48,6 +48,10 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+
+    .collapse-number {
+        margin-left: 45% !important;
+    }
 }
 
 /* Substitución de los style en el html*/

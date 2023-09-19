@@ -23,7 +23,7 @@
                         <ul class="dropdown-menu p-1" id="skills-menu">
                             <li *ngFor="let skill of skills">
                                 <input class="form-check-input mx-2" type="checkbox" [(ngModel)]="skill.value" (ngModelChange)="onFilterChange(skill)">
-                                <label class="form-check-label">{{ skill.name }}</label>
+                                <label class="form-check-label truncate-text">{{ skill.name }}</label>
                             </li>
                         </ul>
                     </div>
@@ -59,7 +59,7 @@
                             <img [src]="candidate.avatar != null ? candidate.avatar : '../../../assets/userph.jpg'" alt="Imagen de usuario default" class="img-fluid">
                             {{ candidate.name + ' ' + candidate.lastname }}
                         </p>
-                        <div class="mt-md-0">
+                        <div class="mt-md-1">
                             <app-rating [rating]="candidate.rating"></app-rating>
                         </div>
                         <div class="">

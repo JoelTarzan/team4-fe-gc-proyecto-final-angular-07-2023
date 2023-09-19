@@ -45,6 +45,13 @@ img {
     cursor: pointer;
 }
 
+.truncate-text {
+    display: inline-block;
+    max-width: calc(100% - 32px); 
+    white-space: normal; 
+    word-wrap: break-word; 
+}
+
 @media (max-width: 770px) {
     .cards-head {
         display: none;

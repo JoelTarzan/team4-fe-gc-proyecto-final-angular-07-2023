@@ -1,12 +1,13 @@
 <div class="card">
     <div class="card-body p-0">
+        <div class="truncate-title">
         <div class="d-flex p-2 align-items-center" >
             <img src="../../../../assets/grupo-castilla.jpg" alt="logo" style="max-width: 50px; height: auto; padding-left: 5px;">
             <h4 class="card-title p-3 m-1">{{ candidature.name }}</h4>
         </div>
 
         <p class="card-text truncate-text p-3" style="text-align: justify; margin-left: 10px; margin-right: 10px;">{{ candidature.description }}</p>
-
+    </div>
         <ul class="list-group list-group-flush text-center">
             <li class="list-group-item secundary-list">{{ candidature.typeWorkingDate +" - "+ candidature.location}}</li>
             <li class="list-group-item secundary-list" [ngClass]="{'list-group-item-success' : numSkillsMatch == numSkillsReq}">

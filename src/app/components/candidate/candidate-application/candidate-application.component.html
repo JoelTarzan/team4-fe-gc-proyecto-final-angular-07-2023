@@ -5,7 +5,7 @@
         <div class="my-5 row">
 
             <div class="col-12 col-md-5 d-flex flex-column align-items-center">
-                <img [src]="getAvatarUrl(candidate!) != null ? getAvatarUrl(candidate!) : '../../../assets/userph.jpg'" alt="Avatar" class="img-fluid mb-4">
+                <img [src]="getAvatarUrl(candidate!) != null ? getAvatarUrl(candidate!) : '../../../assets/userph.jpg'" alt="Avatar" class="img-fluid mb-4 image-fix">
 
                 <div class="d-flex flex-column justify-content-center text-center">
                     <p class="fs-4">{{ candidate?.lastname }}, {{ candidate?.name }}</p>
@@ -16,8 +16,7 @@
             <div class="col-12 col-md-7 text-container">
                 <div>
                     <h3 class="mb-3">{{ candidature?.name }}</h3>
-                    <p class="mb-3 grey-text">{{ candidature?.location }} · {{ candidature?.typeWorkingDate }} · {{
-                        candidature?.applicantsNum }} candidatos</p>
+                    <p class="mb-3 grey-text">{{ candidature?.location }} · {{ candidature?.typeWorkingDate }}</p>
                     <h6 class="mb-3 mt-4">Descripción</h6>
                     <div class="text-description">
                         <p>{{ candidature?.description }}</p>

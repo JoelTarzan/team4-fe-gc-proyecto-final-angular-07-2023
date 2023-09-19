@@ -55,6 +55,17 @@ font-size: 18px;
     width: 430px;
 }
 
+.card-fix {
+    max-height: 250px;
+    min-height: 250px;
+}
+
+.card-scroll {
+    max-height: 100px;
+    min-height: 100px;
+    overflow-y: auto;
+}
+
 @media (max-width: 1000px) {
 
     .container-candidate {
